@@ -29,6 +29,7 @@
   time.timeZone = "America/Chicago";
   # Dont use built-in firewall
   networking.firewall.enable = false;
+  networking.nftables.enable = true;
   # ZFS hostid
   #networking.hostId = "79aff78c";
 
