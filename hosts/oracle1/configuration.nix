@@ -93,6 +93,18 @@
       ipv6_enabled = true;
     };
   };
+  virtualisation.containers.containersConf.settings = {
+
+    network = {
+      network_backend = "netavark";
+      firewall_driver = "nftables";
+    };
+    
+    engine = {
+  	  volume_path = "/home/azoller/containers/storage/volumes";
+  	};
+  	
+  };
 
   ## Containers
 
