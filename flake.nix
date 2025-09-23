@@ -25,22 +25,6 @@
           ];
         };
 
-        oracle1 = nixpkgs.lib.nixosSystem {
-          system = "aarch64-linux";
-          modules = [
-            disko.nixosModules.disko
-            ./hosts/oracle1/configuration.nix
-          ];
-        };
-
-        oracle2 = nixpkgs.lib.nixosSystem {
-          system = "aarch64-linux";
-          modules = [
-            disko.nixosModules.disko
-            ./hosts/oracle2/configuration.nix
-          ];
-        };
-
         main-server = nixpkgs-unstable.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
