@@ -1,0 +1,12 @@
+# update
+nix flake lock/update
+
+# install/initialize
+# cloud, no hardware generated
+nix run github:nix-community/nixos-anywhere -- --flake ./#HOST -i /home/azoller/.ssh/id_ed25519 --target-host root@HOSTIP
+# with facter
+nix run github:nix-community/nixos-anywhere -- --generate-hardware-config nixos-facter ./hosts/HOST/facter.json --flake ./#HOST -i /home/azoller/.ssh/id_ed25519 --target-host root@IP
+
+
+# update remotely
+nixos-rebuild switch --flake ./#${HOST} --target-host root@${IP}
