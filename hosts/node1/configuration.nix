@@ -112,7 +112,7 @@
       hostname = "socket-proxy-kop";
 
       volumes = [
-        "/var/run/podman.sock:/var/run/podman.sock:ro"
+        "/var/run/podman/podman.sock:/var/run/podman/podman.sock:ro"
       ];
 
       environment = {
@@ -122,11 +122,11 @@
       };
 
       extraOptions = [
-        "--tmpfs /run"
+        "--tmpfs=/run"
         "--read-only"
-        "--memory 64m"
-        "--cap-drop ALL"
-        "--security-opt ['no-new-privileges']"
+        "--memory=64m"
+        "--cap-drop=ALL"
+        "--security-opt=no-new-privileges"
       ];
     };
 
