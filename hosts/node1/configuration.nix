@@ -144,6 +144,37 @@
       };
     };
 
+    apprise = {
+      image = "ghcr.io/caronc/apprise:1.2.1";
+      autoStart = true;
+      ports = [ "10000:8000" ];
+      networks = ["apprise"];
+      hostname = "apprise";
+
+      volumes = [
+        "apprise_config:/config"
+        "apprise_plugin:/plugin"
+        "apprise_attach:/attach"
+        "apprise_data:/config/store"
+      ];
+
+      environmentFiles = [
+        /home/azoller/nix-homelab/hosts/node1/.env.secret.apprise
+      ];
+
+      labels = {
+        "kop.bind.ip" = "192.168.2.5";
+        "traefik.enable" = "true";
+        "traefik.http.services.apprise.loadbalancer.server.port" = "10000";
+        "traefik.http.routers.apprise.rule" = "Host(`apprise.azollerstuff.xyz`)";
+        "traefik.http.routers.apprise.entrypoints" = "https";
+        "traefik.http.routers.apprise.tls" = "true";
+        "traefik.http.routers.apprise.tls.certresolver" = "le";
+        "traefik.http.routers.apprise.tls.domains[0].main" = "*.azollerstuff.xyz";
+        "traefik.http.routers.apprise.middlewares" = "secheader@file";
+      };
+    };
+
   };
 
   ## Services
