@@ -102,6 +102,50 @@
 
   ## Containers
 
+  virtualisation.oci-containers.containers = {
+
+    socket-proxy-kop = {
+      image = "lscr.io/linuxserver/socket-proxy:3.2.4";
+      autoStart = true;
+      #ports = [ "3306:3306" ];
+      networks = ["kop"];
+      hostname = "socket-proxy-kop";
+
+      volumes = [
+        "/var/run/podman.sock:/var/run/podman.sock:ro"
+      ];
+
+      environment = {
+        CONTAINERS = "1";
+        LOG_LEVEL = "info";
+        TZ = "America/Chicago";
+      };
+
+      extraOptions = [
+        "--tmpfs /run"
+        "--read-only"
+        "--memory 64m"
+        "--cap-drop ALL"
+        "--security-opt ['no-new-privileges']"
+      ];
+    };
+
+    kop = {
+      image = "ghcr.io/jittering/traefik-kop:0.17";
+      autoStart = true;
+      #ports = [ "3306:3306" ];
+      networks = ["kop"];
+      hostname = "kop";
+
+      environment = {
+        REDIS_ADDR = "node5.lan.internal:6379";
+        KOP_HOSTNAME = "node1.lan.internal";
+        DOCKER_HOST = "tcp://socket-proxy-kop:2375";
+      };
+    };
+
+  };
+
   ## Services
 
   # SSH
