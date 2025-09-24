@@ -119,10 +119,6 @@
         "mariadb-data:/var/lib/mysql"
       ];
 
-      #environment = {
-        #MARIADB_ROOT_PASSWORD = "1";
-      #};
-
       environmentFiles = [
         /home/azoller/nix-homelab/hosts/node5/.env.secret.mariadb
       ];
@@ -158,7 +154,6 @@
       environment = {
         POSTGRES_USER = "sparkyfit"; 
         POSTGRES_DB = "sparkyfit";
-        #POSTGRES_PASSWORD = "fake";
       };
 
       environmentFiles = [
@@ -178,7 +173,6 @@
       ];
 
       environment = {
-        #MONGO_INITDB_ROOT_PASSWORD = "fake";
         MONGO_INITDB_ROOT_USERNAME = "ys";
       };
 
