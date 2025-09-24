@@ -3,7 +3,7 @@
 # Users, default azoller
   users.users.azoller = {
     isNormalUser = true;
-    linger = true;
+    #linger = true;
     autoSubUidGidRange = true;
     home = "/home/azoller";
     extraGroups = [ "wheel" "networkmanager" "video" ];
