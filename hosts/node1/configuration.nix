@@ -119,7 +119,6 @@
   };
 
   # System Config
-  #system.copySystemConfiguration = true;
   system.stateVersion = "25.05";
   nix.optimise.automatic = true;
   nix.gc = {

@@ -5,14 +5,14 @@
   # Hardware/Disks
   # Users
   imports = [
-      ./disk-config.nix
-      ../../users/azoller/default.nix
+    ./disk-config.nix
+    ../../users/azoller/default.nix
   ];
   facter.reportPath = ./facter.json;
 
   # Root user key, all hosts
   users.users.root.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIukVfBl4xdLkVYoBsAfsrUQ7aG5qFiObDZbK8j6UGZj azoller@pc-linux",
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIukVfBl4xdLkVYoBsAfsrUQ7aG5qFiObDZbK8j6UGZj azoller@pc-linux"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDbbugMH2sE7ym1qtLBHY9rHoSgboe/rOFmQSL9zYzVS alexz@laptop"
   ];
 
@@ -118,7 +118,6 @@
   };
 
   # System Config
-  system.copySystemConfiguration = true;
   system.stateVersion = "25.05";
   nix.optimise.automatic = true;
   nix.gc = {
