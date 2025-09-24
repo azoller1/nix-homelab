@@ -106,6 +106,108 @@
 
   ## Containers
 
+  # MariaDB
+  virtualisation.oci-containers.containers = {
+
+    mariadb = {
+      image = "docker.io/mariadb:11.8.2-ubi9";
+      autoStart = true;
+      ports = [ "3306:3306" ];
+      networks = ["mariadb"];
+
+      volumes = [
+        "mariadb-data:/var/lib/mysql"
+      ];
+
+      #environment = {
+        #MARIADB_ROOT_PASSWORD = "1";
+      #};
+
+      environmentFiles = [
+        /home/azoller/nix-homelab/hosts/node5/.env.secret.mariadb
+      ];
+
+    };
+
+    postgres17 = {
+      image = "docker.io/postgres:17.5-alpine";
+      autoStart = true;
+      ports = [ "5432:5432" ];
+      networks = ["postgres17"];
+
+      volumes = [
+        "pgdata:/var/lib/postgresql/data"
+      ];
+
+      environmentFiles = [
+        /home/azoller/nix-homelab/hosts/node5/.env.secret.pg17
+      ];
+
+    };
+
+    postgres17-sparkyfit = {
+      image = "docker.io/postgres:17.5-alpine";
+      autoStart = true;
+      ports = [ "5433:5432" ];
+      networks = ["postgres17-sparkyfit"];
+
+      volumes = [
+        "pgdata-sparkyfit:/var/lib/postgresql/data"
+      ];
+
+      environment = {
+        POSTGRES_USER = "sparkyfit"; 
+        POSTGRES_DB = "sparkyfit";
+        #POSTGRES_PASSWORD = "fake";
+      };
+
+      environmentFiles = [
+        /home/azoller/nix-homelab/hosts/node5/.env.secret.pg17-sparky
+      ];
+
+    };
+
+    mongo6-ys = {
+      image = "docker.io/mongo:6.0.25-jammy";
+      autoStart = true;
+      ports = [ "27017:27017" ];
+      networks = ["mongo6-ys"];
+
+      volumes = [
+        "mongo-ys-data:/data/db"
+      ];
+
+      environment = {
+        #MONGO_INITDB_ROOT_PASSWORD = "fake";
+        MONGO_INITDB_ROOT_USERNAME = "ys";
+      };
+
+      environmentFiles = [
+        /home/azoller/nix-homelab/hosts/node5/.env.secret.mongo-ys
+      ];
+
+      cmd = [
+        "--ipv6"
+      ];
+
+    };
+
+    valkey-traefik = {
+      image = "docker.io/valkey/valkey:8.1.3-alpine";
+      autoStart = true;
+      ports = [ "6379:6379" ];
+      networks = ["valkey-traefik"];
+
+      volumes = [
+        "valkey:/data"
+      ];
+
+      environment = {
+        VALKEY_EXTRA_FLAGS = "--save 60 1 --loglevel info";
+      };
+    };
+  };
+
   ## Services
 
   # SSH
