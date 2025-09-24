@@ -98,9 +98,9 @@
       firewall_driver = "nftables";
     };
     
-    engine = {
-  	  volume_path = "/home/azoller/containers/storage/volumes";
-  	};
+    #engine = {
+  	  #volume_path = "/home/azoller/containers/storage/volumes";
+  	#};
   	
   };
 
@@ -113,7 +113,7 @@
       image = "docker.io/mariadb:11.8.2-ubi9";
       autoStart = true;
       ports = [ "3306:3306" ];
-      networks = ["mariadb"];
+      #networks = ["mariadb"];
 
       volumes = [
         "mariadb-data:/var/lib/mysql"
@@ -129,7 +129,7 @@
       image = "docker.io/postgres:17.5-alpine";
       autoStart = true;
       ports = [ "5432:5432" ];
-      networks = ["postgres17"];
+      #networks = ["postgres17"];
 
       volumes = [
         "pgdata:/var/lib/postgresql/data"
@@ -145,7 +145,7 @@
       image = "docker.io/postgres:17.5-alpine";
       autoStart = true;
       ports = [ "5433:5432" ];
-      networks = ["postgres17-sparkyfit"];
+      #networks = ["postgres17-sparkyfit"];
 
       volumes = [
         "pgdata-sparkyfit:/var/lib/postgresql/data"
@@ -166,7 +166,7 @@
       image = "docker.io/mongo:6.0.25-jammy";
       autoStart = true;
       ports = [ "27017:27017" ];
-      networks = ["mongo6-ys"];
+      #networks = ["mongo6-ys"];
 
       volumes = [
         "mongo-ys-data:/data/db"
@@ -190,14 +190,14 @@
       image = "docker.io/valkey/valkey:8.1.3-alpine";
       autoStart = true;
       ports = [ "6379:6379" ];
-      networks = ["valkey-traefik"];
+      #networks = ["valkey-traefik"];
 
       volumes = [
         "valkey:/data"
       ];
 
       environment = {
-        VALKEY_EXTRA_FLAGS = "--save 60 1 --loglevel info";
+        VALKEY_EXTRA_FLAGS = "--save 60 1 --loglevel verbose";
       };
     };
   };
