@@ -51,7 +51,6 @@
     lm_sensors
     btop
     just
-    passt
     htop
   ];
 

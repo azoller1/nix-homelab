@@ -44,16 +44,12 @@
   environment.systemPackages = with pkgs; [
     wget
     micro
-    podman
-    podman-compose
-    podlet
+    docker
     lazyjournal
     lsof
     lm_sensors
     btop
-    podman-tui
     just
-    passt
     htop
   ];
 
@@ -78,24 +74,13 @@
     };
   };
   
-  # Podman Config
-  virtualisation.docker.enable = false;
-  virtualisation.oci-containers.backend = "podman";
-  virtualisation.podman = {
+  # Docker Config
+  virtualisation.oci-containers.backend = "docker";
+  virtualisation.docker = {
     enable = true;
-    autoPrune.enable = true;
-    dockerSocket.enable = true;
-    dockerCompat = true;
-    defaultNetwork.settings = {
-      dns_enabled = true;
-      ipv6_enabled = true;
-    };
-  };
-  virtualisation.containers.containersConf.settings = {
-
-    network = {
-      network_backend = "netavark";
-      firewall_driver = "nftables";
+    storageDriver = "overlay2";
+    daemon.settings = {
+      ipv6 = true;
     };
   };
 
