@@ -109,11 +109,12 @@
   # MariaDB
   virtualisation.oci-containers.containers = {
 
-    mariadb = {
+    mariadb11 = {
       image = "docker.io/mariadb:11.8.2-ubi9";
       autoStart = true;
       ports = [ "3306:3306" ];
-      #networks = ["mariadb"];
+      networks = ["mariadb"];
+      hostname = "mariadb11";
 
       volumes = [
         "mariadb-data:/var/lib/mysql"
@@ -122,14 +123,14 @@
       environmentFiles = [
         /home/azoller/nix-homelab/hosts/node5/.env.secret.mariadb
       ];
-
     };
 
     postgres17 = {
       image = "docker.io/postgres:17.5-alpine";
       autoStart = true;
       ports = [ "5432:5432" ];
-      #networks = ["postgres17"];
+      networks = ["postgres17"];
+      hostname = "postgres17";
 
       volumes = [
         "pgdata:/var/lib/postgresql/data"
@@ -138,14 +139,14 @@
       environmentFiles = [
         /home/azoller/nix-homelab/hosts/node5/.env.secret.pg17
       ];
-
     };
 
     postgres17-sparkyfit = {
       image = "docker.io/postgres:17.5-alpine";
       autoStart = true;
       ports = [ "5433:5432" ];
-      #networks = ["postgres17-sparkyfit"];
+      networks = ["postgres-sparky"];
+      hostname = "postgres17-sparkyfit";
 
       volumes = [
         "pgdata-sparkyfit:/var/lib/postgresql/data"
@@ -159,14 +160,14 @@
       environmentFiles = [
         /home/azoller/nix-homelab/hosts/node5/.env.secret.pg17-sparky
       ];
-
     };
 
     mongo6-ys = {
       image = "docker.io/mongo:6.0.25-jammy";
       autoStart = true;
       ports = [ "27017:27017" ];
-      #networks = ["mongo6-ys"];
+      networks = ["mongo6-ys"];
+      hostname = "mongo6-ys";
 
       volumes = [
         "mongo-ys-data:/data/db"
@@ -183,14 +184,14 @@
       cmd = [
         "--ipv6"
       ];
-
     };
 
     valkey-traefik = {
       image = "docker.io/valkey/valkey:8.1.3-alpine";
       autoStart = true;
       ports = [ "6379:6379" ];
-      #networks = ["valkey-traefik"];
+      networks = ["valkey-traefik"];
+      hostname = "valkey-traefik";
 
       volumes = [
         "valkey:/data"
