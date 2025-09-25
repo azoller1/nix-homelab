@@ -88,52 +88,57 @@
 
   virtualisation.oci-containers.containers = {
 
-    mariadb11 = {
-      image = "docker.io/mariadb:11.8.2-ubi9";
+    mariadb-11 = {
+      image = "ghcr.io/mariadb/mariadb:11.8.3-ubi9";
       autoStart = true;
       ports = [ "3306:3306" ];
       networks = ["mariadb"];
-      hostname = "mariadb11";
+      hostname = "mariadb-11";
 
       volumes = [
         "mariadb-data:/var/lib/mysql"
       ];
 
-      environmentFiles = [
-        /home/azoller/nix-homelab/hosts/node5/.env.secret.mariadb
-      ];
+      environment = {
+        MARIADB_ALLOW_EMPTY_ROOT_PASSWORD = "1";
+      };
+
     };
 
-    postgres17 = {
-      image = "docker.io/postgres:17.5-alpine";
+    postgres-17 = {
+      image = "docker.io/postgres:17.6-alpine";
       autoStart = true;
       ports = [ "5432:5432" ];
-      networks = ["postgres17"];
-      hostname = "postgres17";
+      networks = ["postgres"];
+      hostname = "postgres-17";
 
       volumes = [
-        "pgdata:/var/lib/postgresql/data"
+        "pgdata:/var/lib/postgresql"
       ];
+
+      environment = {
+        PGDATA = "/var/lib/postgresql/17/docker";
+      };
 
       environmentFiles = [
         /home/azoller/nix-homelab/hosts/node5/.env.secret.pg17
       ];
     };
 
-    postgres17-sparkyfit = {
-      image = "docker.io/postgres:17.5-alpine";
+    postgres-17-sparkyfit = {
+      image = "docker.io/postgres:17.6-alpine";
       autoStart = true;
       ports = [ "5433:5432" ];
       networks = ["postgres-sparky"];
-      hostname = "postgres17-sparkyfit";
+      hostname = "postgres-17-sparkyfit";
 
       volumes = [
-        "pgdata-sparkyfit:/var/lib/postgresql/data"
+        "pgdata-sparkyfit:/var/lib/postgresql"
       ];
 
       environment = {
-        POSTGRES_USER = "sparkyfit"; 
         POSTGRES_DB = "sparkyfit";
+        PGDATA = "/var/lib/postgresql/17/docker";
       };
 
       environmentFiles = [
@@ -142,7 +147,7 @@
     };
 
     mongo6-ys = {
-      image = "docker.io/mongo:6.0.25-jammy";
+      image = "quay.io/mongodb/mongodb-community-server:6.0.25-ubi9";
       autoStart = true;
       ports = [ "27017:27017" ];
       networks = ["mongo6-ys"];
@@ -166,7 +171,7 @@
     };
 
     valkey-traefik = {
-      image = "docker.io/valkey/valkey:8.1.3-alpine";
+      image = "ghcr.io/valkey-io/valkey:8.1.3-alpine";
       autoStart = true;
       ports = [ "6379:6379" ];
       networks = ["valkey-traefik"];
