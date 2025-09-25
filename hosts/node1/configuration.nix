@@ -92,7 +92,6 @@
     socket-proxy-kop = {
       image = "lscr.io/linuxserver/socket-proxy:3.2.4";
       autoStart = true;
-      #ports = [ "3306:3306" ];
       networks = ["kop"];
       hostname = "socket-proxy-kop";
 
@@ -118,7 +117,6 @@
     kop = {
       image = "ghcr.io/jittering/traefik-kop:0.17";
       autoStart = true;
-      #ports = [ "3306:3306" ];
       networks = ["kop"];
       hostname = "kop";
 
@@ -126,6 +124,140 @@
         REDIS_ADDR = "node5.lan.internal:6379";
         KOP_HOSTNAME = "node1.lan.internal";
         DOCKER_HOST = "tcp://socket-proxy-kop:2375";
+      };
+    };
+
+    ys-client = {
+      image = "ghcr.io/yooooomi/your_spotify_client:1.14.0";
+      autoStart = true;
+      ports = [ "10005:3000" ];
+      networks = ["ys"];
+      hostname = "ys-client";
+
+      environmentFiles = [
+        /home/azoller/nix-homelab/hosts/node1/.env.secret.ys
+      ];
+
+      labels = {
+        "kop.bind.ip" = "192.168.2.5";
+        "traefik.enable" = "true";
+        "traefik.http.services.ys-client.loadbalancer.server.port" = "10005";
+        "traefik.http.routers.ys-client.rule" = "Host(`spotifystats.azollerstuff.xyz`)";
+        "traefik.http.routers.ys-client.entrypoints" = "https";
+        "traefik.http.routers.ys-client.tls" = "true";
+        "traefik.http.routers.ys-client.tls.certresolver" = "le";
+        "traefik.http.routers.ys-client.tls.domains[0].main" = "*.azollerstuff.xyz";
+        "traefik.http.routers.ys-client.middlewares" = "secheader@file";
+      };
+    };
+
+    ys-server = {
+      image = "ghcr.io/yooooomi/your_spotify_server:1.14.0";
+      autoStart = true;
+      ports = [ "10004:8080" ];
+      networks = ["ys"];
+      hostname = "ys-server";
+
+      environmentFiles = [
+        /home/azoller/nix-homelab/hosts/node1/.env.secret.ys
+      ];
+
+      labels = {
+        "kop.bind.ip" = "192.168.2.5";
+        "traefik.enable" = "true";
+        "traefik.http.services.ys-server.loadbalancer.server.port" = "10004";
+        "traefik.http.routers.ys-server.rule" = "Host(`ssapi.azollerstuff.xyz`)";
+        "traefik.http.routers.ys-server.entrypoints" = "https";
+        "traefik.http.routers.ys-server.tls" = "true";
+        "traefik.http.routers.ys-server.tls.certresolver" = "le";
+        "traefik.http.routers.ys-server.tls.domains[0].main" = "*.azollerstuff.xyz";
+        "traefik.http.routers.ys-server.middlewares" = "secheader@file";
+      };
+    };
+
+    vw = {
+      image = "ghcr.io/dani-garcia/vaultwarden:1.34.3";
+      autoStart = true;
+      ports = [ "10003:80" ];
+      networks = ["vw"];
+      hostname = "vw";
+
+      volumes = [
+        "vw_data:/data"
+      ];
+
+      environment = {
+      	ROCKET_ADDRESS = "0.0.0.0";
+      };
+
+      environmentFiles = [
+        /home/azoller/nix-homelab/hosts/node1/.env.secret.vw
+      ];
+
+      labels = {
+        "kop.bind.ip" = "192.168.2.5";
+        "traefik.enable" = "true";
+        "traefik.http.services.vw.loadbalancer.server.port" = "10003";
+        "traefik.http.routers.vw.rule" = "Host(`vault.azollerstuff.xyz`)";
+        "traefik.http.routers.vw.entrypoints" = "https";
+        "traefik.http.routers.vw.tls" = "true";
+        "traefik.http.routers.vw.tls.certresolver" = "le";
+        "traefik.http.routers.vw.tls.domains[0].main" = "*.azollerstuff.xyz";
+        "traefik.http.routers.vw.middlewares" = "secheader@file";
+      };
+    };
+
+    habittrove = {
+      image = "docker.io/dohsimpson/habittrove:v0.2.29";
+      autoStart = true;
+      ports = [ "10002:3000" ];
+      networks = ["habittrove"];
+      hostname = "habittrove";
+
+      volumes = [
+        "habittrove_backups:/app/backups"
+        "habittrove_data:/app/data"
+      ];
+
+      environmentFiles = [
+        /home/azoller/nix-homelab/hosts/node1/.env.secret.habittrove
+      ];
+
+      labels = {
+        "kop.bind.ip" = "192.168.2.5";
+        "traefik.enable" = "true";
+        "traefik.http.services.habittrove.loadbalancer.server.port" = "10002";
+        "traefik.http.routers.habittrove.rule" = "Host(`habits.azollerstuff.xyz`)";
+        "traefik.http.routers.habittrove.entrypoints" = "https";
+        "traefik.http.routers.habittrove.tls" = "true";
+        "traefik.http.routers.habittrove.tls.certresolver" = "le";
+        "traefik.http.routers.habittrove.tls.domains[0].main" = "*.azollerstuff.xyz";
+        "traefik.http.routers.habittrove.middlewares" = "secheader@file";
+      };
+    };
+
+    baikal-dav = {
+      image = "docker.io/ckulka/baikal:0.10.1-nginx-php8.2";
+      autoStart = true;
+      ports = [ "10001:80" ];
+      networks = ["baikal-dav"];
+      hostname = "baikal-dav";
+
+      volumes = [
+        "baikal-dav_config:/var/www/baikal/config"
+        "baikal-dav_data:/var/www/baikal/Specific"
+      ];
+
+      labels = {
+        "kop.bind.ip" = "192.168.2.5";
+        "traefik.enable" = "true";
+        "traefik.http.services.baikal-dav.loadbalancer.server.port" = "10001";
+        "traefik.http.routers.baikal-dav.rule" = "Host(`dav.azollerstuff.xyz`)";
+        "traefik.http.routers.baikal-dav.entrypoints" = "https";
+        "traefik.http.routers.baikal-dav.tls" = "true";
+        "traefik.http.routers.baikal-dav.tls.certresolver" = "le";
+        "traefik.http.routers.baikal-dav.tls.domains[0].main" = "*.azollerstuff.xyz";
+        "traefik.http.routers.baikal-dav.middlewares" = "secheader@file";
       };
     };
 

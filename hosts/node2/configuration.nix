@@ -44,16 +44,12 @@
   environment.systemPackages = with pkgs; [
     wget
     micro
-    podman
-    podman-compose
-    podlet
+    docker
     lazyjournal
     lsof
     lm_sensors
     btop
-    podman-tui
     just
-    passt
     htop
   ];
 
@@ -78,33 +74,149 @@
     };
   };
   
-  # Podman Config
-  virtualisation.docker.enable = false;
-  virtualisation.oci-containers.backend = "podman";
-  virtualisation.podman = {
+  # Docker Config
+  virtualisation.oci-containers.backend = "docker";
+  virtualisation.docker = {
     enable = true;
-    autoPrune.enable = true;
-    dockerSocket.enable = true;
-    dockerCompat = true;
-    defaultNetwork.settings = {
-      dns_enabled = true;
-      ipv6_enabled = true;
+    storageDriver = "overlay2";
+    daemon.settings = {
+      ipv6 = true;
     };
-  };
-  virtualisation.containers.containersConf.settings = {
-
-    network = {
-      network_backend = "netavark";
-      firewall_driver = "nftables";
-    };
-    
-    engine = {
-  	  volume_path = "/home/azoller/containers/storage/volumes";
-  	};
-  	
   };
 
   ## Containers
+
+  virtualisation.oci-containers.containers = {
+
+    socket-proxy-kop = {
+      image = "lscr.io/linuxserver/socket-proxy:3.2.4";
+      autoStart = true;
+      networks = ["kop"];
+      hostname = "socket-proxy-kop";
+
+      volumes = [
+        "/var/run/docker.sock:/var/run/docker.sock:ro"
+      ];
+
+      environment = {
+        CONTAINERS = "1";
+        LOG_LEVEL = "info";
+        TZ = "America/Chicago";
+      };
+
+      extraOptions = [
+        "--tmpfs=/run"
+        "--read-only"
+        "--memory=64m"
+        "--cap-drop=ALL"
+        "--security-opt=no-new-privileges"
+      ];
+    };
+
+    kop = {
+      image = "ghcr.io/jittering/traefik-kop:0.17";
+      autoStart = true;
+      networks = ["kop"];
+      hostname = "kop";
+
+      environment = {
+        REDIS_ADDR = "node5.lan.internal:6379";
+        KOP_HOSTNAME = "node2.lan.internal";
+        DOCKER_HOST = "tcp://socket-proxy-kop:2375";
+      };
+    };
+
+    sparkyfit-server = {
+      image = "ghcr.io/codewithcj/sparkyfitness-server:v0.15.2.1";
+      autoStart = true;
+      networks = ["sparkyfit"];
+      hostname = "sparkyfit-server";
+
+      environmentFiles = [
+        /home/azoller/nix-homelab/hosts/node2/.env.secret.sparky
+      ];
+
+      labels = {
+        "traefik.enable" = "false";
+      };
+    };
+
+    sparkyfit-client = {
+      image = "ghcr.io/codewithcj/sparkyfitness-frontend:v0.15.2.1";
+      autoStart = true;
+      ports = [ "10002:80" ];
+      networks = ["sparkyfit"];
+      hostname = "sparkyfit-client";
+
+      environmentFiles = [
+        /home/azoller/nix-homelab/hosts/node2/.env.secret.sparky
+      ];
+
+      labels = {
+        "kop.bind.ip" = "192.168.2.6";
+        "traefik.enable" = "true";
+        "traefik.http.services.sparkyfit.loadbalancer.server.port" = "10002";
+        "traefik.http.routers.sparkyfit.rule" = "Host(`fit.azollerstuff.xyz`)";
+        "traefik.http.routers.sparkyfit.entrypoints" = "https";
+        "traefik.http.routers.sparkyfit.tls" = "true";
+        "traefik.http.routers.sparkyfit.tls.certresolver" = "le";
+        "traefik.http.routers.sparkyfit.tls.domains[0].main" = "*.azollerstuff.xyz";
+        "traefik.http.routers.sparkyfit.middlewares" = "secheader@file";
+      };
+    };
+
+    nodered = {
+      image = "docker.io/nodered/node-red:4.1.0";
+      autoStart = true;
+      ports = [ "10001:1880" ];
+      networks = ["nodered"];
+      hostname = "nodered";
+
+      environment = {
+      	TZ = "America/Chicago";
+      };
+
+      volumes = [
+        "nodered_data:/data"
+      ];
+
+      labels = {
+        "kop.bind.ip" = "192.168.2.6";
+        "traefik.enable" = "true";
+        "traefik.http.services.nodered.loadbalancer.server.port" = "10001";
+        "traefik.http.routers.nodered.rule" = "Host(`node-red.azollerstuff.xyz`)";
+        "traefik.http.routers.nodered.entrypoints" = "https";
+        "traefik.http.routers.nodered.tls" = "true";
+        "traefik.http.routers.nodered.tls.certresolver" = "le";
+        "traefik.http.routers.nodered.tls.domains[0].main" = "*.azollerstuff.xyz";
+        "traefik.http.routers.nodered.middlewares" = "secheader@file,oidc-auth-nodered@file";
+      };
+    };
+
+    actual-budgets = {
+      image = "ghcr.io/actualbudget/actual-server:25.9.0";
+      autoStart = true;
+      ports = [ "10000:5006" ];
+      networks = ["actual-budgets"];
+      hostname = "actual-budgets";
+
+      volumes = [
+        "actual-budgets_data:/data"
+      ];
+
+      labels = {
+        "kop.bind.ip" = "192.168.2.6";
+        "traefik.enable" = "true";
+        "traefik.http.services.actual-budgets.loadbalancer.server.port" = "10000";
+        "traefik.http.routers.actual-budgets.rule" = "Host(`money.azollerstuff.xyz`)";
+        "traefik.http.routers.actual-budgets.entrypoints" = "https";
+        "traefik.http.routers.actual-budgets.tls" = "true";
+        "traefik.http.routers.actual-budgets.tls.certresolver" = "le";
+        "traefik.http.routers.actual-budgets.tls.domains[0].main" = "*.azollerstuff.xyz";
+        "traefik.http.routers.actual-budgets.middlewares" = "secheader@file";
+      };
+    };
+  };
 
   ## Services
 
