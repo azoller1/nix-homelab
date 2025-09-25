@@ -1,4 +1,6 @@
-# update
+# install nix on whatever machine this is being run, desktop
+
+# update after configuring nixos-anywhere/disks/etc
 nix flake lock/update
 
 # install/initialize
@@ -7,6 +9,14 @@ nix run github:nix-community/nixos-anywhere -- --flake ./#HOST -i /home/azoller/
 # with facter
 nix run github:nix-community/nixos-anywhere -- --generate-hardware-config nixos-facter ./hosts/HOST/facter.json --flake ./#HOST -i /home/azoller/.ssh/id_ed25519 --target-host root@IP
 
-
 # update remotely
 nixos-rebuild switch --flake ./#${HOST} --target-host root@${IP}
+
+# on new machine, ssh into using IP from dhcp
+0. ssh with root and set passwd for azoller
+1. run nmtui to edit network
+2. git pull repo
+3. rebuild system (reboot)
+4. create docker networks with --ipv6
+5. restart containers
+6. done
