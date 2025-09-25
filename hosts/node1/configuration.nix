@@ -188,7 +188,7 @@
 
       environment = {
       	ROCKET_ADDRESS = "0.0.0.0";
-      }
+      };
 
       environmentFiles = [
         /home/azoller/nix-homelab/hosts/node1/.env.secret.vw
