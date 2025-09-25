@@ -126,45 +126,6 @@
       };
     };
 
-    sparkyfit-server = {
-      image = "ghcr.io/codewithcj/sparkyfitness-server:v0.15.2.1";
-      autoStart = true;
-      networks = ["sparkyfit"];
-      hostname = "sparkyfit-server";
-
-      environmentFiles = [
-        /home/azoller/nix-homelab/hosts/node2/.env.secret.sparky
-      ];
-
-      labels = {
-        "traefik.enable" = "false";
-      };
-    };
-
-    sparkyfit-client = {
-      image = "ghcr.io/codewithcj/sparkyfitness-frontend:v0.15.2.1";
-      autoStart = true;
-      ports = [ "10002:80" ];
-      networks = ["sparkyfit"];
-      hostname = "sparkyfit-client";
-
-      environmentFiles = [
-        /home/azoller/nix-homelab/hosts/node2/.env.secret.sparky
-      ];
-
-      labels = {
-        "kop.bind.ip" = "192.168.2.6";
-        "traefik.enable" = "true";
-        "traefik.http.services.sparkyfit.loadbalancer.server.port" = "10002";
-        "traefik.http.routers.sparkyfit.rule" = "Host(`fit.azollerstuff.xyz`)";
-        "traefik.http.routers.sparkyfit.entrypoints" = "https";
-        "traefik.http.routers.sparkyfit.tls" = "true";
-        "traefik.http.routers.sparkyfit.tls.certresolver" = "le";
-        "traefik.http.routers.sparkyfit.tls.domains[0].main" = "*.azollerstuff.xyz";
-        "traefik.http.routers.sparkyfit.middlewares" = "secheader@file";
-      };
-    };
-
     nodered = {
       image = "docker.io/nodered/node-red:4.1.0";
       autoStart = true;
