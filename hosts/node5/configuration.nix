@@ -125,28 +125,6 @@
       ];
     };
 
-    postgres-17-sparkyfit = {
-      image = "docker.io/postgres:17.6-alpine";
-      autoStart = true;
-      ports = [ "5433:5432" ];
-      networks = ["postgres-sparky"];
-      hostname = "postgres-17-sparkyfit";
-
-      volumes = [
-        "pgdata-sparkyfit:/var/lib/postgresql"
-      ];
-
-      environment = {
-        POSTGRES_DB = "sparkyfit";
-        POSTGRES_USER = "sparkyfit";
-        PGDATA = "/var/lib/postgresql/17/docker";
-      };
-
-      environmentFiles = [
-        /home/azoller/nix-homelab/hosts/node5/.env.secret.pg17-sparky
-      ];
-    };
-
     mongo6-ys = {
       image = "quay.io/mongodb/mongodb-community-server:6.0.25-ubi9";
       autoStart = true;
