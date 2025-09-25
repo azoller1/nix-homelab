@@ -138,6 +138,7 @@
 
       environment = {
         POSTGRES_DB = "sparkyfit";
+        POSTGRES_USER = "sparkyfit";
         PGDATA = "/var/lib/postgresql/17/docker";
       };
 
