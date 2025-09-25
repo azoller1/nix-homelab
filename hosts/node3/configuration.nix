@@ -44,16 +44,12 @@
   environment.systemPackages = with pkgs; [
     wget
     micro
-    podman
-    podman-compose
-    podlet
+    docker
     lazyjournal
     lsof
     lm_sensors
     btop
-    podman-tui
     just
-    passt
     htop
   ];
 
@@ -78,33 +74,58 @@
     };
   };
   
-  # Podman Config
-  virtualisation.docker.enable = false;
-  virtualisation.oci-containers.backend = "podman";
-  virtualisation.podman = {
+  # Docker Config
+  virtualisation.oci-containers.backend = "docker";
+  virtualisation.docker = {
     enable = true;
-    autoPrune.enable = true;
-    dockerSocket.enable = true;
-    dockerCompat = true;
-    defaultNetwork.settings = {
-      dns_enabled = true;
-      ipv6_enabled = true;
+    storageDriver = "overlay2";
+    daemon.settings = {
+      ipv6 = true;
     };
-  };
-  virtualisation.containers.containersConf.settings = {
-
-    network = {
-      network_backend = "netavark";
-      firewall_driver = "nftables";
-    };
-    
-    engine = {
-  	  volume_path = "/home/azoller/containers/storage/volumes";
-  	};
-  	
   };
 
   ## Containers
+
+  virtualisation.oci-containers.containers = {
+
+    socket-proxy-kop = {
+      image = "lscr.io/linuxserver/socket-proxy:3.2.4";
+      autoStart = true;
+      networks = ["kop"];
+      hostname = "socket-proxy-kop";
+
+      volumes = [
+        "/var/run/docker.sock:/var/run/docker.sock:ro"
+      ];
+
+      environment = {
+        CONTAINERS = "1";
+        LOG_LEVEL = "info";
+        TZ = "America/Chicago";
+      };
+
+      extraOptions = [
+        "--tmpfs=/run"
+        "--read-only"
+        "--memory=64m"
+        "--cap-drop=ALL"
+        "--security-opt=no-new-privileges"
+      ];
+    };
+
+    kop = {
+      image = "ghcr.io/jittering/traefik-kop:0.17";
+      autoStart = true;
+      networks = ["kop"];
+      hostname = "kop";
+
+      environment = {
+        REDIS_ADDR = "node5.lan.internal:6379";
+        KOP_HOSTNAME = "node3.lan.internal";
+        DOCKER_HOST = "tcp://socket-proxy-kop:2375";
+      };
+    };
+  };
 
   ## Services
 
