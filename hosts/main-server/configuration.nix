@@ -112,7 +112,7 @@
     };
 
     beszel-agent = {
-      image = "ghcr.io/henrygd/beszel/beszel:0.12.7";
+      image = "ghcr.io/henrygd/beszel/beszel-agent:0.12.7";
       autoStart = true;
       networks = ["beszel"];
       hostname = "beszel-agent";
@@ -167,7 +167,7 @@
       autoStart = true;
       networks = ["forgejo"];
       hostname = "forgejo";
-      user = "azoller:users";
+      #user = "azoller:users";
 
       environment = {
         USER_UID = "1000";
