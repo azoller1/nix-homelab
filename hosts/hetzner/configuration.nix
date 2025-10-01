@@ -30,6 +30,7 @@
   networking.nftables.enable = true;
   networking.firewall.allowedTCPPorts = [
     22
+    443
   ];
 
   # Console
@@ -44,16 +45,11 @@
     nftables
     wget
     micro
-    podman
-    podman-compose
-    podlet
     lazyjournal
     lsof
     lm_sensors
     btop
-    podman-tui
     just
-    passt
     htop
   ];
 
@@ -78,34 +74,81 @@
     };
   };
   
-  
-  # Podman Config
-  virtualisation.docker.enable = false;
-  virtualisation.oci-containers.backend = "podman";
-  virtualisation.podman = {
+  # Docker Config
+  virtualisation.oci-containers.backend = "docker";
+  virtualisation.docker = {
     enable = true;
-    autoPrune.enable = true;
-    dockerSocket.enable = true;
-    dockerCompat = true;
-    defaultNetwork.settings = {
-      dns_enabled = true;
-      ipv6_enabled = true;
+    storageDriver = "overlay2";
+    daemon.settings = {
+      ipv6 = true;
     };
   };
-  virtualisation.containers.containersConf.settings = {
 
-    network = {
-      network_backend = "netavark";
-      firewall_driver = "nftables";
+  ## Networks (systemd services oneshot) for containers
+  systemd.services."docker-network-whoogle" = {
+    path = [ pkgs.docker ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
     };
-    
-    engine = {
-  	  volume_path = "/home/azoller/containers/storage/volumes";
-  	};
-  	
+    script = ''
+      docker network inspect whoogle || docker network create whoogle --ipv6
+    '';
+    wantedBy = ["docker-whoogle.target"];
   };
+
+  systemd.services."docker-network-uptime" = {
+    path = [ pkgs.docker ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    script = ''
+      docker network inspect uptime || docker network create uptime --ipv6
+    '';
+    wantedBy = ["docker-uptime.target"];
+  };
+  
 
   ## Containers
+  virtualisation.oci-containers.containers = {
+
+    whoogle = {
+      image = "ghcr.io/benbusby/whoogle-search:0.9.4";
+      autoStart = true;
+      ports = [ "127.0.0.1:5000:5000" ];
+      networks = ["whoogle"];
+      hostname = "whoogle";
+
+      environment = {
+        WHOOGLE_CONFIG_DISABLE = "true";
+      };
+
+      extraOptions = [
+        "--tmpfs=/config"
+        "--tmpfs=/var/lib/tor"
+        "--tmpfs=/run/tor"
+        "--memory=256m"
+        "--cap-drop=ALL"
+        "--security-opt=no-new-privileges"
+      ];
+
+    };
+
+    uptime = {
+      image = "ghcr.io/louislam/uptime-kuma:2.0.0-beta-slim-rootless.4";
+      autoStart = true;
+      ports = [ "127.0.0.1:3001:3001" ];
+      networks = ["uptime"];
+      hostname = "uptime";
+
+      volumes = [
+        "uptime_data:/app/data"
+      ];
+
+    };
+  };
+
 
   ## Services
 
@@ -116,6 +159,20 @@
       PasswordAuthentication = false;
       UseDns = true;
     };
+  };
+
+  # Caddy
+  services.caddy = {
+    enable = true;
+    extraConfig =
+    ''
+      https://search.azollerstuff.xyz:443 {
+        reverse_proxy 127.0.0.1:5000
+      }
+      https://status.azollerstuff.xyz:443 {
+        reverse_proxy 127.0.0.1:3001
+      }
+    '';
   };
 
   # System Config
