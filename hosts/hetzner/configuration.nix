@@ -80,7 +80,7 @@
     enable = true;
     storageDriver = "overlay2";
     daemon.settings = {
-      ipv6 = true;
+      ipv6 = false;
     };
   };
 
@@ -92,7 +92,7 @@
       RemainAfterExit = true;
     };
     script = ''
-      docker network inspect whoogle || docker network create whoogle --ipv6
+      docker network inspect whoogle || docker network create whoogle
     '';
     wantedBy = ["docker-whoogle.target"];
   };
@@ -104,7 +104,7 @@
       RemainAfterExit = true;
     };
     script = ''
-      docker network inspect uptime || docker network create uptime --ipv6
+      docker network inspect uptime || docker network create uptime
     '';
     wantedBy = ["docker-uptime.target"];
   };
@@ -125,9 +125,9 @@
       };
 
       extraOptions = [
-        "--tmpfs=/config"
-        "--tmpfs=/var/lib/tor"
-        "--tmpfs=/run/tor"
+        "--tmpfs=/config:size=10M,uid=927,gid=927,mode=1700"
+        "--tmpfs=/var/lib/tor:size=15M,uid=927,gid=927,mode=1700"
+        "--tmpfs=/run/tor:size=1M,uid=927,gid=927,mode=1700"
         "--memory=256m"
         "--cap-drop=ALL"
         "--security-opt=no-new-privileges"
