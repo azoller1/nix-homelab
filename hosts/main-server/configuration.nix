@@ -84,6 +84,161 @@
     };
   };
 
+  ## Networks (systemd services oneshot) for containers
+  systemd.services."docker-network-beszel" = {
+    path = [ pkgs.docker ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    script = ''
+      docker network inspect beszel || docker network create beszel --ipv6
+    '';
+  };
+
+  systemd.services."docker-network-grafana" = {
+    path = [ pkgs.docker ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    script = ''
+      docker network inspect grafana || docker network create grafana --ipv6
+    '';
+  };
+
+  systemd.services."docker-network-forgejo" = {
+    path = [ pkgs.docker ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    script = ''
+      docker network inspect forgejo || docker network create forgejo --ipv6
+    '';
+  };
+
+  systemd.services."docker-network-immich" = {
+    path = [ pkgs.docker ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    script = ''
+      docker network inspect immich || docker network create immich --ipv6
+    '';
+  };
+
+  systemd.services."docker-network-immich-traefik" = {
+    path = [ pkgs.docker ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    script = ''
+      docker network inspect immich-traefik || docker network create immich-traefik --ipv6
+    '';
+  };
+
+  systemd.services."docker-network-lldap" = {
+    path = [ pkgs.docker ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    script = ''
+      docker network inspect lldap || docker network create lldap --ipv6
+    '';
+  };
+
+  systemd.services."docker-network-paperless" = {
+    path = [ pkgs.docker ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    script = ''
+      docker network inspect paperless || docker network create paperless --ipv6
+    '';
+  };
+
+  systemd.services."docker-network-paperless-traefik" = {
+    path = [ pkgs.docker ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    script = ''
+      docker network inspect paperless-traefik || docker network create paperless-traefik --ipv6
+    '';
+  };
+
+  systemd.services."docker-network-pocket-id" = {
+    path = [ pkgs.docker ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    script = ''
+      docker network inspect pocket-id || docker network create pocket-id --ipv6
+    '';
+  };
+
+  systemd.services."docker-network-prom" = {
+    path = [ pkgs.docker ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    script = ''
+      docker network inspect prom || docker network create prom --ipv6
+    '';
+  };
+
+  systemd.services."docker-network-signal-api" = {
+    path = [ pkgs.docker ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    script = ''
+      docker network inspect signal-api || docker network create signal-api --ipv6
+    '';
+  };
+
+  systemd.services."docker-network-traefik" = {
+    path = [ pkgs.docker ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    script = ''
+      docker network inspect traefik || docker network create traefik --ipv6
+    '';
+  };
+
+  systemd.services."docker-network-viclogs" = {
+    path = [ pkgs.docker ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    script = ''
+      docker network inspect viclogs || docker network create viclogs --ipv6
+    '';
+  };
+
+  systemd.services."docker-network-vicmetrics" = {
+    path = [ pkgs.docker ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    script = ''
+      docker network inspect vicmetrics || docker network create vicmetrics --ipv6
+    '';
+  };
+
   ## Containers
   virtualisation.oci-containers.containers = {
 

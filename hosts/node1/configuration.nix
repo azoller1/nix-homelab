@@ -85,6 +85,73 @@
     };
   };
 
+  ## Networks (systemd services oneshot) for containers
+  systemd.services."docker-network-apprise" = {
+    path = [ pkgs.docker ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    script = ''
+      docker network inspect apprise || docker network create apprise --ipv6
+    '';
+  };
+
+  systemd.services."docker-network-baikal-dav" = {
+    path = [ pkgs.docker ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    script = ''
+      docker network inspect baikal-dav || docker network create baikal-dav --ipv6
+    '';
+  };
+
+  systemd.services."docker-network-habittrove" = {
+    path = [ pkgs.docker ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    script = ''
+      docker network inspect habittrove || docker network create habittrove --ipv6
+    '';
+  };
+
+  systemd.services."docker-network-kop" = {
+    path = [ pkgs.docker ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    script = ''
+      docker network inspect kop || docker network create kop --ipv6
+    '';
+  };
+
+  systemd.services."docker-network-ys" = {
+    path = [ pkgs.docker ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    script = ''
+      docker network inspect ys || docker network create ys --ipv6
+    '';
+  };
+
+  systemd.services."docker-network-vw" = {
+    path = [ pkgs.docker ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    script = ''
+      docker network inspect vw || docker network create vw --ipv6
+    '';
+  };
+
   ## Containers
 
   virtualisation.oci-containers.containers = {
