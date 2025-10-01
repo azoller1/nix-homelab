@@ -345,7 +345,6 @@
 
       extraOptions = [
         "--network=host"
-        "--group-add=26,303"
       ];
 
       labels = {
