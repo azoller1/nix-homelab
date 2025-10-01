@@ -259,6 +259,7 @@
 
       labels = {
         "traefik.enable" = "true";
+        "traefik.docker.network" = "immich-traefik";
         "traefik.http.services.immich-server.loadbalancer.server.port" = "2283";
         "traefik.http.routers.immich-server.rule" = "Host(`photos.azollerstuff.xyz`)";
         "traefik.http.routers.immich-server.entrypoints" = "https";
@@ -428,6 +429,7 @@
 
       labels = {
         "traefik.enable" = "true";
+        "traefik.docker.network" = "paperless-traefik";
         "traefik.http.services.paperless.loadbalancer.server.port" = "8000";
         "traefik.http.routers.paperless.rule" = "Host(`papers.azollerstuff.xyz`)";
         "traefik.http.routers.paperless.entrypoints" = "https";
