@@ -120,7 +120,7 @@
       environment = {
         LISTEN = "/beszel_socket/beszel.sock";
         HUB_URL = "http://beszel:8090";
-        DOCKER_HOST = "tcp://proxy:2375";
+        DOCKER_HOST = "tcp://socket-proxy-beszel:2375";
       };
 
       environmentFiles = [
