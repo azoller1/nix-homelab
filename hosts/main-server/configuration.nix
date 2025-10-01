@@ -176,7 +176,7 @@
 
       volumes = [
         "forgejo:/var/lib/gitea"
-        "/home/azoller/nix-homelab/hosts/main-server/.env.secret.forgejoconf:/var/lib/gitea/custom/conf"
+        "/home/azoller/nix-homelab/hosts/main-server/.env.secret.forgejoconf:/var/lib/gitea/custom/conf/app.ini"
         "/etc/timezone:/etc/timezone:ro"
         "/etc/localtime:/etc/localtime:ro"
       ];
@@ -522,7 +522,7 @@
 
       volumes = [
         "prom_data:/prometheus"
-        "prom_config:/etc/prometheus/prometheus.yml"
+        "/home/azoller/nix-homelab/hosts/main-server/.env.secret.promconf:/etc/prometheus/prometheus.yml"
       ];
 
       cmd = [
@@ -669,9 +669,9 @@
       dependsOn = ["socket-proxy-traefik"];
 
       volumes = [
-        "traefik_acme:/acme.json"
-        "traefik_config:/etc/traefik/traefik.yaml"
-        "traefik_dynamic:/etc/traefik/dynamic"
+        "/home/azoller/nix-homelab/hosts/main-server/.env.secret.traefik_acme:/acme.json"
+        "/home/azoller/nix-homelab/hosts/main-server/.env.secret.traefik_config:/etc/traefik/traefik.yaml"
+        "/home/azoller/nix-homelab/hosts/main-server/.env.secret.traefik_dynamic:/etc/traefik/dynamic"
       ];
 
       environmentFiles = [
