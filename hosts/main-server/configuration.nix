@@ -95,7 +95,7 @@
       hostname = "beszel";
 
       volumes = [
-        "beszel_data:/data"
+        "beszel_data:/beszel_data"
         "beszel_socket:/beszel_socket"
       ];
 
@@ -128,7 +128,7 @@
       ];
 
       volumes = [
-        "beszel-agent_data:/data"
+        "beszel-agent_data:/var/lib/beszel-agent"
         "beszel_socket:/beszel_socket"
       ];
 
@@ -213,7 +213,7 @@
       };
 
       volumes = [
-        "grafana_data:/data"
+        "grafana_data:/var/lib/grafana"
       ];
 
       labels = {
