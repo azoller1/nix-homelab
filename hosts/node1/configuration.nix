@@ -306,6 +306,7 @@
   };
 
   # System Config
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
   system.stateVersion = "25.05";
   nix.optimise.automatic = true;
   nix.gc = {
