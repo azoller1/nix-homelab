@@ -191,13 +191,13 @@
         "traefik.http.routers.forgejo.tls.certresolver" = "le";
         "traefik.http.routers.forgejo.tls.domains[0].main" = "*.azollerstuff.xyz";
         "traefik.http.routers.forgejo.middlewares" = "secheader@file";
-        "traefik.http.routers.forgejoSSH.service" = "forgejoSSH";
-        "traefik.http.services.forgejoSSH.loadbalancer.server.port" = "2222";
-        "traefik.http.routers.forgejoSSH.rule" = "HostSNI(`git.azollerstuff.xyz`)";
-        "traefik.http.routers.forgejoSSH.entrypoints" = "https";
-        "traefik.http.routers.forgejoSSH.tls" = "true";
-        "traefik.http.routers.forgejoSSH.tls.certresolver" = "le";
-        "traefik.http.routers.forgejoSSH.tls.domains[0].main" = "*.azollerstuff.xyz";
+        "traefik.tcp.routers.forgejoSSH.service" = "forgejoSSH";
+        "traefik.tcp.services.forgejoSSH.loadbalancer.server.port" = "2222";
+        "traefik.tcp.routers.forgejoSSH.rule" = "HostSNI(`git.azollerstuff.xyz`)";
+        "traefik.tcp.routers.forgejoSSH.entrypoints" = "https";
+        "traefik.tcp.routers.forgejoSSH.tls" = "true";
+        "traefik.tcp.routers.forgejoSSH.tls.certresolver" = "le";
+        "traefik.tcp.routers.forgejoSSH.tls.domains[0].main" = "*.azollerstuff.xyz";
       };
     };
 
