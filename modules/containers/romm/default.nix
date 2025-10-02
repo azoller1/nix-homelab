@@ -1,11 +1,4 @@
 {
-
-    sops.age.sshKeyPaths = [ "/home/azoller/.ssh/id_ed25519" ];
-    sops.secrets.romm_env = {
-      sopsFile = "/home/azoller/nix-homelab/secrets/romm_secret.env";
-      format = "dotenv";
-    };
-
     virtualisation.oci-containers.containers."romm" = {
 
         image = "ghcr.io/rommapp/romm:4.3.0";
