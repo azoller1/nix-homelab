@@ -4,6 +4,8 @@
   inputs.disko.url = "github:nix-community/disko/latest";
   inputs.disko.inputs.nixpkgs.follows = "nixpkgs";
   inputs.nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
+  inputs.sops-nix.url = "github:Mic92/sops-nix";
+  inputs.sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
   outputs =
     {
@@ -11,6 +13,7 @@
       nixpkgs-unstable,
       disko,
       nixos-facter-modules,
+      sops-nix,
       ...
     }:
 
@@ -22,6 +25,7 @@
           modules = [
             disko.nixosModules.disko
             ./hosts/hetzner/configuration.nix
+            sops-nix.nixosModules.sops
           ];
         };
 
@@ -31,6 +35,7 @@
             disko.nixosModules.disko
             ./hosts/main-server/configuration.nix
             nixos-facter-modules.nixosModules.facter
+            sops-nix.nixosModules.sops
           ];
         };
         
@@ -40,6 +45,7 @@
             disko.nixosModules.disko
             ./hosts/node1/configuration.nix
             nixos-facter-modules.nixosModules.facter
+            sops-nix.nixosModules.sops
           ];
         };
 
@@ -49,6 +55,7 @@
             disko.nixosModules.disko
             ./hosts/node2/configuration.nix
             nixos-facter-modules.nixosModules.facter
+            sops-nix.nixosModules.sops
           ];
         };
 
@@ -58,6 +65,7 @@
             disko.nixosModules.disko
             ./hosts/node3/configuration.nix
             nixos-facter-modules.nixosModules.facter
+            sops-nix.nixosModules.sops
           ];
         };
 
@@ -67,6 +75,7 @@
             disko.nixosModules.disko
             ./hosts/node4/configuration.nix
             nixos-facter-modules.nixosModules.facter
+            sops-nix.nixosModules.sops
           ];
         };
 
@@ -76,6 +85,7 @@
             disko.nixosModules.disko
             ./hosts/node5/configuration.nix
             nixos-facter-modules.nixosModules.facter
+            sops-nix.nixosModules.sops
           ];
         };
       };
