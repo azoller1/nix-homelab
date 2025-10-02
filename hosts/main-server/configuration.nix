@@ -239,13 +239,54 @@
     '';
   };
 
+  systemd.services."docker-network-romm" = {
+    path = [ pkgs.docker ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    script = ''
+      docker network inspect romm || docker network create romm --ipv6
+    '';
+    before = [ "docker-romm.service" ];
+  };
+
   ## Containers
   virtualisation.oci-containers.containers = {
+
+    romm = {
+      image = "ghcr.io/rommapp/romm:4.3.0";
+      autoStart = true;
+      networks = ["romm"];
+      hostname = "romm";
+
+      volumes = [
+        "romm_data:/romm/resources"
+        "romm_redis_data:/redis-data"
+        "/mnt/data/romm/library:/romm/library"
+        "/mnt/data/romm/assets:/romm/assets"
+      ];
+
+      environmentFiles = [
+        /home/azoller/nix-homelab/hosts/main-server/.env.secret.romm
+      ];
+
+      labels = {
+        "traefik.enable" = "true";
+        "traefik.http.services.romm.loadbalancer.server.port" = "8080";
+        "traefik.http.routers.romm.rule" = "Host(`romm.azollerstuff.xyz`)";
+        "traefik.http.routers.romm.entrypoints" = "https";
+        "traefik.http.routers.romm.tls" = "true";
+        "traefik.http.routers.romm.tls.certresolver" = "le";
+        "traefik.http.routers.romm.tls.domains[0].main" = "*.azollerstuff.xyz";
+        "traefik.http.routers.romm.middlewares" = "secheader@file";
+      };
+    };
 
     beszel = {
       image = "ghcr.io/henrygd/beszel/beszel:0.12.7";
       autoStart = true;
-      ports = [ "8090:8090" ];
+      #ports = [ "8090:8090" ];
       networks = ["beszel"];
       hostname = "beszel";
 
@@ -274,7 +315,7 @@
 
       environment = {
         LISTEN = "/beszel_socket/beszel.sock";
-        HUB_URL = "http://beszel:8090";
+        HUB_URL = "https://stats.azollerstuff.xyz";
         DOCKER_HOST = "tcp://socket-proxy-beszel:2375";
       };
 
