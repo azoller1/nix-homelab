@@ -853,6 +853,7 @@
         "pocket-id"
         "immich-traefik"
         "forgejo"
+        "romm"
       ];
 
       ports = [
