@@ -4,6 +4,7 @@
   inputs.disko.url = "github:nix-community/disko/latest";
   inputs.disko.inputs.nixpkgs.follows = "nixpkgs";
   inputs.nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
+  inputs.agenix.url = "github:ryantm/agenix";
 
   outputs =
     {
@@ -11,6 +12,7 @@
       nixpkgs-unstable,
       disko,
       nixos-facter-modules,
+      agenix,
       ...
     }:
 
@@ -31,6 +33,7 @@
             disko.nixosModules.disko
             ./hosts/main-server/configuration.nix
             nixos-facter-modules.nixosModules.facter
+            agenix.nixosModules.default
           ];
         };
         
