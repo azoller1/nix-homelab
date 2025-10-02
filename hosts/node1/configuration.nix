@@ -156,6 +156,37 @@
 
   virtualisation.oci-containers.containers = {
 
+    marknotes = {
+      image = "ghcr.io/fccview/rwmarkable:1.5.0";
+      autoStart = true;
+      ports = [ "10006:3000" ];
+      networks = ["marknotes"];
+      hostname = "marknotes";
+
+      volumes = [
+        "data:/app/data:rw"
+        "config:/app/config:ro"
+        "cache:/app/.next/cache:rw"
+      ];
+
+      environment = {
+        NODE_ENV = "production";
+      };
+
+      labels = {
+        "kop.bind.ip" = "192.168.2.5";
+        "traefik.enable" = "true";
+        "traefik.http.services.marknote.loadbalancer.server.port" = "10006";
+        "traefik.http.routers.marknote.rule" = "Host(`mnotes.azollerstuff.xyz`)";
+        "traefik.http.routers.marknote.entrypoints" = "https";
+        "traefik.http.routers.marknote.tls" = "true";
+        "traefik.http.routers.marknote.tls.certresolver" = "le";
+        "traefik.http.routers.marknote.tls.domains[0].main" = "*.azollerstuff.xyz";
+        "traefik.http.routers.marknote.middlewares" = "secheader@file";
+      };
+
+    };
+
     socket-proxy-kop = {
       image = "lscr.io/linuxserver/socket-proxy:3.2.4";
       autoStart = true;
