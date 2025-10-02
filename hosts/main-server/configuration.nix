@@ -89,6 +89,15 @@
     };
   };
 
+  # SOPS/Secrets
+  sops.defaultSopsFile = "";
+  sops.age.sshKeyPaths = [ "/home/azoller/.ssh/id_ed25519" ];
+
+  sops.secrets.romm_env = {
+    sopsFile = /home/azoller/nix-homelab/secrets/romm_secret.env;
+    format = "dotenv";
+  };
+
   ## Networks (systemd services oneshot) for containers
   systemd.services."docker-network-beszel" = {
     path = [ pkgs.docker ];
@@ -257,8 +266,6 @@
   };
 
   ## Containers
-
-  # Imports
 
   virtualisation.oci-containers.containers = {
 
