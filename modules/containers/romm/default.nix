@@ -1,9 +1,4 @@
-{ config, pkgs, ... }:
-
 {
-
-    #age.secrets.romm_secret.file = ../../../secrets/romm_secret.age;
-
     virtualisation.oci-containers.containers."romm" = {
 
         image = "ghcr.io/rommapp/romm:4.3.0";
@@ -19,7 +14,7 @@
         ];
 
         environmentFiles = [
-            /run/agenix/romm_secret
+            /home/azoller/nix-homelab/hosts/main-server/.env.secret.beszel
         ];
 
         labels = {
