@@ -2,7 +2,7 @@
 
 {
 
-    age.secrets.romm_secret.file = ../../../secrets/romm_secret.age;
+    #age.secrets.romm_secret.file = ../../../secrets/romm_secret.age;
 
     virtualisation.oci-containers.containers."romm" = {
 
