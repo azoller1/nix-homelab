@@ -14,7 +14,7 @@
         ];
 
         environmentFiles = [
-            /home/azoller/nix-homelab/hosts/main-server/.env.secret.beszel
+            /home/azoller/nix-homelab/hosts/main-server/.env.secret.romm
         ];
 
         labels = {
