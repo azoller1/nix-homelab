@@ -97,6 +97,7 @@
       az-us-hetzner = {
         hostname = "az-us-hetzner";
         profiles.system = {
+          sshUser = "root";
           user = "root";
           path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.az-us-hetzner;
         };
@@ -105,6 +106,7 @@
       main-server = {
         hostname = "main-server";
         profiles.system = {
+          sshUser = "root";
           user = "root";
           path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.main-server;
         };
@@ -113,6 +115,7 @@
       node1 = {
         hostname = "node1";
         profiles.system = {
+          sshUser = "root";
           user = "root";
           path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.node1;
         };
@@ -121,6 +124,7 @@
       node2 = {
         hostname = "node2";
         profiles.system = {
+          sshUser = "root";
           user = "root";
           path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.node2;
         };
@@ -129,6 +133,7 @@
       node3 = {
         hostname = "node3";
         profiles.system = {
+          sshUser = "root";
           user = "root";
           path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.node3;
         };
@@ -137,6 +142,7 @@
       node4 = {
         hostname = "node4";
         profiles.system = {
+          sshUser = "root";
           user = "root";
           path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.node4;
         };
@@ -145,6 +151,7 @@
       node5 = {
         hostname = "node5";
         profiles.system = {
+          sshUser = "root";
           user = "root";
           path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.node5;
         };
