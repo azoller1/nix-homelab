@@ -294,6 +294,7 @@
         LISTEN = "45876";
         HUB_URL = "https://stats.azollerstuff.xyz";
         DOCKER_HOST = "tcp://socket-proxy-beszel:2375";
+        KEY = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPHjnUWIIjbWBWrZhZUiItXjHh1A5wo+8ABvWunvCfTb";
       };
 
       volumes = [
