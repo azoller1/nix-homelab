@@ -269,7 +269,6 @@
 
       volumes = [
         "beszel_data:/beszel_data"
-        "beszel_socket:/beszel_socket"
       ];
 
       labels = {
@@ -287,22 +286,18 @@
     beszel-agent = {
       image = "ghcr.io/henrygd/beszel/beszel-agent:0.12.7";
       autoStart = true;
+      ports = ["45876:45876"];
       networks = ["beszel"];
       hostname = "beszel-agent";
 
       environment = {
-        LISTEN = "/beszel_socket/beszel.sock";
+        LISTEN = "45876";
         HUB_URL = "https://stats.azollerstuff.xyz";
         DOCKER_HOST = "tcp://socket-proxy-beszel:2375";
       };
 
-      environmentFiles = [
-        /home/azoller/nix-homelab/hosts/main-server/.env.secret.beszel
-      ];
-
       volumes = [
         "beszel-agent_data:/var/lib/beszel-agent"
-        "beszel_socket:/beszel_socket"
       ];
 
       labels = {
