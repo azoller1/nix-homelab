@@ -52,6 +52,8 @@
     btop
     just
     htop
+    age
+    sops
   ];
 
   ### Programs Config
