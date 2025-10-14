@@ -8,6 +8,7 @@
 
   outputs =
     {
+      self,
       nixpkgs,
       nixpkgs-unstable,
       disko,
@@ -17,6 +18,7 @@
     }:
 
     {
+      # nixos-anywhere (disko,facter)
       nixosConfigurations = {
 
         az-us-hetzner = nixpkgs.lib.nixosSystem {
@@ -26,16 +28,6 @@
             disko.nixosModules.disko
             ./hosts/hetzner/configuration.nix
           ];
-
-          deploy.nodes.az-us-hetzner = {
-              hostname = "az-us-hetzner";
-              profiles.system = {
-                user = "root";
-                path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.az-us-hetzner;
-              };
-          };
-
-          checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
         };
 
         main-server = nixpkgs-unstable.lib.nixosSystem {
@@ -46,16 +38,6 @@
             ./hosts/main-server/configuration.nix
             nixos-facter-modules.nixosModules.facter
           ];
-
-          deploy.nodes.main-server = {
-              hostname = "main-server";
-              profiles.system = {
-                user = "root";
-                path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.main-server;
-              };
-          };
-
-          checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
         };
         
         node1 = nixpkgs-unstable.lib.nixosSystem {
@@ -66,16 +48,6 @@
             ./hosts/node1/configuration.nix
             nixos-facter-modules.nixosModules.facter
           ];
-
-          deploy.nodes.node1 = {
-              hostname = "node1";
-              profiles.system = {
-                user = "root";
-                path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.node1;
-              };
-          };
-
-          checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
         };
 
         node2 = nixpkgs-unstable.lib.nixosSystem {
@@ -86,16 +58,6 @@
             ./hosts/node2/configuration.nix
             nixos-facter-modules.nixosModules.facter
           ];
-
-          deploy.nodes.node2 = {
-              hostname = "node2";
-              profiles.system = {
-                user = "root";
-                path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.node2;
-              };
-          };
-
-          checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
         };
 
         node3 = nixpkgs-unstable.lib.nixosSystem {
@@ -106,16 +68,6 @@
             ./hosts/node3/configuration.nix
             nixos-facter-modules.nixosModules.facter
           ];
-
-          deploy.nodes.node3 = {
-              hostname = "node3";
-              profiles.system = {
-                user = "root";
-                path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.node3;
-              };
-          };
-
-          checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
         };
 
         node4 = nixpkgs-unstable.lib.nixosSystem {
@@ -126,16 +78,6 @@
             ./hosts/node4/configuration.nix
             nixos-facter-modules.nixosModules.facter
           ];
-
-          deploy.nodes.node4 = {
-              hostname = "node4";
-              profiles.system = {
-                user = "root";
-                path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.node4;
-              };
-          };
-
-          checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
         };
 
         node5 = nixpkgs-unstable.lib.nixosSystem {
@@ -146,17 +88,69 @@
             ./hosts/node5/configuration.nix
             nixos-facter-modules.nixosModules.facter
           ];
-
-          deploy.nodes.node5 = {
-              hostname = "node5";
-              profiles.system = {
-                user = "root";
-                path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.node5;
-              };
-          };
-
-          checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
         };
+      };
+
+      # deploy-rs
+      deploy.nodes = {
+      
+      az-us-hetzner = {
+        hostname = "az-us-hetzner";
+        profiles.system = {
+          user = "root";
+          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.az-us-hetzner;
+        };
+      };
+
+      main-server = {
+        hostname = "main-server";
+        profiles.system = {
+          user = "root";
+          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.main-server;
+        };
+      };
+      
+      node1 = {
+        hostname = "node1";
+        profiles.system = {
+          user = "root";
+          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.node1;
+        };
+      };
+
+      node2 = {
+        hostname = "node2";
+        profiles.system = {
+          user = "root";
+          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.node2;
+        };
+      };
+
+      node3 = {
+        hostname = "node3";
+        profiles.system = {
+          user = "root";
+          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.node3;
+        };
+      };
+
+      node4 = {
+        hostname = "node4";
+        profiles.system = {
+          user = "root";
+          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.node4;
+        };
+      };
+
+      node5 = {
+        hostname = "node5";
+        profiles.system = {
+          user = "root";
+          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.node5;
+        };
+      };
+
+      checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
       };
     };
 }
