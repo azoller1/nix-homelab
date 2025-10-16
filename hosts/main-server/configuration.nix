@@ -9,7 +9,7 @@
     ./disk-config.nix
     ../../users/azoller/default.nix
     ../../modules/containers/romm/default.nix
-    ../../modules/scripts/dockcheck/default.nix
+    ../../modules/scripts/dockcheck/flake.nix
   ];
 
   facter.reportPath = ./facter.json;
