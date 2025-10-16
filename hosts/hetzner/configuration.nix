@@ -87,16 +87,16 @@
   };
 
   ## Networks (systemd services oneshot) for containers
-  systemd.services."docker-network-whoogle" = {
+  systemd.services."docker-network-searxng" = {
     path = [ pkgs.docker ];
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
     };
     script = ''
-      docker network inspect whoogle || docker network create whoogle
+      docker network inspect searxng || docker network create searxng
     '';
-    wantedBy = ["docker-whoogle.target"];
+    wantedBy = ["docker-searxng.target"];
   };
 
   systemd.services."docker-network-uptime" = {
@@ -115,24 +115,25 @@
   ## Containers
   virtualisation.oci-containers.containers = {
 
-    whoogle = {
-      image = "ghcr.io/benbusby/whoogle-search:0.9.4";
+    searxng = {
+      image = "ghcr.io/searxng/searxng:2025.10.13-c34bb6128";
       autoStart = true;
-      ports = [ "127.0.0.1:5000:5000" ];
-      networks = ["whoogle"];
-      hostname = "whoogle";
+      ports = [ "127.0.0.1:8080:8080" ];
+      networks = ["searxng"];
+      hostname = "searxng";
 
       environment = {
-        WHOOGLE_CONFIG_DISABLE = "true";
+        SEARXNG_BASE_URL = "https://search.azollerstuff.xyz";
       };
 
       extraOptions = [
-        "--tmpfs=/config:size=10M,uid=927,gid=927,mode=1700"
-        "--tmpfs=/var/lib/tor:size=15M,uid=927,gid=927,mode=1700"
-        "--tmpfs=/run/tor:size=1M,uid=927,gid=927,mode=1700"
         "--memory=256m"
-        "--cap-drop=ALL"
         "--security-opt=no-new-privileges"
+      ];
+
+      volumes = [
+        "searxng-data:/var/cache/searxng"
+        "searxng-config:/etc/searxng"
       ];
 
     };
@@ -169,7 +170,7 @@
     extraConfig =
     ''
       https://search.azollerstuff.xyz:443 {
-        reverse_proxy 127.0.0.1:5000
+        reverse_proxy 127.0.0.1:8080
       }
       https://status.azollerstuff.xyz:443 {
         reverse_proxy 127.0.0.1:3001

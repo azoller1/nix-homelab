@@ -95,7 +95,7 @@
       deploy.nodes = {
       
       az-us-hetzner = {
-        hostname = "az-us-hetzner";
+        hostname = "hetz-us.azollerstuff.xyz";
         profiles.system = {
           sshUser = "root";
           user = "root";
