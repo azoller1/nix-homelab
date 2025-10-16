@@ -20,3 +20,6 @@ nixos-rebuild switch --flake ./#${HOST} --target-host root@${IP}
 4. create docker networks with --ipv6
 5. restart containers
 6. done
+
+# deploy-rs, hostname in flake
+nix run github:serokell/deploy-rs ./#hostname

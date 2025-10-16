@@ -9,6 +9,7 @@
     ./disk-config.nix
     ../../users/azoller/default.nix
     ../../modules/containers/romm/default.nix
+    ../../modules/scripts/dockcheck/default.nix
   ];
 
   facter.reportPath = ./facter.json;
@@ -47,7 +48,6 @@
   environment.systemPackages = with pkgs; [
     wget
     micro
-    docker
     lazyjournal
     lsof
     lm_sensors
@@ -55,7 +55,11 @@
     just
     htop
     age
+    jq
     sops
+    regclient
+    regsync
+    regctl
   ];
 
   ### Programs Config
