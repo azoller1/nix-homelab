@@ -11,7 +11,7 @@
       volumes = [
         "pelican_data:/pelican_data"
         "pelican_logs:/var/www/html/storage/logs"
-        "./Caddyfile:/etc/caddy/Caddyfile"
+        "/home/azoller/containers/pelican/Caddyfile:/etc/caddy/Caddyfile"
       ];
 
       environment = {
