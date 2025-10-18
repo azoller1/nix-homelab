@@ -9,8 +9,8 @@
     ./disk-config.nix
     ../../users/azoller/default.nix
     ../../modules/containers/romm/default.nix
-    ../../modules/containers/pelican/default.nix
-    ../../modules/containers/pelican-wings/default.nix
+    ../../modules/containers/necesse/default.nix
+    #../../modules/containers/pelican-wings/default.nix
   ];
 
   facter.reportPath = ./facter.json;
@@ -833,6 +833,7 @@
         "forgejo"
         "romm"
         "pelican"
+        "pelican-wings"
       ];
 
       ports = [

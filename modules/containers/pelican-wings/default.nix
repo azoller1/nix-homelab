@@ -3,7 +3,7 @@
 
         image = "ghcr.io/pelican-dev/wings:v1.0.0-beta18";
         autoStart = true;
-        #ports = ["2022:2022"]
+        ports = ["2022:2022" "8080:8080"];
         networks = ["pelican-wings"];
         hostname = "pelican-wings";
 
@@ -23,6 +23,10 @@
             WINGS_GID = "988";
             WINGS_USERNAME = "azoller";
         };
+
+        extraOptions = [
+        "--tty"
+      ];
 
         labels = {
             "traefik.enable" = "true";
