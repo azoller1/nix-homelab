@@ -10,6 +10,7 @@
     ../../users/azoller/default.nix
     ../../modules/containers/romm/default.nix
     ../../modules/containers/pelican/default.nix
+    ../../modules/containers/pelican-wings/default.nix
   ];
 
   facter.reportPath = ./facter.json;
