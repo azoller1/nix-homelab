@@ -9,7 +9,7 @@
     ./disk-config.nix
     ../../users/azoller/default.nix
     ../../modules/containers/romm/default.nix
-    ../../modules/scripts/dockcheck/flake.nix
+    ../../modules/containers/pelican/default.nix
   ];
 
   facter.reportPath = ./facter.json;
@@ -831,6 +831,7 @@
         "immich-traefik"
         "forgejo"
         "romm"
+        "pelican"
       ];
 
       ports = [
