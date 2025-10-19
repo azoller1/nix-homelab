@@ -86,32 +86,6 @@
     };
   };
 
-  ## Networks (systemd services oneshot) for containers
-  systemd.services."docker-network-searxng" = {
-    path = [ pkgs.docker ];
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-    };
-    script = ''
-      docker network inspect searxng || docker network create searxng
-    '';
-    wantedBy = ["docker-searxng.target"];
-  };
-
-  systemd.services."docker-network-uptime" = {
-    path = [ pkgs.docker ];
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-    };
-    script = ''
-      docker network inspect uptime || docker network create uptime
-    '';
-    wantedBy = ["docker-uptime.target"];
-  };
-  
-
   ## Containers
   virtualisation.oci-containers.containers = {
 

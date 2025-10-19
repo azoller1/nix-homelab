@@ -86,40 +86,6 @@
     };
   };
 
-  ## Networks (systemd services oneshot) for containers
-  systemd.services."docker-network-actual-budgets" = {
-    path = [ pkgs.docker ];
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-    };
-    script = ''
-      docker network inspect actual-budgets || docker network create actual-budgets --ipv6
-    '';
-  };
-
-  systemd.services."docker-network-nodered" = {
-    path = [ pkgs.docker ];
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-    };
-    script = ''
-      docker network inspect nodered || docker network create nodered --ipv6
-    '';
-  };
-
-  systemd.services."docker-network-kop" = {
-    path = [ pkgs.docker ];
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-    };
-    script = ''
-      docker network inspect kop || docker network create kop --ipv6
-    '';
-  };
-
   ## Containers
 
   virtualisation.oci-containers.containers = {

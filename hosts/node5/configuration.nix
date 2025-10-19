@@ -86,51 +86,6 @@
     };
   };
 
-  ## Networks (systemd services oneshot) for containers
-  systemd.services."docker-network-mariadb" = {
-    path = [ pkgs.docker ];
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-    };
-    script = ''
-      docker network inspect mariadb || docker network create mariadb --ipv6
-    '';
-  };
-
-  systemd.services."docker-network-mongo6-ys" = {
-    path = [ pkgs.docker ];
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-    };
-    script = ''
-      docker network inspect mongo6-ys || docker network create mongo6-ys --ipv6
-    '';
-  };
-
-  systemd.services."docker-network-postgres" = {
-    path = [ pkgs.docker ];
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-    };
-    script = ''
-      docker network inspect postgres || docker network create postgres --ipv6
-    '';
-  };
-
-  systemd.services."docker-network-valkey-traefik" = {
-    path = [ pkgs.docker ];
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-    };
-    script = ''
-      docker network inspect valkey-traefik || docker network create valkey-traefik --ipv6
-    '';
-  };
-
   ## Containers
 
   virtualisation.oci-containers.containers = {
