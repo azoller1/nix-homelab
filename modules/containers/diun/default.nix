@@ -26,6 +26,10 @@
             "--cap-drop=ALL"
             "--security-opt=no-new-privileges"
         ];
+
+        labels = {
+            "diun.enable" = "true";
+        };
     };
 
     virtualisation.oci-containers.containers."diun" = {
@@ -56,6 +60,7 @@
 
         labels = {
             "traefik.enable" = "false";
+            "diun.enable" = "true";
         };
     };
 }

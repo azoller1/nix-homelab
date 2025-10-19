@@ -18,6 +18,7 @@
         ];
 
         labels = {
+            "diun.enable" = "true";
             "traefik.enable" = "true";
             "traefik.http.services.romm.loadbalancer.server.port" = "8080";
             "traefik.http.routers.romm.rule" = "Host(`romm.azollerstuff.xyz`)";
