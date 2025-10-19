@@ -12,14 +12,7 @@
         ];
 
         environment = {
-            PORT = "14159";
-            #PASSWORD = "";
-            BIND_IP = "192.168.2.2";
-            MOTD = "Hi";
             WORLD_NAME = "warehouse";
-            ANTI_CHEAT = "0";
-            PLAYER_SLOTS = "2";
-            PAUSE = "1";
         };
 
         labels = {
