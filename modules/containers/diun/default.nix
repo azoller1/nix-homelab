@@ -50,8 +50,8 @@
             DIUN_WATCH_SCHEDULE = "0 6 * * *";
             DIUN_WATCH_JITTER = "30s";
             DIUN_PROVIDERS_DOCKER = "true";
-            DIUN_NOTIF_SIGNALREST_ENDPOINT = "https://signal-api.azollerstuff.xyz/v2/send";
             DIUN_PROVIDERS_DOCKER_ENDPOINT = "tcp://socket-proxy-diun:2375";
+            DIUN_NOTIF_SIGNALREST_ENDPOINT = "https://signal-api.azollerstuff.xyz/v2/send";
         };
 
         environmentFiles = [
