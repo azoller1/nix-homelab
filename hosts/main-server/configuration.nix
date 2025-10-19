@@ -10,7 +10,7 @@
     ../../users/azoller/default.nix
     ../../modules/containers/romm/default.nix
     ../../modules/containers/necesse/default.nix
-    #../../modules/containers/pelican-wings/default.nix
+    ../../modules/containers/diun/default.nix
   ];
 
   facter.reportPath = ./facter.json;
