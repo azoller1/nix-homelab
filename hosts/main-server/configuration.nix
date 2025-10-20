@@ -113,9 +113,8 @@
   virtualisation.oci-containers.containers = {
 
     beszel = {
-      image = "ghcr.io/henrygd/beszel/beszel:0.12.7";
+      image = "ghcr.io/henrygd/beszel/beszel:0.14.0";
       autoStart = true;
-      #ports = [ "8090:8090" ];
       networks = ["beszel"];
       hostname = "beszel";
 
@@ -138,7 +137,7 @@
     };
 
     beszel-agent = {
-      image = "ghcr.io/henrygd/beszel/beszel-agent:0.12.7";
+      image = "ghcr.io/henrygd/beszel/beszel-agent:0.14.0";
       autoStart = true;
       ports = ["45876:45876"];
       networks = ["beszel"];
@@ -163,7 +162,7 @@
     };
 
     socket-proxy-beszel = {
-      image = "lscr.io/linuxserver/socket-proxy:3.2.4";
+      image = "lscr.io/linuxserver/socket-proxy:3.2.6";
       autoStart = true;
       networks = ["beszel"];
       hostname = "socket-proxy-beszel";
@@ -188,11 +187,10 @@
     };
 
     forgejo = {
-      image = "codeberg.org/forgejo/forgejo:12.0-rootless";
+      image = "codeberg.org/forgejo/forgejo:13.0.1-rootless";
       autoStart = true;
       networks = ["forgejo"];
       hostname = "forgejo";
-      #user = "azoller:users";
 
       environment = {
         USER_UID = "1000";
@@ -229,7 +227,7 @@
     };
 
     grafana = {
-      image = "docker.io/grafana/grafana:12.1";
+      image = "docker.io/grafana/grafana:12.2";
       autoStart = true;
       networks = ["grafana"];
       hostname = "grafana";
@@ -258,7 +256,7 @@
     };
 
     immich-server = {
-      image = "ghcr.io/immich-app/immich-server:v1.142.0";
+      image = "ghcr.io/immich-app/immich-server:v1.144.1";
       autoStart = true;
       networks = [
         "immich"
@@ -302,7 +300,7 @@
     };
 
     immich-machine-learning = {
-      image = "ghcr.io/immich-app/immich-machine-learning:v1.142.0";
+      image = "ghcr.io/immich-app/immich-machine-learning:v1.144.1";
       autoStart = true;
       networks = ["immich"];
       hostname = "immich-machine-learning";
@@ -531,7 +529,7 @@
     };
 
     pocket-id = {
-      image = "ghcr.io/pocket-id/pocket-id:v1.10.0";
+      image = "ghcr.io/pocket-id/pocket-id:v1.13.1";
       networks = ["pocket-id"];
       autoStart = true;
       hostname = "pocket-id";
@@ -559,7 +557,7 @@
     };
 
     prom = {
-      image = "docker.io/prom/prometheus:v3.5.0";
+      image = "docker.io/prom/prometheus:v3.7.1";
       networks = ["prom"];
       autoStart = true;
       hostname = "prom";
@@ -589,7 +587,7 @@
     };
 
     viclogs = {
-      image = "docker.io/victoriametrics/victoria-logs:v1.33.1";
+      image = "docker.io/victoriametrics/victoria-logs:v1.36.1";
       networks = ["viclogs"];
       autoStart = true;
       hostname = "viclogs";
@@ -617,7 +615,7 @@
     };
 
     vicmetrics = {
-      image = "docker.io/victoriametrics/victoria-metrics:v1.126.0";
+      image = "docker.io/victoriametrics/victoria-metrics:v1.128.0";
       networks = ["vicmetrics"];
       autoStart = true;
       hostname = "vicmetrics";
@@ -641,7 +639,7 @@
     };
 
     signal-api = {
-      image = "docker.io/bbernhard/signal-cli-rest-api:0.94";
+      image = "docker.io/bbernhard/signal-cli-rest-api:0.95";
       networks = ["signal-api"];
       autoStart = true;
       hostname = "signal-api";
@@ -669,7 +667,7 @@
     };
 
     socket-proxy-traefik = {
-      image = "lscr.io/linuxserver/socket-proxy:3.2.4";
+      image = "lscr.io/linuxserver/socket-proxy:3.2.6";
       autoStart = true;
       networks = ["traefik"];
       hostname = "socket-proxy-traefik";
@@ -694,7 +692,7 @@
     };
 
     traefik = {
-      image = "docker.io/traefik:v3.5.2";
+      image = "docker.io/traefik:v3.5.3";
       networks = [
         "traefik"
         "beszel"
