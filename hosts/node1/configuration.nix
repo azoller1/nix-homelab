@@ -142,7 +142,7 @@
     };
 
     marknotes = {
-      image = "ghcr.io/fccview/rwmarkable:1.5.0";
+      image = "ghcr.io/fccview/rwmarkable:1.7.0";
       autoStart = true;
       ports = [ "10006:3000" ];
       networks = ["marknotes"];
