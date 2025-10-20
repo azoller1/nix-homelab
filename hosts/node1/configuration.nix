@@ -7,6 +7,7 @@
   imports = [
     ./disk-config.nix
     ../../users/azoller/default.nix
+    ../../modules/containers/dozzle-agent/default.nix
   ];
 
   facter.reportPath = ./facter.json;
