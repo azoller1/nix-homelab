@@ -1,3 +1,5 @@
+{ config, lib, pkgs, ...}:
+
 {
     systemd.services."docker-dozzle-agent" = {
 

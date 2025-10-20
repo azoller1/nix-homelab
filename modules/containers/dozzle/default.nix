@@ -7,7 +7,7 @@
         hostname = "dozzle";
 
         environment = {
-            DOZZLE_REMOTE_AGENT = "192.168.2.2:7007";
+            DOZZLE_REMOTE_AGENT = "192.168.2.2:7007,192.168.2.5:7007";
         };
 
         labels = {
