@@ -29,6 +29,7 @@
 
         labels = {
             "diun.enable" = "true";
+            "diun.include_tags" = "^[3-4]\.\d+\..*";
         };
     };
 
@@ -52,6 +53,12 @@
             DIUN_PROVIDERS_DOCKER = "true";
             DIUN_PROVIDERS_DOCKER_ENDPOINT = "tcp://socket-proxy-diun:2375";
             DIUN_NOTIF_SIGNALREST_ENDPOINT = "https://signal-api.azollerstuff.xyz/v2/send";
+            #DIUN_WATCH_FIRSTCHECKNOTIF = "true";
+            DIUN_DEFAULTS_WATCHREPO = "true";
+            DIUN_DEFAULTS_MAXTAGS = "2";
+            #DIUN_DEFAULTS_SORTTAGS = "reverse";
+            DIUN_DEFAULTS_EXCLUDETAGS = "latest;main;stable;edge";
+            #DIUN_DEFAULTS_INCLUDETAGS = "^([0-9]\d*)\.([0-9]\d*)\.([0-9]\d*)?$";
         };
 
         environmentFiles = [
@@ -61,6 +68,7 @@
         labels = {
             "traefik.enable" = "false";
             "diun.enable" = "true";
+            "diun.include_tags" = "^[4-5]\.\d+\..*";
         };
     };
 }
