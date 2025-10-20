@@ -93,7 +93,7 @@
   virtualisation.oci-containers.containers = {
 
     socket-proxy-beszel = {
-      image = "lscr.io/linuxserver/socket-proxy:3.2.4";
+      image = "lscr.io/linuxserver/socket-proxy:3.2.6";
       autoStart = true;
       networks = ["beszel"];
       hostname = "socket-proxy-beszel";
@@ -118,7 +118,7 @@
     };
 
     beszel-agent = {
-      image = "ghcr.io/henrygd/beszel/beszel-agent:0.12.7";
+      image = "ghcr.io/henrygd/beszel/beszel-agent:0.14.0";
       autoStart = true;
       ports = ["45876:45876"];
       networks = ["beszel"];
@@ -173,7 +173,7 @@
     };
 
     socket-proxy-kop = {
-      image = "lscr.io/linuxserver/socket-proxy:3.2.4";
+      image = "lscr.io/linuxserver/socket-proxy:3.2.6";
       autoStart = true;
       networks = ["kop"];
       hostname = "socket-proxy-kop";
@@ -198,7 +198,7 @@
     };
 
     kop = {
-      image = "ghcr.io/jittering/traefik-kop:0.17";
+      image = "ghcr.io/jittering/traefik-kop:0.18.1";
       autoStart = true;
       networks = ["kop"];
       hostname = "kop";
