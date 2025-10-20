@@ -125,6 +125,7 @@
 
       labels = {
         "diun.enable" = "true";
+        "diun.include_tags" = "^[0-1]\.\d+\..*";
         "traefik.enable" = "true";
         "traefik.http.services.beszel.loadbalancer.server.port" = "8090";
         "traefik.http.routers.beszel.rule" = "Host(`stats.azollerstuff.xyz`)";
@@ -157,6 +158,7 @@
       labels = {
         "diun.enable" = "true";
         "traefik.enable" = "false";
+        "diun.include_tags" = "^[0-1]\.\d+\..*";
       };
     };
 
@@ -206,6 +208,7 @@
 
       labels = {
         "diun.enable" = "true";
+        "diun.include_tags" = "^\d+\.\d+\..*$";
         "traefik.enable" = "true";
         "traefik.http.routers.forgejo.service" = "forgejo";
         "traefik.http.services.forgejo.loadbalancer.server.port" = "3000";
@@ -242,6 +245,7 @@
 
       labels = {
         "diun.enable" = "true";
+        "diun.include_tags" = "^\d+\.\d+\..*$";
         "traefik.enable" = "true";
         "traefik.http.services.grafana.loadbalancer.server.port" = "3000";
         "traefik.http.routers.grafana.rule" = "Host(`grafana.azollerstuff.xyz`)";
@@ -284,6 +288,7 @@
 
       labels = {
         "diun.enable" = "true";
+        "diun.include_tags" = "^\d+\.\d+\..*$";
         "traefik.enable" = "true";
         "traefik.docker.network" = "immich-traefik";
         "traefik.http.services.immich-server.loadbalancer.server.port" = "2283";
@@ -313,6 +318,7 @@
       labels = {
         "diun.enable" = "true";
         "traefik.enable" = "false";
+        "diun.include_tags" = "^\d+\.\d+\..*$";
       };
     };
 
@@ -324,6 +330,7 @@
 
       labels = {
         "traefik.enable" = "false";
+        "diun.include_tags" = "^\d+\.\d+\..*$";
       };
     };
 
@@ -347,6 +354,7 @@
 
       labels = {
         "traefik.enable" = "false";
+        "diun.include_tags" = "^\d+\.\d+\..*$";
       };
     };
 
@@ -377,6 +385,7 @@
 
       labels = {
         "diun.enable" = "true";
+        "diun.include_tags" = "^\d+\.\d+\..*$";
         "traefik.enable" = "true";
         "traefik.http.services.jellyfin.loadbalancer.server.url" = "http://192.168.2.2:8096";
         "traefik.http.routers.jellyfin.rule" = "Host(`jelly.azollerstuff.xyz`)";
@@ -411,6 +420,7 @@
 
       labels = {
         "diun.enable" = "true";
+        "diun.include_tags" = "^\d+\.\d+\..*$";
         "traefik.enable" = "true";
         "traefik.http.services.lldap.loadbalancer.server.port" = "17170";
         "traefik.http.routers.lldap.rule" = "Host(`lldap.azollerstuff.xyz`)";
@@ -458,6 +468,7 @@
 
       labels = {
         "diun.enable" = "true";
+        "diun.include_tags" = "^\d+\.\d+\..*$";
         "traefik.enable" = "true";
         "traefik.docker.network" = "paperless-traefik";
         "traefik.http.services.paperless.loadbalancer.server.port" = "8000";
@@ -535,6 +546,7 @@
 
       labels = {
         "diun.enable" = "true";
+        "diun.include_tags" = "^\d+\.\d+\..*$";
         "traefik.enable" = "true";
         "traefik.http.services.pocket-id.loadbalancer.server.port" = "1411";
         "traefik.http.routers.pocket-id.rule" = "Host(`auth.azollerstuff.xyz`)";
@@ -564,6 +576,7 @@
 
       labels = {
         "diun.enable" = "true";
+        "diun.include_tags" = "^\d+\.\d+\..*$";
         "traefik.enable" = "true";
         "traefik.http.services.prom.loadbalancer.server.port" = "9090";
         "traefik.http.routers.prom.rule" = "Host(`prom.azollerstuff.xyz`)";
@@ -591,6 +604,7 @@
 
       labels = {
         "diun.enable" = "true";
+        "diun.include_tags" = "^\d+\.\d+\..*$";
         "traefik.enable" = "true";
         "traefik.http.services.viclogs.loadbalancer.server.port" = "9428";
         "traefik.http.routers.viclogs.rule" = "Host(`viclogs.azollerstuff.xyz`)";
@@ -614,6 +628,7 @@
 
       labels = {
         "diun.enable" = "true";
+        "diun.include_tags" = "^\d+\.\d+\..*$";
         "traefik.enable" = "true";
         "traefik.http.services.vicmetrics.loadbalancer.server.port" = "8428";
         "traefik.http.routers.vicmetrics.rule" = "Host(`vicmetrics.azollerstuff.xyz`)";
@@ -641,6 +656,7 @@
 
       labels = {
         "diun.enable" = "true";
+        "diun.include_tags" = "^\d+\.\d+\..*$";
         "traefik.enable" = "true";
         "traefik.http.services.signal-api.loadbalancer.server.port" = "8080";
         "traefik.http.routers.signal-api.rule" = "Host(`signal-api.azollerstuff.xyz`)";
@@ -718,6 +734,7 @@
 
       labels = {
         "diun.enable" = "true";
+        "diun.include_tags" = "^\d+\.\d+\..*$";
         "traefik.enable" = "false";
       };
     };
