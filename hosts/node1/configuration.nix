@@ -12,11 +12,11 @@
     ../../modules/containers/beszel-agent/default.nix
     ../../modules/containers/jotty-notes/default.nix
     ../../modules/containers/baikal/default.nix
-    ../../modules/containers/beszel/default.nix
     ../../modules/containers/ys/default.nix
     ../../modules/containers/vw/default.nix
     ../../modules/containers/habittrove/default.nix
     ../../modules/containers/apprise-api/default.nix
+    ../../modules/containers/lubelogger/default.nix
   ];
 
   facter.reportPath = ./facter.json;
