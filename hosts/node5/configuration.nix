@@ -130,7 +130,7 @@
       ];
     };
 
-    postgis-18 = {
+    postgis-18-advlog = {
       image = "docker.io/postgis/postgis:18-3.6-alpine";
       autoStart = true;
       ports = [ "5433:5432" ];

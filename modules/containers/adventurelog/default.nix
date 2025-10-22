@@ -56,7 +56,7 @@
 
         image = "ghcr.io/seanmorley15/adventurelog-backend:v0.11.0";
         #autoStart = true;
-        #ports = [ "10008:80" ];
+        ports = [ "10009:80" ];
         networks = ["adventurelog"];
         hostname = "adventurelog-server";
 
@@ -69,8 +69,15 @@
         ];
 
         labels = {
-            #"kop.bind.ip" = "192.168.2.5";
-            "traefik.enable" = "false";
+            "kop.bind.ip" = "192.168.2.5";
+            "traefik.enable" = "true";
+            "traefik.http.services.advlog-server.loadbalancer.server.port" = "10009";
+            "traefik.http.routers.advlog-server.rule" = "Host(`adventure-server.azollerstuff.xyz`)";
+            "traefik.http.routers.advlog-server.entrypoints" = "https";
+            "traefik.http.routers.advlog-server.tls" = "true";
+            "traefik.http.routers.advlog-server.tls.certresolver" = "le";
+            "traefik.http.routers.advlog-server.tls.domains[0].main" = "*.azollerstuff.xyz";
+            "traefik.http.routers.advlog-server.middlewares" = "secheader@file";
         };
     };
 
