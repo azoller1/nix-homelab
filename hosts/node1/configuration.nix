@@ -17,6 +17,7 @@
     ../../modules/containers/habittrove/default.nix
     ../../modules/containers/apprise-api/default.nix
     ../../modules/containers/lubelogger/default.nix
+    ../../modules/containers/adventurelog/default.nix
   ];
 
   facter.reportPath = ./facter.json;
