@@ -26,6 +26,7 @@
     ../../modules/containers/traefik/default.nix
     ../../modules/containers/viclogs/default.nix
     ../../modules/containers/vicmetrics/default.nix
+    ../../modules/containers/pocket-id/default.nix
   ];
 
   facter.reportPath = ./facter.json;
