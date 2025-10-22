@@ -1,8 +1,50 @@
+{ config, lib, pkgs, ...}:
+
 {
+    
+    systemd.services."docker-dozzle" = {
+
+        serviceConfig = {
+            Restart = lib.mkOverride 90 "always";
+        };
+        
+        after = ["docker-network-dozzle.service"];
+        requires = ["docker-network-dozzle.service"];
+        partOf = ["docker-dozzle-base.target"];
+        wantedBy = ["docker-dozzle-base.target"];
+    };
+
+    systemd.services."docker-network-dozzle" = {
+
+        path = [ pkgs.docker ];
+
+        serviceConfig = {
+            Type = "oneshot";
+            RemainAfterExit = true;
+            #ExecStop = "docker network rm -f dozzle";
+        };
+
+        script = ''
+            docker network inspect dozzle || docker network create dozzle --ipv6
+        '';
+
+        partOf = [ "docker-dozzle-base.target" ];
+        wantedBy = [ "docker-dozzle-base.target" ];
+    };
+
+    systemd.targets."docker-dozzle-base" = {
+
+        unitConfig = {
+            Description = "Dozzle Base Service";
+        };
+
+        wantedBy = [ "multi-user.target" ];
+    };
+    
     virtualisation.oci-containers.containers."dozzle" = {
 
         image = "docker.io/amir20/dozzle:v8.14.5";
-        autoStart = true;
+        #autoStart = true;
         networks = ["dozzle"];
         hostname = "dozzle";
 

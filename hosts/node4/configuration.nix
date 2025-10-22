@@ -8,6 +8,8 @@
     ./disk-config.nix
     ../../users/azoller/default.nix
     ../../modules/containers/dozzle-agent/default.nix
+    ../../modules/containers/beszel-agent/default.nix
+    ../../modules/containers/diun/default.nix
   ];
   facter.reportPath = ./facter.json;
 
@@ -90,54 +92,6 @@
   ## Containers
 
   virtualisation.oci-containers.containers = {
-
-    beszel-agent = {
-      image = "ghcr.io/henrygd/beszel/beszel-agent:0.14.0";
-      autoStart = true;
-      ports = ["45876:45876"];
-      networks = ["beszel"];
-      hostname = "beszel-agent";
-
-      environment = {
-        LISTEN = "45876";
-        HUB_URL = "https://stats.azollerstuff.xyz";
-        DOCKER_HOST = "tcp://socket-proxy-beszel:2375";
-        KEY = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPHjnUWIIjbWBWrZhZUiItXjHh1A5wo+8ABvWunvCfTb";
-      };
-
-      volumes = [
-        "beszel-agent_data:/var/lib/beszel-agent"
-      ];
-
-      labels = {
-        "traefik.enable" = "false";
-      };
-    };
-
-    socket-proxy-beszel = {
-      image = "lscr.io/linuxserver/socket-proxy:3.2.6";
-      autoStart = true;
-      networks = ["beszel"];
-      hostname = "socket-proxy-beszel";
-
-      volumes = [
-        "/var/run/docker.sock:/var/run/docker.sock:ro"
-      ];
-
-      environment = {
-        CONTAINERS = "1";
-        LOG_LEVEL = "info";
-        TZ = "America/Chicago";
-      };
-
-      extraOptions = [
-        "--tmpfs=/run"
-        "--read-only"
-        "--memory=64m"
-        "--cap-drop=ALL"
-        "--security-opt=no-new-privileges"
-      ];
-    };
 
     socket-proxy-kop = {
       image = "lscr.io/linuxserver/socket-proxy:3.2.6";

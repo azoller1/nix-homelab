@@ -8,6 +8,10 @@
     ./disk-config.nix
     ../../users/azoller/default.nix
     ../../modules/containers/dozzle-agent/default.nix
+    ../../modules/containers/beszel-agent/default.nix
+    ../../modules/containers/actual-budgets/default.nix
+    ../../modules/containers/nodered/default.nix
+    ../../modules/containers/diun/default.nix
   ];
   facter.reportPath = ./facter.json;
 
@@ -91,54 +95,6 @@
 
   virtualisation.oci-containers.containers = {
 
-    beszel-agent = {
-      image = "ghcr.io/henrygd/beszel/beszel-agent:0.14.0";
-      autoStart = true;
-      ports = ["45876:45876"];
-      networks = ["beszel"];
-      hostname = "beszel-agent";
-
-      environment = {
-        LISTEN = "45876";
-        HUB_URL = "https://stats.azollerstuff.xyz";
-        DOCKER_HOST = "tcp://socket-proxy-beszel:2375";
-        KEY = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPHjnUWIIjbWBWrZhZUiItXjHh1A5wo+8ABvWunvCfTb";
-      };
-
-      volumes = [
-        "beszel-agent_data:/var/lib/beszel-agent"
-      ];
-
-      labels = {
-        "traefik.enable" = "false";
-      };
-    };
-
-    socket-proxy-beszel = {
-      image = "lscr.io/linuxserver/socket-proxy:3.2.6";
-      autoStart = true;
-      networks = ["beszel"];
-      hostname = "socket-proxy-beszel";
-
-      volumes = [
-        "/var/run/docker.sock:/var/run/docker.sock:ro"
-      ];
-
-      environment = {
-        CONTAINERS = "1";
-        LOG_LEVEL = "info";
-        TZ = "America/Chicago";
-      };
-
-      extraOptions = [
-        "--tmpfs=/run"
-        "--read-only"
-        "--memory=64m"
-        "--cap-drop=ALL"
-        "--security-opt=no-new-privileges"
-      ];
-    };
-
     socket-proxy-kop = {
       image = "lscr.io/linuxserver/socket-proxy:3.2.6";
       autoStart = true;
@@ -174,58 +130,6 @@
         REDIS_ADDR = "node5.lan.internal:6379";
         KOP_HOSTNAME = "node2.lan.internal";
         DOCKER_HOST = "tcp://socket-proxy-kop:2375";
-      };
-    };
-
-    nodered = {
-      image = "docker.io/nodered/node-red:4.1.0";
-      autoStart = true;
-      ports = [ "10001:1880" ];
-      networks = ["nodered"];
-      hostname = "nodered";
-
-      environment = {
-      	TZ = "America/Chicago";
-      };
-
-      volumes = [
-        "nodered_data:/data"
-      ];
-
-      labels = {
-        "kop.bind.ip" = "192.168.2.6";
-        "traefik.enable" = "true";
-        "traefik.http.services.nodered.loadbalancer.server.port" = "10001";
-        "traefik.http.routers.nodered.rule" = "Host(`node-red.azollerstuff.xyz`)";
-        "traefik.http.routers.nodered.entrypoints" = "https";
-        "traefik.http.routers.nodered.tls" = "true";
-        "traefik.http.routers.nodered.tls.certresolver" = "le";
-        "traefik.http.routers.nodered.tls.domains[0].main" = "*.azollerstuff.xyz";
-        "traefik.http.routers.nodered.middlewares" = "secheader@file,oidc-auth-nodered@file";
-      };
-    };
-
-    actual-budgets = {
-      image = "ghcr.io/actualbudget/actual-server:25.10.0";
-      autoStart = true;
-      ports = [ "10000:5006" ];
-      networks = ["actual-budgets"];
-      hostname = "actual-budgets";
-
-      volumes = [
-        "actual-budgets_data:/data"
-      ];
-
-      labels = {
-        "kop.bind.ip" = "192.168.2.6";
-        "traefik.enable" = "true";
-        "traefik.http.services.actual-budgets.loadbalancer.server.port" = "10000";
-        "traefik.http.routers.actual-budgets.rule" = "Host(`money.azollerstuff.xyz`)";
-        "traefik.http.routers.actual-budgets.entrypoints" = "https";
-        "traefik.http.routers.actual-budgets.tls" = "true";
-        "traefik.http.routers.actual-budgets.tls.certresolver" = "le";
-        "traefik.http.routers.actual-budgets.tls.domains[0].main" = "*.azollerstuff.xyz";
-        "traefik.http.routers.actual-budgets.middlewares" = "secheader@file";
       };
     };
   };

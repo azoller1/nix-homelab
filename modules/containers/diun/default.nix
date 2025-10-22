@@ -1,9 +1,62 @@
+{ config, lib, pkgs, ...}:
+
 {
+
+    systemd.services."docker-diun" = {
+
+        serviceConfig = {
+            Restart = lib.mkOverride 90 "always";
+        };
+        
+        after = ["docker-network-diun.service"];
+        requires = ["docker-network-diun.service"];
+        partOf = ["docker-diun-base.target"];
+        wantedBy = ["docker-diun-base.target"];
+    };
+
+    systemd.services."docker-socket-proxy-diun" = {
+
+        serviceConfig = {
+            Restart = lib.mkOverride 90 "always";
+        };
+        
+        after = ["docker-network-diun.service"];
+        requires = ["docker-network-diun.service"];
+        partOf = ["docker-diun-base.target"];
+        wantedBy = ["docker-diun-base.target"];
+    };
+
+    systemd.services."docker-network-diun" = {
+
+        path = [ pkgs.docker ];
+
+        serviceConfig = {
+            Type = "oneshot";
+            RemainAfterExit = true;
+            #ExecStop = "docker network rm -f diun";
+        };
+
+        script = ''
+            docker network inspect diun || docker network create diun --ipv6
+        '';
+
+        partOf = [ "docker-diun-base.target" ];
+        wantedBy = [ "docker-diun-base.target" ];
+    };
+
+    systemd.targets."docker-diun-base" = {
+
+        unitConfig = {
+            Description = "diun base Service";
+        };
+
+        wantedBy = [ "multi-user.target" ];
+    };
 
     virtualisation.oci-containers.containers."socket-proxy-diun" = {
       
-        image = "lscr.io/linuxserver/socket-proxy:3.2.4";
-        autoStart = true;
+        image = "lscr.io/linuxserver/socket-proxy:3.2.6";
+        #autoStart = true;
         networks = ["diun"];
         hostname = "socket-proxy-diun";
 
@@ -36,7 +89,7 @@
     virtualisation.oci-containers.containers."diun" = {
 
         image = "ghcr.io/crazy-max/diun:4.30.0";
-        autoStart = true;
+        #autoStart = true;
         networks = ["diun"];
         hostname = "diun";
 

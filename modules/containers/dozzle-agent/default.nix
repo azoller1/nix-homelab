@@ -53,7 +53,6 @@
             "/var/run/docker.sock:/var/run/docker.sock:ro"
         ];
 
-
         labels = {
             "traefik.enable" = "false";
             "diun.enable" = "true";
