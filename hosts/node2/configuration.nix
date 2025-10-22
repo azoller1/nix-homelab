@@ -11,7 +11,7 @@
     ../../modules/containers/beszel-agent/default.nix
     ../../modules/containers/actual-budgets/default.nix
     ../../modules/containers/nodered/default.nix
-    ../../modules/containers/diun/default.nix
+    #../../modules/containers/diun/default.nix
   ];
   facter.reportPath = ./facter.json;
 

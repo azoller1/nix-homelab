@@ -8,7 +8,7 @@
     ./disk-config.nix
     ../../users/azoller/default.nix
     ../../modules/containers/dozzle-agent/default.nix
-    ../../modules/containers/diun/default.nix
+    #../../modules/containers/diun/default.nix
     ../../modules/containers/beszel-agent/default.nix
     ../../modules/containers/jotty-notes/default.nix
     ../../modules/containers/baikal/default.nix

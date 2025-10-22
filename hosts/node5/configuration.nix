@@ -9,7 +9,7 @@
     ../../users/azoller/default.nix
     ../../modules/containers/dozzle-agent/default.nix
     ../../modules/containers/beszel-agent/default.nix
-    ../../modules/containers/diun/default.nix
+    #../../modules/containers/diun/default.nix
   ];
   facter.reportPath = ./facter.json;
 
