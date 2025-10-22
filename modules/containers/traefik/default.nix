@@ -22,6 +22,7 @@
             "docker-network-forgejo.service"
             "docker-network-romm.service"
             "docker-network-dozzle.service"
+            "docker-network-adventurelog.service"
         ];
         requires = [
             "docker-network-traefik.service"
@@ -38,6 +39,7 @@
             "docker-network-forgejo.service"
             "docker-network-romm.service"
             "docker-network-dozzle.service"
+            "docker-network-adventurelog.service"
         ];
         partOf = ["docker-traefik-base.target"];
         wantedBy = ["docker-traefik-base.target"];
@@ -126,6 +128,7 @@
             "forgejo"
             "romm"
             "dozzle"
+            "adventurelog"
         ];
 
         ports = [
