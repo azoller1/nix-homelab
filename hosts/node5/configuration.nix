@@ -126,7 +126,23 @@
       };
 
       environmentFiles = [
-        /home/azoller/nix-homelab/hosts/node5/.env.secret.pg17
+        /home/azoller/containers/pg17/env
+      ];
+    };
+
+    postgis-18 = {
+      image = "docker.io/postgis/postgis:18-3.6-alpine";
+      autoStart = true;
+      ports = [ "5433:5432" ];
+      networks = ["postgis"];
+      hostname = "postgis-18";
+
+      volumes = [
+        "postgis_data:/var/lib/postgresql"
+      ];
+
+      environmentFiles = [
+        /home/azoller/containers/postgis18/env
       ];
     };
 
@@ -146,7 +162,7 @@
       };
 
       environmentFiles = [
-        /home/azoller/nix-homelab/hosts/node5/.env.secret.mongo-ys
+        /home/azoller/containers/mongo-ys/env
       ];
 
       cmd = [
