@@ -18,6 +18,7 @@
     ../../modules/containers/apprise-api/default.nix
     ../../modules/containers/lubelogger/default.nix
     ../../modules/containers/adventurelog/default.nix
+    ../../modules/containers/tandoor/default.nix
   ];
 
   facter.reportPath = ./facter.json;
