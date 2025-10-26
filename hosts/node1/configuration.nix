@@ -20,6 +20,7 @@
     ../../modules/containers/adventurelog/default.nix
     #../../modules/containers/tandoor/default.nix
     ../../modules/containers/mealie/default.nix
+    ../../modules/containers/tasktrove/default.nix
   ];
 
   facter.reportPath = ./facter.json;
