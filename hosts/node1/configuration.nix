@@ -22,6 +22,7 @@
     ../../modules/containers/mealie/default.nix
     #../../modules/containers/tasktrove/default.nix
     ../../modules/containers/yamtrack/default.nix
+    ../../modules/containers/dawarich/default.nix
   ];
 
   facter.reportPath = ./facter.json;

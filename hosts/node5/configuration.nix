@@ -146,6 +146,22 @@
       ];
     };
 
+    postgis-18-dawarich = {
+      image = "docker.io/postgis/postgis:18-3.6-alpine";
+      autoStart = true;
+      ports = [ "5434:5432" ];
+      networks = ["postgis-dawarich"];
+      hostname = "postgis-18-dawarich";
+
+      volumes = [
+        "postgis_dawa_data:/var/lib/postgresql"
+      ];
+
+      environmentFiles = [
+        /home/azoller/containers/postgis18/dawa-env
+      ];
+    };
+
     mongo6-ys = {
       image = "quay.io/mongodb/mongodb-community-server:6.0.25-ubi9";
       autoStart = true;
