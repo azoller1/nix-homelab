@@ -93,9 +93,9 @@
             "immich-redis"
         ];
 
-        devices = [
-            "/dev/dri:/dev/dri"
-        ];
+        #devices = [
+        #    "/dev/dri:/dev/dri"
+        #];
 
         volumes = [
             "/mnt/hdd/media/photos-uploaded:/data"
