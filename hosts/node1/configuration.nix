@@ -23,6 +23,7 @@
     #../../modules/containers/tasktrove/default.nix
     ../../modules/containers/yamtrack/default.nix
     ../../modules/containers/dawarich/default.nix
+    ../../modules/containers/n8n/default.nix
   ];
 
   facter.reportPath = ./facter.json;
