@@ -10,7 +10,7 @@
     ../../users/azoller/default.nix
     ../../modules/containers/romm/default.nix
     ../../modules/containers/necesse/default.nix
-    #../../modules/containers/diun/default.nix
+    ../../modules/containers/wud/default.nix
     ../../modules/containers/dozzle-agent/default.nix
     ../../modules/containers/dozzle/default.nix
     ../../modules/containers/beszel/default.nix
