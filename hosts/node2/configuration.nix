@@ -12,6 +12,7 @@
     ../../modules/containers/actual-budgets/default.nix
     ../../modules/containers/nodered/default.nix
     #../../modules/containers/diun/default.nix
+    ../../modules/containers/koito/default.nix
   ];
   facter.reportPath = ./facter.json;
 
