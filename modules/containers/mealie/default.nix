@@ -54,7 +54,7 @@
         environment = {
             ALLOW_SIGNUP = "false";
             PUID = "1000";
-            PGID = "1000";
+            PGID = "100";
             TZ = "America/Chicago";
             BASE_URL = "https://recipes.azollerstuff.xyz";
         };

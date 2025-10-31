@@ -13,6 +13,7 @@
     ../../modules/containers/nodered/default.nix
     #../../modules/containers/diun/default.nix
     ../../modules/containers/koito/default.nix
+    ../../modules/containers/multi-scrobb/default.nix
   ];
   facter.reportPath = ./facter.json;
 
