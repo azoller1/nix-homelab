@@ -59,7 +59,9 @@
         ];
 
         labels = {
-            "diun.enable" = "true";
+            "wud.watch" = "true";
+            "wud.tag.include" = "^\d+\.\d+\.\d+$$";
+            #"wud.link.template" = "https://github.com/FoxxMD/multi-scrobbler/releases/tag/$${major}.$${minor}.$${patch}";
             "traefik.enable" = "true";
             "traefik.http.services.romm.loadbalancer.server.port" = "8080";
             "traefik.http.routers.romm.rule" = "Host(`romm.azollerstuff.xyz`)";

@@ -53,8 +53,10 @@
         };
 
         labels = {
+            "wud.watch" = "true";
+            "wud.tag.include" = "^v\d+\.\d+\.\d+$$";
+            "wud.link.template" = "https://github.com/amir20/dozzle/releases/tag/v$${major}.$${minor}.$${patch}";
             "traefik.enable" = "true";
-            "diun.enable" = "true";
             "traefik.http.services.dozzle.loadbalancer.server.port" = "8080";
             "traefik.http.routers.dozzle.rule" = "Host(`dozzle.azollerstuff.xyz`)";
             "traefik.http.routers.dozzle.entrypoints" = "https";

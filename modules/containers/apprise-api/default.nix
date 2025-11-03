@@ -61,6 +61,9 @@
 
         labels = {
             "kop.bind.ip" = "192.168.2.5";
+            "wud.watch" = "true";
+            "wud.tag.include" = "^\d+\.\d+\.\d+$$";
+            "wud.link.template" = "https://github.com/caronc/apprise-api/releases/tag/v$${major}.$${minor}.$${patch}";
             "traefik.enable" = "true";
             "traefik.http.services.apprise.loadbalancer.server.port" = "10000";
             "traefik.http.routers.apprise.rule" = "Host(`apprise.azollerstuff.xyz`)";

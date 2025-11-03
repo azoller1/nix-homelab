@@ -55,7 +55,9 @@
 
         labels = {
             "traefik.enable" = "false";
-            "diun.enable" = "true";
+            "wud.watch" = "true";
+            "wud.tag.include" = "^v\d+\.\d+\.\d+$$";
+            "wud.link.template" = "https://github.com/amir20/dozzle/releases/tag/v$${major}.$${minor}.$${patch}";
         };
     };
 }

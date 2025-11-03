@@ -60,8 +60,9 @@
         ];
 
         labels = {
-            "diun.enable" = "true";
-            "diun.include_tags" = "^\d+\.\d+\..*$";
+            "wud.watch" = "true";
+            "wud.tag.include" = "^\d+\.\d+\.\d+-rootless$$";
+            "wud.link.template" = "https://codeberg.org/forgejo/forgejo/releases/tag/v$${major}.$${minor}.$${patch}";
             "traefik.enable" = "true";
             "traefik.http.routers.forgejo.service" = "forgejo";
             "traefik.http.services.forgejo.loadbalancer.server.port" = "3000";

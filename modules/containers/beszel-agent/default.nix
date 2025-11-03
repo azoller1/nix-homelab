@@ -78,8 +78,8 @@
         ];
 
         labels = {
-            "diun.enable" = "true";
-            "diun.include_tags" = "^[3-4]\.\d+\..*";
+            "wud.watch" = "true";
+            "wud.tag.include" = "^\d+\.\d+\.\d+$$";
         };
     };
 
@@ -103,9 +103,10 @@
         ];
 
         labels = {
-            "diun.enable" = "true";
             "traefik.enable" = "false";
-            "diun.include_tags" = "^[0-1]\.\d+\..*";
+            "wud.watch" = "true";
+            "wud.tag.include" = "^\d+\.\d+\.\d+$$";
+            "wud.link.template" = "https://github.com/henrygd/beszel/releases/tag/v$${major}.$${minor}.$${patch}";
         };
     };
 }

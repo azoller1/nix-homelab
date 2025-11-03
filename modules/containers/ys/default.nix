@@ -66,6 +66,9 @@
 
         labels = {
             "kop.bind.ip" = "192.168.2.5";
+            "wud.watch" = "true";
+            "wud.tag.include" = "^\d+\.\d+\.\d+$$";
+            #"wud.link.template" = "https://github.com/dani-garcia/vaultwarden/releases/tag/$${major}.$${minor}.$${patch}";
             "traefik.enable" = "true";
             "traefik.http.services.ys-client.loadbalancer.server.port" = "10005";
             "traefik.http.routers.ys-client.rule" = "Host(`spotifystats.azollerstuff.xyz`)";
@@ -91,6 +94,9 @@
 
         labels = {
             "kop.bind.ip" = "192.168.2.5";
+            "wud.watch" = "true";
+            "wud.tag.include" = "^\d+\.\d+\.\d+$$";
+            #"wud.link.template" = "https://github.com/dani-garcia/vaultwarden/releases/tag/$${major}.$${minor}.$${patch}";
             "traefik.enable" = "true";
             "traefik.http.services.ys-server.loadbalancer.server.port" = "10004";
             "traefik.http.routers.ys-server.rule" = "Host(`ssapi.azollerstuff.xyz`)";

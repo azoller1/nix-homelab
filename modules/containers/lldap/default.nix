@@ -63,8 +63,9 @@
         ];
 
         labels = {
-            "diun.enable" = "true";
-            "diun.include_tags" = "^\d+\.\d+\..*$";
+            "wud.watch" = "true";
+            "wud.tag.include" = "^v\d+\.\d+\.\d+-alpine-rootless$$";
+            "wud.link.template" = "https://github.com/lldap/lldap/releases/tag/v$${major}.$${minor}.$${patch}";
             "traefik.enable" = "true";
             "traefik.http.services.lldap.loadbalancer.server.port" = "17170";
             "traefik.http.routers.lldap.rule" = "Host(`lldap.azollerstuff.xyz`)";

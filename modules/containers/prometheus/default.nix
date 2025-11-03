@@ -58,8 +58,9 @@
         ];
 
         labels = {
-            "diun.enable" = "true";
-            "diun.include_tags" = "^\d+\.\d+\..*$";
+            "wud.watch" = "true";
+            "wud.tag.include" = "^v\d+\.\d+\.\d+$$";
+            #"wud.link.template" = "https://github.com/FoxxMD/multi-scrobbler/releases/tag/$${major}.$${minor}.$${patch}";
             "traefik.enable" = "true";
             "traefik.http.services.prom.loadbalancer.server.port" = "9090";
             "traefik.http.routers.prom.rule" = "Host(`prom.azollerstuff.xyz`)";

@@ -60,6 +60,9 @@
 
         labels = {
             "kop.bind.ip" = "192.168.2.5";
+            "wud.watch" = "true";
+            "wud.tag.include" = "^\d+\.\d+\.\d+$$";
+            "wud.link.template" = "https://github.com/fccview/jotty/releases/tag/$${major}.$${minor}.$${patch}";
             "traefik.enable" = "true";
             "traefik.http.services.marknote.loadbalancer.server.port" = "10006";
             "traefik.http.routers.marknote.rule" = "Host(`mnotes.azollerstuff.xyz`)";

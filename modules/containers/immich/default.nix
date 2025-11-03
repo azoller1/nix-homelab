@@ -108,8 +108,9 @@
         ];
 
         labels = {
-            "diun.enable" = "true";
-            "diun.include_tags" = "^\d+\.\d+\..*$";
+            "wud.watch" = "true";
+            "wud.tag.include" = "^v\d+\.\d+\.\d+$$";
+            "wud.link.template" = "https://github.com/immich-app/immich/releases/tag/v$${major}.$${minor}.$${patch}";
             "traefik.enable" = "true";
             "traefik.docker.network" = "immich-traefik";
             "traefik.http.services.immich-server.loadbalancer.server.port" = "2283";
@@ -138,9 +139,10 @@
         ];
 
         labels = {
-            "diun.enable" = "true";
+            "wud.watch" = "true";
+            "wud.tag.include" = "^v\d+\.\d+\.\d+$$";
+            "wud.link.template" = "https://github.com/immich-app/immich/releases/tag/v$${major}.$${minor}.$${patch}";
             "traefik.enable" = "false";
-            "diun.include_tags" = "^\d+\.\d+\..*$";
         };
     };
 
@@ -153,7 +155,6 @@
 
         labels = {
             "traefik.enable" = "false";
-            "diun.include_tags" = "^\d+\.\d+\..*$";
         };
     };
 
@@ -178,7 +179,6 @@
 
         labels = {
             "traefik.enable" = "false";
-            "diun.include_tags" = "^\d+\.\d+\..*$";
         };
     };
 }

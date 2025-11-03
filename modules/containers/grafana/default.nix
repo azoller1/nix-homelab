@@ -57,8 +57,6 @@
         ];
 
         labels = {
-            "diun.enable" = "true";
-            "diun.include_tags" = "^\d+\.\d+\..*$";
             "traefik.enable" = "true";
             "traefik.http.services.grafana.loadbalancer.server.port" = "3000";
             "traefik.http.routers.grafana.rule" = "Host(`grafana.azollerstuff.xyz`)";

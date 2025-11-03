@@ -52,8 +52,9 @@
         ];
 
         labels = {
-            "diun.enable" = "true";
-            "diun.include_tags" = "^[0-1]\.\d+\..*";
+            "wud.watch" = "true";
+            "wud.tag.include" = "^\d+\.\d+\.\d+$$";
+            "wud.link.template" = "https://github.com/henrygd/beszel/releases/tag/v$${major}.$${minor}.$${patch}";
             "traefik.enable" = "true";
             "traefik.http.services.beszel.loadbalancer.server.port" = "8090";
             "traefik.http.routers.beszel.rule" = "Host(`stats.azollerstuff.xyz`)";

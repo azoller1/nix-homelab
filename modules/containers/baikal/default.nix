@@ -55,6 +55,9 @@
 
         labels = {
             "kop.bind.ip" = "192.168.2.5";
+            "wud.watch" = "true";
+            "wud.tag.include" = "^\d+\.\d+\.\d+-nginx-php8.2$$";
+            "wud.link.template" = "https://github.com/ckulka/baikal-docker/releases/tag/$${major}.$${minor}.$${patch}";
             "traefik.enable" = "true";
             "traefik.http.services.baikal-dav.loadbalancer.server.port" = "10001";
             "traefik.http.routers.baikal-dav.rule" = "Host(`dav.azollerstuff.xyz`)";

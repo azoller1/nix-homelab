@@ -65,6 +65,9 @@
 
         labels = {
             "kop.bind.ip" = "192.168.2.5";
+            "wud.watch" = "true";
+            "wud.tag.include" = "^v\d+\.\d+\.\d+$$";
+            "wud.link.template" = "https://github.com/mealie-recipes/mealie/releases/tag/v$${major}.$${minor}.$${patch}";
             "traefik.enable" = "true";
             "traefik.http.services.mealie.loadbalancer.server.port" = "10011";
             "traefik.http.routers.mealie.rule" = "Host(`recipes.azollerstuff.xyz`)";

@@ -55,6 +55,9 @@
 
         labels = {
             "kop.bind.ip" = "192.168.2.5";
+            "wud.watch" = "true";
+            "wud.tag.include" = "^v\d+\.\d+\.\d+$$";
+            "wud.link.template" = "https://github.com/hargata/lubelog/releases/tag/v$${major}.$${minor}.$${patch}";
             "traefik.enable" = "true";
             "traefik.http.services.lubelogger.loadbalancer.server.port" = "10007";
             "traefik.http.routers.lubelogger.rule" = "Host(`vehicles.azollerstuff.xyz`)";
