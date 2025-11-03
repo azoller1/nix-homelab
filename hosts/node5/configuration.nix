@@ -109,6 +109,12 @@
         MARIADB_ALLOW_EMPTY_ROOT_PASSWORD = "1";
       };
 
+      labels = {
+          "wud.watch" = "true";
+          "wud.tag.include" = "^\d+\.\d+\.\d+-ubi9$$";
+          #"wud.link.template" = "https://github.com/FoxxMD/multi-scrobbler/releases/tag/$${major}.$${minor}.$${patch}";
+      };
+
     };
 
     postgres-17 = {
@@ -129,6 +135,12 @@
       environmentFiles = [
         /home/azoller/containers/pg17/env
       ];
+
+      labels = {
+          "wud.watch" = "true";
+          "wud.tag.include" = "^\d+\.\d+-alpine$$";
+          #"wud.link.template" = "https://github.com/FoxxMD/multi-scrobbler/releases/tag/$${major}.$${minor}.$${patch}";
+      };
     };
 
     postgis-18-advlog = {
@@ -145,6 +157,12 @@
       environmentFiles = [
         /home/azoller/containers/postgis18/env
       ];
+
+      labels = {
+          "wud.watch" = "true";
+          "wud.tag.include" = "^\d+-$$";
+          #"wud.link.template" = "https://github.com/FoxxMD/multi-scrobbler/releases/tag/$${major}.$${minor}.$${patch}";
+      };
     };
 
     postgis-18-dawarich = {
@@ -161,6 +179,12 @@
       environmentFiles = [
         /home/azoller/containers/postgis18/dawa-env
       ];
+
+      labels = {
+          "wud.watch" = "true";
+          "wud.tag.include" = "^\d+-$$";
+          #"wud.link.template" = "https://github.com/FoxxMD/multi-scrobbler/releases/tag/$${major}.$${minor}.$${patch}";
+      };
     };
 
     mongo6-ys = {
@@ -185,6 +209,12 @@
       cmd = [
         "--ipv6"
       ];
+
+      labels = {
+          "wud.watch" = "true";
+          "wud.tag.include" = "^\d+\.\d+\.\d+-ubi9$$";
+          #"wud.link.template" = "https://github.com/FoxxMD/multi-scrobbler/releases/tag/$${major}.$${minor}.$${patch}";
+      };
     };
 
     valkey-traefik = {
