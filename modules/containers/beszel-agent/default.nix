@@ -31,7 +31,7 @@
 
         serviceConfig = {
             Type = "oneshot";
-            RemainAfterExit = true;
+            RemainAfterExit = false;
             #ExecStop = "docker network rm -f beszel";
         };
 
