@@ -10,7 +10,7 @@
     ../../modules/containers/dozzle-agent/default.nix
     ../../modules/containers/beszel-agent/default.nix
     #../../modules/containers/diun/default.nix
-    ../../modules/containers/wud/default.nix
+    #../../modules/containers/wud/default.nix
   ];
   facter.reportPath = ./facter.json;
 
