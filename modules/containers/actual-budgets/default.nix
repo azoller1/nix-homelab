@@ -55,8 +55,8 @@
         labels = {
             "kop.bind.ip" = "192.168.2.6";
             "wud.watch" = "true";
-            "wud.tag.include" = "^\d+\.\d+\.\d+$$";
-            "wud.link.template" = "https://github.com/actualbudget/actual/releases/tag/v$${major}.$${minor}.$${patch}";
+            "wud.tag.include" = "^[0-9]+.[0-9]+.[0-9]+$";
+            "wud.link.template" = "https://github.com/actualbudget/actual/releases/tag/v${major}.${minor}.${patch}";
             "traefik.enable" = "true";
             "traefik.http.services.actual-budgets.loadbalancer.server.port" = "10000";
             "traefik.http.routers.actual-budgets.rule" = "Host(`money.azollerstuff.xyz`)";

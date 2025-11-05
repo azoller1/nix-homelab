@@ -150,7 +150,7 @@
 
         labels = {
             "wud.watch" = "true";
-            "wud.tag.include" = "^v\d+\.\d+\.\d+$$";
+            "wud.tag.include" = "^v[0-9]+.[0-9]+.[0-9]+$";
             #"wud.link.template" = "https://github.com/FoxxMD/multi-scrobbler/releases/tag/$${major}.$${minor}.$${patch}";
             "traefik.enable" = "false";
         };

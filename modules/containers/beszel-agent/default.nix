@@ -79,7 +79,7 @@
 
         labels = {
             "wud.watch" = "true";
-            "wud.tag.include" = "^\d+\.\d+\.\d+$$";
+            "wud.tag.include" = "^[0-9]+.[0-9]+.[0-9]+$";
         };
     };
 
@@ -105,8 +105,8 @@
         labels = {
             "traefik.enable" = "false";
             "wud.watch" = "true";
-            "wud.tag.include" = "^\d+\.\d+\.\d+$$";
-            "wud.link.template" = "https://github.com/henrygd/beszel/releases/tag/v$${major}.$${minor}.$${patch}";
+            "wud.tag.include" = "^[0-9]+.[0-9]+.[0-9]+$";
+            "wud.link.template" = "https://github.com/henrygd/beszel/releases/tag/v${major}.${minor}.${patch}";
         };
     };
 }

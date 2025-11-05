@@ -71,8 +71,8 @@
         labels = {
             "kop.bind.ip" = "192.168.2.5";
             "wud.watch" = "true";
-            "wud.tag.include" = "^v\d+\.\d+\.\d+$$";
-            "wud.link.template" = "https://github.com/seanmorley15/AdventureLog/releases/tag/v$${major}.$${minor}.$${patch}";
+            "wud.tag.include" = "^v[0-9]+.[0-9]+.[0-9]+$";
+            "wud.link.template" = "https://github.com/seanmorley15/AdventureLog/releases/tag/v${major}.${minor}.${patch}";
             "traefik.enable" = "true";
             "traefik.http.services.advlog-server.loadbalancer.server.port" = "10009";
             "traefik.http.routers.advlog-server.rule" = "Host(`adventure-server.azollerstuff.xyz`)";
@@ -99,8 +99,8 @@
         labels = {
             "kop.bind.ip" = "192.168.2.5";
             "wud.watch" = "true";
-            "wud.tag.include" = "^v\d+\.\d+\.\d+$$";
-            "wud.link.template" = "https://github.com/seanmorley15/AdventureLog/releases/tag/v$${major}.$${minor}.$${patch}";
+            "wud.tag.include" = "^v[0-9]+.[0-9]+.[0-9]+$";
+            "wud.link.template" = "https://github.com/seanmorley15/AdventureLog/releases/tag/v${major}.${minor}.${patch}";
             "traefik.enable" = "true";
             "traefik.http.services.advlog.loadbalancer.server.port" = "10008";
             "traefik.http.routers.advlog.rule" = "Host(`adventure.azollerstuff.xyz`)";

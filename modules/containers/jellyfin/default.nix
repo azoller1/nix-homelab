@@ -27,8 +27,8 @@
 
         labels = {
             "wud.watch" = "true";
-            "wud.tag.include" = "^\d+\.\d+\.\d+$$";
-            "wud.link.template" = "https://github.com/jellyfin/jellyfin/releases/tag/v$${major}.$${minor}.$${patch}";
+            "wud.tag.include" = "^[0-9]+.[0-9]+.[0-9]+$";
+            "wud.link.template" = "https://github.com/jellyfin/jellyfin/releases/tag/v${major}.${minor}.${patch}";
             "traefik.enable" = "true";
             "traefik.http.services.jellyfin.loadbalancer.server.url" = "http://192.168.2.2:8096";
             "traefik.http.routers.jellyfin.rule" = "Host(`jelly.azollerstuff.xyz`)";

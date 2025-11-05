@@ -61,8 +61,8 @@
 
         labels = {
             "wud.watch" = "true";
-            "wud.tag.include" = "^\d+\.\d+\.\d+-rootless$$";
-            "wud.link.template" = "https://codeberg.org/forgejo/forgejo/releases/tag/v$${major}.$${minor}.$${patch}";
+            "wud.tag.include" = "^[0-9]+.[0-9]+.[0-9]+-rootless$";
+            "wud.link.template" = "https://codeberg.org/forgejo/forgejo/releases/tag/v${major}.${minor}.${patch}";
             "traefik.enable" = "true";
             "traefik.http.routers.forgejo.service" = "forgejo";
             "traefik.http.services.forgejo.loadbalancer.server.port" = "3000";

@@ -57,7 +57,7 @@
 
         labels = {
             "wud.watch" = "true";
-            "wud.tag.include" = "^\d+\.\d+$$";
+            "wud.tag.include" = "^[0-9]+.[0-9]+$";
             #"wud.link.template" = "https://github.com/FoxxMD/multi-scrobbler/releases/tag/$${major}.$${minor}.$${patch}";
             "traefik.enable" = "true";
             "traefik.http.services.signal-api.loadbalancer.server.port" = "8080";

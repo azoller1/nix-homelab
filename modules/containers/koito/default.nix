@@ -58,8 +58,8 @@
         labels = {
             "kop.bind.ip" = "192.168.2.6";
             "wud.watch" = "true";
-            "wud.tag.include" = "^v\d+\.\d+\.\d+$$";
-            "wud.link.template" = "https://github.com/gabehf/Koito/releases/tag/v$${major}.$${minor}.$${patch}";
+            "wud.tag.include" = "^v[0-9]+.[0-9]+.[0-9]+$";
+            "wud.link.template" = "https://github.com/gabehf/Koito/releases/tag/v${major}.${minor}.${patch}";
             "traefik.enable" = "true";
             "traefik.http.services.koito.loadbalancer.server.port" = "10002";
             "traefik.http.routers.koito.rule" = "Host(`koito.azollerstuff.xyz`)";

@@ -59,7 +59,7 @@
         labels = {
             "kop.bind.ip" = "192.168.2.6";
             "wud.watch" = "true";
-            "wud.tag.include" = "^\d+\.\d+\.\d+$$";
+            "wud.tag.include" = "^[0-9]+.[0-9]+.[0-9]+$";
             #"wud.link.template" = "https://github.com/FoxxMD/multi-scrobbler/releases/tag/$${major}.$${minor}.$${patch}";
             "traefik.enable" = "true";
             "traefik.http.services.nodered.loadbalancer.server.port" = "10001";

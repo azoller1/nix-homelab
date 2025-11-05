@@ -81,7 +81,7 @@
         labels = {
             "kop.bind.ip" = "192.168.2.5";
             "wud.watch" = "true";
-            "wud.tag.include" = "^\d+\.\d+\.\d+$$";
+            "wud.tag.include" = "^[0-9]+.[0-9]+.[0-9]+$";
             "traefik.enable" = "true";
             "traefik.http.services.n8n.loadbalancer.server.port" = "10015";
             "traefik.http.routers.n8n.rule" = "Host(`n8n.azollerstuff.xyz`)";
@@ -115,7 +115,7 @@
 
         labels = {
             "wud.watch" = "true";
-            "wud.tag.include" = "^\d+\.\d+\.\d+$$";
+            "wud.tag.include" = "^[0-9]+.[0-9]+.[0-9]+$";
             "traefik.enable" = "false";
         };
     };

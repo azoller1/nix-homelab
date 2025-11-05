@@ -10,7 +10,7 @@
     ../../modules/containers/dozzle-agent/default.nix
     ../../modules/containers/beszel-agent/default.nix
     #../../modules/containers/diun/default.nix
-    #../../modules/containers/wud/default.nix
+    ../../modules/containers/wud/default.nix
   ];
   facter.reportPath = ./facter.json;
 
@@ -111,7 +111,7 @@
 
       labels = {
           "wud.watch" = "true";
-          "wud.tag.include" = "^\d+\.\d+\.\d+-ubi9$$";
+          "wud.tag.include" = "^[0-9]+.[0-9]+.[0-9]+-ubi9$";
           #"wud.link.template" = "https://github.com/FoxxMD/multi-scrobbler/releases/tag/$${major}.$${minor}.$${patch}";
       };
 
@@ -138,7 +138,7 @@
 
       labels = {
           "wud.watch" = "true";
-          "wud.tag.include" = "^\d+\.\d+-alpine$$";
+          "wud.tag.include" = "^17+.[0-9]+-alpine$";
           #"wud.link.template" = "https://github.com/FoxxMD/multi-scrobbler/releases/tag/$${major}.$${minor}.$${patch}";
       };
     };
@@ -160,7 +160,7 @@
 
       labels = {
           "wud.watch" = "true";
-          "wud.tag.include" = "^\d+-$$";
+          "wud.tag.include" = "^18+-$";
           #"wud.link.template" = "https://github.com/FoxxMD/multi-scrobbler/releases/tag/$${major}.$${minor}.$${patch}";
       };
     };
@@ -182,7 +182,7 @@
 
       labels = {
           "wud.watch" = "true";
-          "wud.tag.include" = "^\d+-$$";
+          "wud.tag.include" = "^18+-$";
           #"wud.link.template" = "https://github.com/FoxxMD/multi-scrobbler/releases/tag/$${major}.$${minor}.$${patch}";
       };
     };
@@ -212,7 +212,7 @@
 
       labels = {
           "wud.watch" = "true";
-          "wud.tag.include" = "^\d+\.\d+\.\d+-ubi9$$";
+          "wud.tag.include" = "^[0-9]+.[0-9]+.[0-9]+-ubi9$";
           #"wud.link.template" = "https://github.com/FoxxMD/multi-scrobbler/releases/tag/$${major}.$${minor}.$${patch}";
       };
     };
