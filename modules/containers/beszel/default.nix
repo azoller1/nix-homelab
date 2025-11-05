@@ -54,7 +54,7 @@
         labels = {
             "wud.watch" = "true";
             "wud.tag.include" = "^[0-9]+.[0-9]+.[0-9]+$";
-            "wud.link.template" = "https://github.com/henrygd/beszel/releases/tag/v${major}.${minor}.${patch}";
+            "wud.link.template" = "https://github.com/henrygd/beszel/releases";
             "traefik.enable" = "true";
             "traefik.http.services.beszel.loadbalancer.server.port" = "8090";
             "traefik.http.routers.beszel.rule" = "Host(`stats.azollerstuff.xyz`)";

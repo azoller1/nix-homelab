@@ -66,7 +66,7 @@
             "kop.bind.ip" = "192.168.2.6";
             "wud.watch" = "true";
             "wud.tag.include" = "^[0-9]+.[0-9]+.[0-9]+$";
-            "wud.link.template" = "https://github.com/FoxxMD/multi-scrobbler/releases/tag/${major}.${minor}.${patch}";
+            "wud.link.template" = "https://github.com/FoxxMD/multi-scrobbler/releases";
             "traefik.enable" = "true";
             "traefik.http.services.scrobbler.loadbalancer.server.port" = "10003";
             "traefik.http.routers.scrobbler.rule" = "Host(`scrobbler.azollerstuff.xyz`)";

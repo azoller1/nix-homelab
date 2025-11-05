@@ -62,7 +62,7 @@
             "kop.bind.ip" = "192.168.2.5";
             "wud.watch" = "true";
             "wud.tag.include" = "^[0-9]+.[0-9]+.[0-9]+$";
-            "wud.link.template" = "https://github.com/fccview/jotty/releases/tag/${major}.${minor}.${patch}";
+            "wud.link.template" = "https://github.com/fccview/jotty/releases";
             "traefik.enable" = "true";
             "traefik.http.services.marknote.loadbalancer.server.port" = "10006";
             "traefik.http.routers.marknote.rule" = "Host(`mnotes.azollerstuff.xyz`)";

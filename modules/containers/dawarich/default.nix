@@ -119,7 +119,7 @@
             "kop.bind.ip" = "192.168.2.5";
             "wud.watch" = "true";
             "wud.tag.include" = "^[0-9]+.[0-9]+.[0-9]+$";
-            "wud.link.template" = "https://github.com/Freika/dawarich/releases/tag/${major}.${minor}.${patch}";
+            "wud.link.template" = "https://github.com/Freika/dawarich/releases";
             "traefik.enable" = "true";
             "traefik.http.services.dawarich.loadbalancer.server.port" = "10014";
             "traefik.http.routers.dawarich.rule" = "Host(`maps.azollerstuff.xyz`)";
@@ -165,7 +165,7 @@
             "traefik.enable" = "false";
             "wud.watch" = "true";
             "wud.tag.include" = "^[0-9]+.[0-9]+.[0-9]+$";
-            "wud.link.template" = "https://github.com/Freika/dawarich/releases/tag/${major}.${minor}.${patch}";
+            "wud.link.template" = "https://github.com/Freika/dawarich/releases";
         };
     };
 }

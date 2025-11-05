@@ -64,7 +64,7 @@
             "kop.bind.ip" = "192.168.2.5";
             "wud.watch" = "true";
             "wud.tag.include" = "^[0-9]+.[0-9]+.[0-9]+$";
-            "wud.link.template" = "https://github.com/dani-garcia/vaultwarden/releases/tag/${major}.${minor}.${patch}";
+            "wud.link.template" = "https://github.com/dani-garcia/vaultwarden/releases";
             "traefik.enable" = "true";
             "traefik.http.services.vw.loadbalancer.server.port" = "10003";
             "traefik.http.routers.vw.rule" = "Host(`vault.azollerstuff.xyz`)";

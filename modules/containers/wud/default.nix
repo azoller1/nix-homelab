@@ -118,7 +118,7 @@
             "traefik.enable" = "false";
             "wud.watch" = "true";
             "wud.tag.include" = "^[0-9]+.[0-9]+.[0-9]+$";
-            "wud.link.template" = "https://github.com/getwud/wud/releases/tag/${major}.${minor}.${patch}";
+            "wud.link.template" = "https://github.com/getwud/wud/releases";
         };
     };
 }

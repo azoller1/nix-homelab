@@ -110,7 +110,7 @@
         labels = {
             "wud.watch" = "true";
             "wud.tag.include" = "^v[0-9]+.[0-9]+.[0-9]+$";
-            "wud.link.template" = "https://github.com/immich-app/immich/releases/tag/v${major}.${minor}.${patch}";
+            "wud.link.template" = "https://github.com/immich-app/immich/releases";
             "traefik.enable" = "true";
             "traefik.docker.network" = "immich-traefik";
             "traefik.http.services.immich-server.loadbalancer.server.port" = "2283";
@@ -141,7 +141,7 @@
         labels = {
             "wud.watch" = "true";
             "wud.tag.include" = "^v[0-9]+.[0-9]+.[0-9]+$";
-            "wud.link.template" = "https://github.com/immich-app/immich/releases/tag/v${major}.${minor}.${patch}";
+            "wud.link.template" = "https://github.com/immich-app/immich/releases";
             "traefik.enable" = "false";
         };
     };
