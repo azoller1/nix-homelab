@@ -5,6 +5,8 @@
   inputs.disko.inputs.nixpkgs.follows = "nixpkgs";
   inputs.nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
   inputs.deploy-rs.url = "github:serokell/deploy-rs";
+  inputs.home-manager.url = "github:nix-community/home-manager";
+  inputs.home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
   outputs =
     {
@@ -14,6 +16,7 @@
       disko,
       nixos-facter-modules,
       deploy-rs,
+      home-manager,
       ...
     }:
 
@@ -67,6 +70,12 @@
             disko.nixosModules.disko
             ./hosts/node3/configuration.nix
             nixos-facter-modules.nixosModules.facter
+            home-manager.nixosModules.home-manager
+              {
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
+                home-manager.users.azoller = ./hosts/node3/home.nix;
+              }
           ];
         };
 
