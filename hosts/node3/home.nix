@@ -6,7 +6,7 @@
   home.stateVersion = "25.05"; # Please read the comment before changing.
 
   home.packages = [
-    # pkgs.hello
+    pkgs.hello
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -43,4 +43,5 @@
   programs.home-manager.enable = true;
 
   # Podman
+  services.podman.enable = true;
 }
