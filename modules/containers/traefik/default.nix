@@ -1,91 +1,10 @@
 { config, lib, pkgs, ...}:
 
 {
-    systemd.services."docker-traefik" = {
-
-        serviceConfig = {
-            Restart = lib.mkOverride 90 "always";
-        };
-        
-        after = [
-            "docker-network-traefik.service"
-            "docker-network-beszel.service"
-            "docker-network-lldap.service"
-            "docker-network-paperless.service"
-            "docker-network-signal-api.service"
-            "docker-network-prom.service"
-            "docker-network-grafana.service"
-            "docker-network-viclogs.service"
-            "docker-network-vicmetrics.service"
-            "docker-network-pocket-id.service"
-            "docker-network-immich.service"
-            "docker-network-forgejo.service"
-            "docker-network-romm.service"
-            "docker-network-dozzle.service"
-        ];
-        requires = [
-            "docker-network-traefik.service"
-            "docker-network-beszel.service"
-            "docker-network-lldap.service"
-            "docker-network-paperless.service"
-            "docker-network-signal-api.service"
-            "docker-network-prom.service"
-            "docker-network-grafana.service"
-            "docker-network-viclogs.service"
-            "docker-network-vicmetrics.service"
-            "docker-network-pocket-id.service"
-            "docker-network-immich.service"
-            "docker-network-forgejo.service"
-            "docker-network-romm.service"
-            "docker-network-dozzle.service"
-        ];
-        partOf = ["docker-traefik-base.target"];
-        wantedBy = ["docker-traefik-base.target"];
-    };
-
-    systemd.services."docker-socket-proxy-traefik" = {
-
-        serviceConfig = {
-            Restart = lib.mkOverride 90 "always";
-        };
-        
-        after = ["docker-network-traefik.service"];
-        requires = ["docker-network-traefik.service"];
-        partOf = ["docker-traefik-base.target"];
-        wantedBy = ["docker-traefik-base.target"];
-    };
-
-    systemd.services."docker-network-traefik" = {
-
-        path = [ pkgs.docker ];
-
-        serviceConfig = {
-            Type = "oneshot";
-            RemainAfterExit = true;
-            #ExecStop = "docker network rm -f traefik";
-        };
-
-        script = ''
-            docker network inspect traefik || docker network create traefik --ipv6
-        '';
-
-        partOf = [ "docker-traefik-base.target" ];
-        wantedBy = [ "docker-traefik-base.target" ];
-    };
-
-    systemd.targets."docker-traefik-base" = {
-
-        unitConfig = {
-            Description = "traefik base Service";
-        };
-
-        wantedBy = [ "multi-user.target" ];
-    };
-
     virtualisation.oci-containers.containers."socket-proxy-traefik" = {
         
         image = "lscr.io/linuxserver/socket-proxy:3.2.6";
-        #autoStart = true;
+        autoStart = true;
         networks = ["traefik"];
         hostname = "socket-proxy-traefik";
 
@@ -134,7 +53,7 @@
             "8088:8080"
         ];
 
-        #autoStart = true;
+        autoStart = true;
         hostname = "traefik";
         dependsOn = ["socket-proxy-traefik"];
 

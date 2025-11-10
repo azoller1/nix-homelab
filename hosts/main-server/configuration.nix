@@ -46,7 +46,25 @@
   # Networking  
   networking.hostName = "main-server";
   # networking.wireless.enable = true;
-  networking.networkmanager.enable = true;
+  networking.networkmanager.enable = false;
+  networking.useDHCP = false;
+  # networking.useNetworkd = true;
+  systemd.network.enable = true;
+
+  # LAN
+  systemd.network.networks."10-lan" = {
+    matchConfig.Name = ["enp4s0"];
+    networkConfig = {
+      Address = ["192.168.2.2/24"];
+      Gateway = "192.168.2.1";
+      DNS = ["192.168.2.3"];
+      IPv6AcceptRA = true;
+    };
+
+    linkConfig.RequiredForOnline = "routable";
+  };
+  
+
   time.timeZone = "America/Chicago";
   # Dont use built-in firewall
   networking.firewall.enable = false;
@@ -94,8 +112,8 @@
         defaultBranch = "main";
       };
       user = {
-    	name = "Alexander Zoller";
-    	email = "personal@alexanderzoller.com";
+	name = "Alexander Zoller";
+	email = "personal@alexanderzoller.com";
       };
     };
   };

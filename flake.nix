@@ -5,6 +5,8 @@
   inputs.disko.inputs.nixpkgs.follows = "nixpkgs";
   inputs.nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
   inputs.deploy-rs.url = "github:serokell/deploy-rs";
+  #inputs.microvm.url = "github:microvm-nix/microvm.nix";
+  #inputs.microvm.inputs.nixpkgs.follows = "nixpkgs-unstable";
   #inputs.home-manager.url = "github:nix-community/home-manager";
   #inputs.home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
@@ -16,6 +18,7 @@
       disko,
       nixos-facter-modules,
       deploy-rs,
+      #microvm,
       #home-manager,
       ...
     }:
@@ -40,6 +43,7 @@
             disko.nixosModules.disko
             ./hosts/main-server/configuration.nix
             nixos-facter-modules.nixosModules.facter
+            #microvm.nixosModules.host
           ];
         };
         
@@ -117,6 +121,7 @@
         profiles.system = {
           sshUser = "root";
           user = "root";
+          magicRollback = false;
           path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.main-server;
         };
       };
