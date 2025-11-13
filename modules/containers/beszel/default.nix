@@ -3,7 +3,7 @@
 {
     virtualisation.oci-containers.containers."beszel" = {
 
-        image = "ghcr.io/henrygd/beszel/beszel:0.15.4";
+        image = "ghcr.io/henrygd/beszel/beszel:0.16.0";
         autoStart = true;
         networks = ["beszel"];
         hostname = "beszel";

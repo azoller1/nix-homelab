@@ -34,7 +34,7 @@
 
     virtualisation.oci-containers.containers."beszel-agent" = {
 
-        image = "ghcr.io/henrygd/beszel/beszel-agent:0.15.4";
+        image = "ghcr.io/henrygd/beszel/beszel-agent:0.16.0";
         autoStart = true;
         ports = ["45876:45876"];
         networks = ["beszel"];
