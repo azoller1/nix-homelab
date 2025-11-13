@@ -131,6 +131,7 @@
         profiles.system = {
           sshUser = "root";
           user = "root";
+          magicRollback = false;
           path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.node1;
         };
       };
@@ -140,6 +141,7 @@
         profiles.system = {
           sshUser = "root";
           user = "root";
+          magicRollback = false;
           path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.node2;
         };
       };
@@ -149,6 +151,7 @@
         profiles.system = {
           sshUser = "root";
           user = "root";
+          magicRollback = false;
           path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.node3;
         };
       };
@@ -158,6 +161,7 @@
         profiles.system = {
           sshUser = "root";
           user = "root";
+          magicRollback = false;
           path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.node4;
         };
       };
@@ -167,6 +171,7 @@
         profiles.system = {
           sshUser = "root";
           user = "root";
+          magicRollback = false;
           path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.node5;
         };
       };
