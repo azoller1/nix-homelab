@@ -1,49 +1,9 @@
 { config, lib, pkgs, ...}:
 
 {
-    systemd.services."docker-jotty" = {
-
-        serviceConfig = {
-            Restart = lib.mkOverride 90 "always";
-        };
-        
-        after = ["docker-network-jotty.service"];
-        requires = ["docker-network-jotty.service"];
-        partOf = ["docker-jotty-base.target"];
-        wantedBy = ["docker-jotty-base.target"];
-    };
-
-    systemd.services."docker-network-jotty" = {
-
-        path = [ pkgs.docker ];
-
-        serviceConfig = {
-            Type = "oneshot";
-            RemainAfterExit = true;
-            #ExecStop = "docker network rm -f jotty";
-        };
-
-        script = ''
-            docker network inspect jotty || docker network create jotty --ipv6
-        '';
-
-        partOf = [ "docker-jotty-base.target" ];
-        wantedBy = [ "docker-jotty-base.target" ];
-    };
-
-    systemd.targets."docker-jotty-base" = {
-
-        unitConfig = {
-            Description = "jotty base Service";
-        };
-
-        wantedBy = [ "multi-user.target" ];
-    };
-
     virtualisation.oci-containers.containers."jotty" = {
 
-        image = "ghcr.io/fccview/jotty:1.8.0";
-        #autoStart = true;
+        image = "ghcr.io/fccview/jotty:1.10.2";
         ports = [ "10006:3000" ];
         networks = ["jotty"];
         hostname = "jotty";

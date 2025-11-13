@@ -1,49 +1,9 @@
 { config, lib, pkgs, ...}:
 
 {
-    systemd.services."docker-forgejo" = {
-
-        serviceConfig = {
-            Restart = lib.mkOverride 90 "always";
-        };
-        
-        after = ["docker-network-forgejo.service"];
-        requires = ["docker-network-forgejo.service"];
-        partOf = ["docker-forgejo-base.target"];
-        wantedBy = ["docker-forgejo-base.target"];
-    };
-
-    systemd.services."docker-network-forgejo" = {
-
-        path = [ pkgs.docker ];
-
-        serviceConfig = {
-            Type = "oneshot";
-            RemainAfterExit = true;
-            #ExecStop = "docker network rm -f forgejo";
-        };
-
-        script = ''
-            docker network inspect forgejo || docker network create forgejo --ipv6
-        '';
-
-        partOf = [ "docker-forgejo-base.target" ];
-        wantedBy = [ "docker-forgejo-base.target" ];
-    };
-
-    systemd.targets."docker-forgejo-base" = {
-
-        unitConfig = {
-            Description = "forgejo base Service";
-        };
-
-        wantedBy = [ "multi-user.target" ];
-    };
-
     virtualisation.oci-containers.containers."forgejo" = {
 
-        image = "codeberg.org/forgejo/forgejo:13.0.1-rootless";
-        #autoStart = true;
+        image = "codeberg.org/forgejo/forgejo:13.0.2-rootless";
         networks = ["forgejo"];
         hostname = "forgejo";
 

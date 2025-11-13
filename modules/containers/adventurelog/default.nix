@@ -1,57 +1,6 @@
 { config, lib, pkgs, ...}:
 
 {
-    systemd.services."docker-adventurelog-web" = {
-
-        serviceConfig = {
-            Restart = lib.mkOverride 90 "always";
-        };
-        
-        after = ["docker-network-adventurelog.service"];
-        requires = ["docker-network-adventurelog.service"];
-        partOf = ["docker-adventurelog-base.target"];
-        wantedBy = ["docker-adventurelog-base.target"];
-    };
-
-    systemd.services."docker-adventurelog-server" = {
-
-        serviceConfig = {
-            Restart = lib.mkOverride 90 "always";
-        };
-        
-        after = ["docker-network-adventurelog.service"];
-        requires = ["docker-network-adventurelog.service"];
-        partOf = ["docker-adventurelog-base.target"];
-        wantedBy = ["docker-adventurelog-base.target"];
-    };
-
-    systemd.services."docker-network-adventurelog" = {
-
-        path = [ pkgs.docker ];
-
-        serviceConfig = {
-            Type = "oneshot";
-            RemainAfterExit = true;
-            #ExecStop = "docker network rm -f adventurelog";
-        };
-
-        script = ''
-            docker network inspect adventurelog || docker network create adventurelog --ipv6
-        '';
-
-        partOf = [ "docker-adventurelog-base.target" ];
-        wantedBy = [ "docker-adventurelog-base.target" ];
-    };
-
-    systemd.targets."docker-adventurelog-base" = {
-
-        unitConfig = {
-            Description = "adventurelog base Service";
-        };
-
-        wantedBy = [ "multi-user.target" ];
-    };
-
     virtualisation.oci-containers.containers."adventurelog-server" = {
 
         image = "ghcr.io/seanmorley15/adventurelog-backend:v0.11.0";

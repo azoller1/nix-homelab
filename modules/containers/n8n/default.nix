@@ -1,60 +1,9 @@
 { config, lib, pkgs, ...}:
 
 {
-    systemd.services."docker-n8n" = {
-
-        serviceConfig = {
-            Restart = lib.mkOverride 90 "always";
-        };
-        
-        after = ["docker-network-n8n.service"];
-        requires = ["docker-network-n8n.service"];
-        partOf = ["docker-n8n-base.target"];
-        wantedBy = ["docker-n8n-base.target"];
-    };
-
-    systemd.services."docker-n8n-runner" = {
-
-        serviceConfig = {
-            Restart = lib.mkOverride 90 "always";
-        };
-        
-        after = ["docker-network-n8n.service"];
-        requires = ["docker-network-n8n.service"];
-        partOf = ["docker-n8n-base.target"];
-        wantedBy = ["docker-n8n-base.target"];
-    };
-
-    systemd.services."docker-network-n8n" = {
-
-        path = [ pkgs.docker ];
-
-        serviceConfig = {
-            Type = "oneshot";
-            RemainAfterExit = true;
-            #ExecStop = "docker network rm -f n8n";
-        };
-
-        script = ''
-            docker network inspect n8n || docker network create n8n --ipv6
-        '';
-
-        partOf = [ "docker-n8n-base.target" ];
-        wantedBy = [ "docker-n8n-base.target" ];
-    };
-
-    systemd.targets."docker-n8n-base" = {
-
-        unitConfig = {
-            Description = "n8n base Service";
-        };
-
-        wantedBy = [ "multi-user.target" ];
-    };
-
     virtualisation.oci-containers.containers."n8n" = {
 
-        image = "docker.io/n8nio/n8n:1.118.0";
+        image = "docker.io/n8nio/n8n:1.119.1";
         ports = [ "10015:5678" ];
         networks = ["n8n"];
         hostname = "n8n";
@@ -95,7 +44,7 @@
 
     virtualisation.oci-containers.containers."n8n-runner" = {
 
-        image = "docker.io/n8nio/runners:1.118.0";
+        image = "docker.io/n8nio/runners:1.119.1";
         networks = ["n8n"];
         hostname = "n8n-runner";
 

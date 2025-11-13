@@ -1,48 +1,9 @@
 { config, lib, pkgs, ...}:
 
 {
-    systemd.services."docker-mealie" = {
-
-        serviceConfig = {
-            Restart = lib.mkOverride 90 "always";
-        };
-        
-        after = ["docker-network-mealie.service"];
-        requires = ["docker-network-mealie.service"];
-        partOf = ["docker-mealie-base.target"];
-        wantedBy = ["docker-mealie-base.target"];
-    };
-
-    systemd.services."docker-network-mealie" = {
-
-        path = [ pkgs.docker ];
-
-        serviceConfig = {
-            Type = "oneshot";
-            RemainAfterExit = true;
-            #ExecStop = "docker network rm -f mealie";
-        };
-
-        script = ''
-            docker network inspect mealie || docker network create mealie --ipv6
-        '';
-
-        partOf = [ "docker-mealie-base.target" ];
-        wantedBy = [ "docker-mealie-base.target" ];
-    };
-
-    systemd.targets."docker-mealie-base" = {
-
-        unitConfig = {
-            Description = "mealie base Service";
-        };
-
-        wantedBy = [ "multi-user.target" ];
-    };
-
     virtualisation.oci-containers.containers."mealie" = {
 
-        image = "ghcr.io/mealie-recipes/mealie:v3.3.2";
+        image = "ghcr.io/mealie-recipes/mealie:v3.4.0";
         ports = [ "10011:9000" ];
         networks = ["mealie"];
         hostname = "mealie";

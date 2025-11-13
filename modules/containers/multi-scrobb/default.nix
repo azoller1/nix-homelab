@@ -1,48 +1,9 @@
 { config, lib, pkgs, ...}:
 
 {
-    systemd.services."docker-scrobbler" = {
-
-        serviceConfig = {
-            Restart = lib.mkOverride 90 "always";
-        };
-        
-        after = ["docker-network-scrobbler.service"];
-        requires = ["docker-network-scrobbler.service"];
-        partOf = ["docker-scrobbler-base.target"];
-        wantedBy = ["docker-scrobbler-base.target"];
-    };
-
-    systemd.services."docker-network-scrobbler" = {
-
-        path = [ pkgs.docker ];
-
-        serviceConfig = {
-            Type = "oneshot";
-            RemainAfterExit = true;
-            #ExecStop = "docker network rm -f scrobbler";
-        };
-
-        script = ''
-            docker network inspect scrobbler || docker network create scrobbler --ipv6
-        '';
-
-        partOf = [ "docker-scrobbler-base.target" ];
-        wantedBy = [ "docker-scrobbler-base.target" ];
-    };
-
-    systemd.targets."docker-scrobbler-base" = {
-
-        unitConfig = {
-            Description = "scrobbler base Service";
-        };
-
-        wantedBy = [ "multi-user.target" ];
-    };
-
     virtualisation.oci-containers.containers."scrobbler" = {
 
-        image = "ghcr.io/foxxmd/multi-scrobbler:0.10.0";
+        image = "ghcr.io/foxxmd/multi-scrobbler:0.10.1";
         ports = [ "10003:9078" ];
         networks = ["scrobbler"];
         hostname = "scrobbler";

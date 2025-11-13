@@ -1,49 +1,9 @@
 { config, lib, pkgs, ...}:
 
 {
-    systemd.services."docker-lubelogger" = {
-
-        serviceConfig = {
-            Restart = lib.mkOverride 90 "always";
-        };
-        
-        after = ["docker-network-lubelogger.service"];
-        requires = ["docker-network-lubelogger.service"];
-        partOf = ["docker-lubelogger-base.target"];
-        wantedBy = ["docker-lubelogger-base.target"];
-    };
-
-    systemd.services."docker-network-lubelogger" = {
-
-        path = [ pkgs.docker ];
-
-        serviceConfig = {
-            Type = "oneshot";
-            RemainAfterExit = true;
-            #ExecStop = "docker network rm -f lubelogger";
-        };
-
-        script = ''
-            docker network inspect lubelogger || docker network create lubelogger --ipv6
-        '';
-
-        partOf = [ "docker-lubelogger-base.target" ];
-        wantedBy = [ "docker-lubelogger-base.target" ];
-    };
-
-    systemd.targets."docker-lubelogger-base" = {
-
-        unitConfig = {
-            Description = "lubelogger base Service";
-        };
-
-        wantedBy = [ "multi-user.target" ];
-    };
-
     virtualisation.oci-containers.containers."lubelogger" = {
 
-        image = "ghcr.io/hargata/lubelogger:v1.5.3";
-        #autoStart = true;
+        image = "ghcr.io/hargata/lubelogger:v1.5.4";
         ports = [ "10007:8080" ];
         networks = ["lubelogger"];
         hostname = "lubelogger";

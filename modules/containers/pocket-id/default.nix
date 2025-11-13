@@ -1,50 +1,10 @@
 { config, lib, pkgs, ...}:
 
 {
-    systemd.services."docker-pocket-id" = {
-
-        serviceConfig = {
-            Restart = lib.mkOverride 90 "always";
-        };
-        
-        after = ["docker-network-pocket-id.service"];
-        requires = ["docker-network-pocket-id.service"];
-        partOf = ["docker-pocket-id-base.target"];
-        wantedBy = ["docker-pocket-id-base.target"];
-    };
-
-    systemd.services."docker-network-pocket-id" = {
-
-        path = [ pkgs.docker ];
-
-        serviceConfig = {
-            Type = "oneshot";
-            RemainAfterExit = true;
-            #ExecStop = "docker network rm -f pocket-id";
-        };
-
-        script = ''
-            docker network inspect pocket-id || docker network create pocket-id --ipv6
-        '';
-
-        partOf = [ "docker-pocket-id-base.target" ];
-        wantedBy = [ "docker-pocket-id-base.target" ];
-    };
-
-    systemd.targets."docker-pocket-id-base" = {
-
-        unitConfig = {
-            Description = "pocket-id base Service";
-        };
-
-        wantedBy = [ "multi-user.target" ];
-    };
-
     virtualisation.oci-containers.containers."pocket-id" = {
 
-        image = "ghcr.io/pocket-id/pocket-id:v1.13.1";
+        image = "ghcr.io/pocket-id/pocket-id:v1.15.0";
         networks = ["pocket-id"];
-        #autoStart = true;
         hostname = "pocket-id";
 
         volumes = [

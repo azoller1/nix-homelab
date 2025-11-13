@@ -1,85 +1,9 @@
 { config, lib, pkgs, ...}:
 
 {
-    systemd.services."docker-paperless" = {
-
-        serviceConfig = {
-            Restart = lib.mkOverride 90 "always";
-        };
-        
-        after = ["docker-network-paperless.service"];
-        requires = ["docker-network-paperless.service"];
-        partOf = ["docker-paperless-base.target"];
-        wantedBy = ["docker-paperless-base.target"];
-    };
-
-    systemd.services."docker-paper-valkey" = {
-
-        serviceConfig = {
-            Restart = lib.mkOverride 90 "always";
-        };
-        
-        after = ["docker-network-paperless.service"];
-        requires = ["docker-network-paperless.service"];
-        partOf = ["docker-paperless-base.target"];
-        wantedBy = ["docker-paperless-base.target"];
-    };
-
-    systemd.services."docker-paper-tika" = {
-
-        serviceConfig = {
-            Restart = lib.mkOverride 90 "always";
-        };
-        
-        after = ["docker-network-paperless.service"];
-        requires = ["docker-network-paperless.service"];
-        partOf = ["docker-paperless-base.target"];
-        wantedBy = ["docker-paperless-base.target"];
-    };
-
-    systemd.services."docker-paper-gotenberg" = {
-
-        serviceConfig = {
-            Restart = lib.mkOverride 90 "always";
-        };
-        
-        after = ["docker-network-paperless.service"];
-        requires = ["docker-network-paperless.service"];
-        partOf = ["docker-paperless-base.target"];
-        wantedBy = ["docker-paperless-base.target"];
-    };
-
-    systemd.services."docker-network-paperless" = {
-
-        path = [ pkgs.docker ];
-
-        serviceConfig = {
-            Type = "oneshot";
-            RemainAfterExit = true;
-            #ExecStop = "docker network rm -f paperless";
-        };
-
-        script = ''
-            docker network inspect paperless || docker network create paperless --ipv6
-            docker network inspect paperless-traefik || docker network create paperless-traefik --ipv6
-        '';
-
-        partOf = [ "docker-paperless-base.target" ];
-        wantedBy = [ "docker-paperless-base.target" ];
-    };
-
-    systemd.targets."docker-paperless-base" = {
-
-        unitConfig = {
-            Description = "paperless base Service";
-        };
-
-        wantedBy = [ "multi-user.target" ];
-    };
-
     virtualisation.oci-containers.containers."paperless" = {
 
-        image = "ghcr.io/paperless-ngx/paperless-ngx:2.18.4";
+        image = "ghcr.io/paperless-ngx/paperless-ngx:2.19.5";
         networks = [
             "paperless"
             "paperless-traefik"

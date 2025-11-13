@@ -1,49 +1,10 @@
 { config, lib, pkgs, ...}:
 
 {
-    systemd.services."docker-beszel" = {
-
-        serviceConfig = {
-            Restart = lib.mkOverride 90 "always";
-        };
-        
-        after = ["docker-network-beszel.service"];
-        requires = ["docker-network-beszel.service"];
-        partOf = ["docker-beszel-base.target"];
-        wantedBy = ["docker-beszel-base.target"];
-    };
-
-    systemd.services."docker-network-beszel" = {
-
-        path = [ pkgs.docker ];
-
-        serviceConfig = {
-            Type = "oneshot";
-            RemainAfterExit = true;
-            #ExecStop = "docker network rm -f beszel";
-        };
-
-        script = ''
-            docker network inspect beszel || docker network create beszel --ipv6
-        '';
-
-        partOf = [ "docker-beszel-base.target" ];
-        wantedBy = [ "docker-beszel-base.target" ];
-    };
-
-    systemd.targets."docker-beszel-base" = {
-
-        unitConfig = {
-            Description = "beszel base Service";
-        };
-
-        wantedBy = [ "multi-user.target" ];
-    };
-
     virtualisation.oci-containers.containers."beszel" = {
 
-        image = "ghcr.io/henrygd/beszel/beszel:0.14.0";
-        #autoStart = true;
+        image = "ghcr.io/henrygd/beszel/beszel:0.15.4";
+        autoStart = true;
         networks = ["beszel"];
         hostname = "beszel";
 
