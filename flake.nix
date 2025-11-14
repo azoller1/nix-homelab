@@ -5,6 +5,7 @@
   inputs.disko.inputs.nixpkgs.follows = "nixpkgs";
   inputs.nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
   inputs.deploy-rs.url = "github:serokell/deploy-rs";
+  inputs.colmena.url = "github:zhaofengli/colmena";
   #inputs.microvm.url = "github:microvm-nix/microvm.nix";
   #inputs.microvm.inputs.nixpkgs.follows = "nixpkgs-unstable";
   #inputs.home-manager.url = "github:nix-community/home-manager";
@@ -18,6 +19,7 @@
       disko,
       nixos-facter-modules,
       deploy-rs,
+      colmena,
       #microvm,
       #home-manager,
       ...
