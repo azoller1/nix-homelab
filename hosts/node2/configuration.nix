@@ -61,6 +61,7 @@
     htop
     age
     sops
+    smartmontools
   ];
 
   ### Programs Config

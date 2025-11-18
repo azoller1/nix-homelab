@@ -56,6 +56,7 @@
     just
     htop
     age
+    smartmontools
     sops
   ];
 
