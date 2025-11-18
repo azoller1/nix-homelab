@@ -187,7 +187,7 @@
             "/dev/sdc:/dev/sdc"
             "/dev/sdd:/dev/sdd"
             "/dev/nvme0:/dev/nvme0"
-        ]
+        ];
 
         volumes = [
             "beszel-agent_data:/var/lib/beszel-agent"
