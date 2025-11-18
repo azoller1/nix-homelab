@@ -3,7 +3,7 @@
 {
     virtualisation.oci-containers.containers."beszel" = {
 
-        image = "ghcr.io/henrygd/beszel/beszel:0.16.1-alpine";
+        image = "ghcr.io/henrygd/beszel/beszel:0.16.1";
         autoStart = true;
         networks = ["beszel"];
         hostname = "beszel";
@@ -14,7 +14,7 @@
 
         labels = {
             "wud.watch" = "true";
-            "wud.tag.include" = "^[0-9]+.[0-9]+.[0-9]+-alpine$";
+            "wud.tag.include" = "^[0-9]+.[0-9]+.[0-9]+$";
             "wud.link.template" = "https://github.com/henrygd/beszel/releases";
             "traefik.enable" = "true";
             "traefik.http.services.beszel.loadbalancer.server.port" = "8090";
