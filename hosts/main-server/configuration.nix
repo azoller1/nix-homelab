@@ -97,7 +97,7 @@
     smartmontools
   ];
 
-  ### Programs Config
+  ### Programs/Services
   programs.mtr.enable = true;
   programs.gnupg.agent = {
     enable = true;
@@ -112,8 +112,63 @@
         defaultBranch = "main";
       };
       user = {
-	name = "Alexander Zoller";
-	email = "personal@alexanderzoller.com";
+	      name = "Alexander Zoller";
+	      email = "personal@alexanderzoller.com";
+      };
+    };
+  };
+
+  # SSH
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = false;
+      UseDns = true;
+    };
+  };
+
+  # Garage S3
+  services.garage = {
+    enable = true;
+    package = pkgs.garage_2;
+    settings.metadata_dir = "/mnt/extra-data/garage-meta";
+
+    settings.data_dir = [
+      {
+        capacity = "100G";
+        path = "/mnt/extra-data/garage";
+      }
+    ];
+
+    extraEnvironment = {
+      GARAGE_LOG_TO_JOURNALD = "1";
+      GARAGE_ALLOW_WORLD_READABLE_SECRETS = "false";
+    };
+
+    environmentFile = "/mnt/extra-data/garage.env";
+
+    settings = {
+      db_engine = "lmdb";
+      replication_factor = 1;
+      rpc_bind_addr = "[::]:3901";
+      rpc_public_addr = "127.0.0.1:3901";
+      metadata_auto_snapshot_interval = "6h";
+      use_local_tz = true;
+
+      s3_api = {
+        s3_region = "garage";
+        api_bind_addr = "[::]:3900";
+        root_domain = ".s3.garage.azollerstuff.xyz";
+      };
+
+      s3_web = {
+        bind_addr = "[::]:3902";
+        root_domain = ".web.garage.azollerstuff.xyz";
+        index = "index.html";
+      };
+
+      admin = {
+        api_bind_addr = "[::]:3903";
       };
     };
   };
@@ -200,17 +255,6 @@
             "wud.link.template" = "https://github.com/henrygd/beszel/releases";
         };
       };
-
-  ## Services
-
-  # SSH
-  services.openssh = {
-    enable = true;
-    settings = {
-      PasswordAuthentication = false;
-      UseDns = true;
-    };
-  };
 
   # System Config
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
