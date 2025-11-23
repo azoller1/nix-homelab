@@ -3,7 +3,7 @@
 {
     virtualisation.oci-containers.containers."paperless" = {
 
-        image = "ghcr.io/paperless-ngx/paperless-ngx:2.19.5";
+        image = "ghcr.io/paperless-ngx/paperless-ngx:2.19.6";
         networks = [
             "paperless"
             "paperless-traefik"

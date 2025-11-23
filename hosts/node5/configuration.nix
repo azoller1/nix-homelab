@@ -96,7 +96,7 @@
   virtualisation.oci-containers.containers = {
 
     mariadb-11 = {
-      image = "ghcr.io/mariadb/mariadb:11.8.3-ubi9";
+      image = "ghcr.io/mariadb/mariadb:11.8.5-ubi9";
       autoStart = true;
       ports = [ "3306:3306" ];
       networks = ["mariadb"];
@@ -119,7 +119,7 @@
     };
 
     postgres-17 = {
-      image = "docker.io/postgres:17.6-alpine";
+      image = "docker.io/postgres:17.7-alpine";
       autoStart = true;
       ports = [ "5432:5432" ];
       networks = ["postgres"];

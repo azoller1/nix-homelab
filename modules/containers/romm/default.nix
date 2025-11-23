@@ -1,48 +1,10 @@
 { config, lib, pkgs, ...}:
 
 {
-    systemd.services."docker-romm" = {
-
-        serviceConfig = {
-            Restart = lib.mkOverride 90 "always";
-        };
-        
-        after = ["docker-network-romm.service"];
-        requires = ["docker-network-romm.service"];
-        partOf = ["docker-romm-base.target"];
-        wantedBy = ["docker-romm-base.target"];
-    };
-
-    systemd.services."docker-network-romm" = {
-
-        path = [ pkgs.docker ];
-
-        serviceConfig = {
-            Type = "oneshot";
-            RemainAfterExit = true;
-            #ExecStop = "docker network rm -f romm";
-        };
-
-        script = ''
-            docker network inspect romm || docker network create romm --ipv6
-        '';
-
-        partOf = [ "docker-romm-base.target" ];
-        wantedBy = [ "docker-romm-base.target" ];
-    };
-
-    systemd.targets."docker-romm-base" = {
-
-        unitConfig = {
-            Description = "romm base Service";
-        };
-
-        wantedBy = [ "multi-user.target" ];
-    };
 
     virtualisation.oci-containers.containers."romm" = {
 
-        image = "ghcr.io/rommapp/romm:4.3.2";
+        image = "ghcr.io/rommapp/romm:4.4.1";
         #autoStart = true;
         networks = ["romm"];
         hostname = "romm";

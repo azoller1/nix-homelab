@@ -3,7 +3,7 @@
 {
     virtualisation.oci-containers.containers."jotty" = {
 
-        image = "ghcr.io/fccview/jotty:1.11.0";
+        image = "ghcr.io/fccview/jotty:1.11.1";
         ports = [ "10006:3000" ];
         networks = ["jotty"];
         hostname = "jotty";
