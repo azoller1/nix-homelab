@@ -11,6 +11,7 @@
     ../../modules/containers/beszel-agent/default.nix
     #../../modules/containers/diun/default.nix
     ../../modules/containers/wud/default.nix
+    ../../modules/containers/gpslogger/default.nix
   ];
   facter.reportPath = ./facter.json;
 

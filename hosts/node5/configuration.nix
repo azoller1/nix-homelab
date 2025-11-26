@@ -188,6 +188,28 @@
       };
     };
 
+    postgis-18-geopulse = {
+      image = "docker.io/postgis/postgis:18-3.6-alpine";
+      autoStart = true;
+      ports = [ "5435:5432" ];
+      networks = ["postgis-geopulse"];
+      hostname = "postgis-18-geopulse";
+
+      volumes = [
+        "postgis_geopulse_data:/var/lib/postgresql"
+      ];
+
+      environmentFiles = [
+        /home/azoller/containers/postgis18/geopulse-env
+      ];
+
+      labels = {
+          "wud.watch" = "true";
+          "wud.tag.include" = "^18+-$";
+          #"wud.link.template" = "https://github.com/FoxxMD/multi-scrobbler/releases/tag/$${major}.$${minor}.$${patch}";
+      };
+    };
+
     mongo6-ys = {
       image = "quay.io/mongodb/mongodb-community-server:6.0.25-ubi9";
       autoStart = true;
