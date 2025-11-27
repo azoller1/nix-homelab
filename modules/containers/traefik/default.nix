@@ -45,6 +45,7 @@
             "forgejo"
             "romm"
             "dozzle"
+            "termix"
         ];
 
         ports = [

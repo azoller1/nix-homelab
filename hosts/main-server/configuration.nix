@@ -26,6 +26,7 @@
     ../../modules/containers/viclogs/default.nix
     ../../modules/containers/vicmetrics/default.nix
     ../../modules/containers/pocket-id/default.nix
+    ../../modules/containers/termix/default.nix
   ];
 
   facter.reportPath = ./facter.json;
