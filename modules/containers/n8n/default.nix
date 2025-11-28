@@ -3,7 +3,7 @@
 {
     virtualisation.oci-containers.containers."n8n" = {
 
-        image = "docker.io/n8nio/n8n:1.121.1";
+        image = "docker.io/n8nio/n8n:1.122.3";
         ports = [ "10015:5678" ];
         networks = ["n8n"];
         hostname = "n8n";
@@ -44,7 +44,7 @@
 
     virtualisation.oci-containers.containers."n8n-runner" = {
 
-        image = "docker.io/n8nio/runners:1.121.1";
+        image = "docker.io/n8nio/runners:1.122.3";
         networks = ["n8n"];
         hostname = "n8n-runner";
 

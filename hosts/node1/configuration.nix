@@ -17,12 +17,12 @@
     ../../modules/containers/habittrove/default.nix
     ../../modules/containers/apprise-api/default.nix
     ../../modules/containers/lubelogger/default.nix
-    ../../modules/containers/adventurelog/default.nix
+    #../../modules/containers/adventurelog/default.nix
     #../../modules/containers/tandoor/default.nix
     ../../modules/containers/mealie/default.nix
     #../../modules/containers/tasktrove/default.nix
     ../../modules/containers/yamtrack/default.nix
-    ../../modules/containers/dawarich/default.nix
+    #../../modules/containers/dawarich/default.nix
     ../../modules/containers/n8n/default.nix
     #../../modules/containers/wger/default.nix
     ../../modules/containers/wud/default.nix

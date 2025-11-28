@@ -1,56 +1,6 @@
 { config, lib, pkgs, ...}:
 
 {
-    systemd.services."docker-yamtrack" = {
-
-        serviceConfig = {
-            Restart = lib.mkOverride 90 "always";
-        };
-        
-        after = ["docker-network-yamtrack.service"];
-        requires = ["docker-network-yamtrack.service"];
-        partOf = ["docker-yamtrack-base.target"];
-        wantedBy = ["docker-yamtrack-base.target"];
-    };
-
-    systemd.services."docker-yamtrack-valkey" = {
-
-        serviceConfig = {
-            Restart = lib.mkOverride 90 "always";
-        };
-        
-        after = ["docker-network-yamtrack.service"];
-        requires = ["docker-network-yamtrack.service"];
-        partOf = ["docker-yamtrack-base.target"];
-        wantedBy = ["docker-yamtrack-base.target"];
-    };
-
-    systemd.services."docker-network-yamtrack" = {
-
-        path = [ pkgs.docker ];
-
-        serviceConfig = {
-            Type = "oneshot";
-            RemainAfterExit = true;
-            #ExecStop = "docker network rm -f yamtrack";
-        };
-
-        script = ''
-            docker network inspect yamtrack || docker network create yamtrack --ipv6
-        '';
-
-        partOf = [ "docker-yamtrack-base.target" ];
-        wantedBy = [ "docker-yamtrack-base.target" ];
-    };
-
-    systemd.targets."docker-yamtrack-base" = {
-
-        unitConfig = {
-            Description = "yamtrack base Service";
-        };
-
-        wantedBy = [ "multi-user.target" ];
-    };
 
     virtualisation.oci-containers.containers."yamtrack-valkey" = {
 
@@ -75,7 +25,7 @@
 
     virtualisation.oci-containers.containers."yamtrack" = {
 
-        image = "ghcr.io/fuzzygrim/yamtrack:0.24.7";
+        image = "ghcr.io/fuzzygrim/yamtrack:0.24.8";
         ports = [ "10013:8000" ];
         networks = ["yamtrack"];
         hostname = "yamtrack";
