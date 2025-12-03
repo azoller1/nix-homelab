@@ -71,7 +71,7 @@
         labels = {
             "wud.watch" = "true";
             "wud.tag.include" = "^v[0-9]+.[0-9]+.[0-9]+$";
-            #"wud.link.template" = "https://github.com/FoxxMD/multi-scrobbler/releases/tag/$${major}.$${minor}.$${patch}";
+            "wud.link.template" = "https://github.com/traefik/traefik/releases";
             "traefik.enable" = "false";
         };
     };

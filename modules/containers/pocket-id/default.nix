@@ -3,7 +3,7 @@
 {
     virtualisation.oci-containers.containers."pocket-id" = {
 
-        image = "ghcr.io/pocket-id/pocket-id:v1.15.0";
+        image = "ghcr.io/pocket-id/pocket-id:v1.16.0";
         networks = ["pocket-id"];
         hostname = "pocket-id";
 
@@ -12,13 +12,13 @@
         ];
 
         environmentFiles = [
-            /home/azoller/nix-homelab/hosts/main-server/.env.secret.pocket-id
+            /home/azoller/containers/pocket-id/.env
         ];
 
         labels = {
             "wud.watch" = "true";
             "wud.tag.include" = "^v[0-9]+.[0-9]+.[0-9]+$";
-            #"wud.link.template" = "https://github.com/FoxxMD/multi-scrobbler/releases/tag/$${major}.$${minor}.$${patch}";
+            "wud.link.template" = "https://github.com/pocket-id/pocket-id/releases";
             "traefik.enable" = "true";
             "traefik.http.services.pocket-id.loadbalancer.server.port" = "1411";
             "traefik.http.routers.pocket-id.rule" = "Host(`auth.azollerstuff.xyz`)";

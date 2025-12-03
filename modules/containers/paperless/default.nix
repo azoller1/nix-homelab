@@ -3,7 +3,7 @@
 {
     virtualisation.oci-containers.containers."paperless" = {
 
-        image = "ghcr.io/paperless-ngx/paperless-ngx:2.19.6";
+        image = "ghcr.io/paperless-ngx/paperless-ngx:2.20.1";
         networks = [
             "paperless"
             "paperless-traefik"
@@ -39,7 +39,7 @@
         labels = {
             "wud.watch" = "true";
             "wud.tag.include" = "^[0-9]+.[0-9]+.[0-9]+$";
-            #"wud.link.template" = "https://github.com/FoxxMD/multi-scrobbler/releases/tag/$${major}.$${minor}.$${patch}";
+            "wud.link.template" = "https://github.com/paperless-ngx/paperless-ngx/releases";
             "traefik.enable" = "true";
             "traefik.docker.network" = "paperless-traefik";
             "traefik.http.services.paperless.loadbalancer.server.port" = "8000";

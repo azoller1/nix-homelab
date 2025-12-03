@@ -3,7 +3,7 @@
 {
     virtualisation.oci-containers.containers."n8n" = {
 
-        image = "docker.io/n8nio/n8n:1.122.3";
+        image = "docker.io/n8nio/n8n:1.122.4";
         ports = [ "10015:5678" ];
         networks = ["n8n"];
         hostname = "n8n";
@@ -31,6 +31,7 @@
             "kop.bind.ip" = "192.168.2.5";
             "wud.watch" = "true";
             "wud.tag.include" = "^[0-9]+.[0-9]+.[0-9]+$";
+            "wud.link.template" = "https://github.com/n8n-io/n8n/releases";
             "traefik.enable" = "true";
             "traefik.http.services.n8n.loadbalancer.server.port" = "10015";
             "traefik.http.routers.n8n.rule" = "Host(`n8n.azollerstuff.xyz`)";
@@ -44,7 +45,7 @@
 
     virtualisation.oci-containers.containers."n8n-runner" = {
 
-        image = "docker.io/n8nio/runners:1.122.3";
+        image = "docker.io/n8nio/runners:1.122.4";
         networks = ["n8n"];
         hostname = "n8n-runner";
 
