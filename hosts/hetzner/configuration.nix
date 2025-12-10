@@ -55,7 +55,7 @@
     sops
   ];
 
-  ### Programs Config
+  ### Programs/Services
   programs.mtr.enable = true;
   programs.gnupg.agent = {
     enable = true;
@@ -125,9 +125,6 @@
 
     };
   };
-
-
-  ## Services
 
   # SSH
   services.openssh = {

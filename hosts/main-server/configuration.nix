@@ -15,7 +15,7 @@
     ../../modules/containers/dozzle/default.nix
     ../../modules/containers/beszel/default.nix
     ../../modules/containers/forgejo/default.nix
-    ../../modules/containers/grafana/default.nix
+    #../../modules/containers/grafana/default.nix
     ../../modules/containers/immich/default.nix
     ../../modules/containers/jellyfin/default.nix
     ../../modules/containers/lldap/default.nix
@@ -23,10 +23,10 @@
     #../../modules/containers/prometheus/default.nix
     ../../modules/containers/signal-api/default.nix
     ../../modules/containers/traefik/default.nix
-    ../../modules/containers/viclogs/default.nix
-    ../../modules/containers/vicmetrics/default.nix
+    #../../modules/containers/viclogs/default.nix
+    #../../modules/containers/vicmetrics/default.nix
     ../../modules/containers/pocket-id/default.nix
-    ../../modules/containers/termix/default.nix
+    #../../modules/containers/termix/default.nix
   ];
 
   facter.reportPath = ./facter.json;

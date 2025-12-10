@@ -1,48 +1,10 @@
 { config, lib, pkgs, ...}:
 
 {
-    systemd.services."docker-signal-api" = {
-
-        serviceConfig = {
-            Restart = lib.mkOverride 90 "always";
-        };
-        
-        after = ["docker-network-signal-api.service"];
-        requires = ["docker-network-signal-api.service"];
-        partOf = ["docker-signal-api-base.target"];
-        wantedBy = ["docker-signal-api-base.target"];
-    };
-
-    systemd.services."docker-network-signal-api" = {
-
-        path = [ pkgs.docker ];
-
-        serviceConfig = {
-            Type = "oneshot";
-            RemainAfterExit = true;
-            #ExecStop = "docker network rm -f signal-api";
-        };
-
-        script = ''
-            docker network inspect signal-api || docker network create signal-api --ipv6
-        '';
-
-        partOf = [ "docker-signal-api-base.target" ];
-        wantedBy = [ "docker-signal-api-base.target" ];
-    };
-
-    systemd.targets."docker-signal-api-base" = {
-
-        unitConfig = {
-            Description = "signal-api base Service";
-        };
-
-        wantedBy = [ "multi-user.target" ];
-    };
 
     virtualisation.oci-containers.containers."signal-api" = {
 
-        image = "docker.io/bbernhard/signal-cli-rest-api:0.95";
+        image = "docker.io/bbernhard/signal-cli-rest-api:0.96";
         networks = ["signal-api"];
         #autoStart = true;
         hostname = "signal-api";
