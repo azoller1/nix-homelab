@@ -4,7 +4,7 @@
 
     virtualisation.oci-containers.containers."nodered" = {
 
-        image = "docker.io/nodered/node-red:4.1.0";
+        image = "docker.io/nodered/node-red:4.1.2";
         #autoStart = true;
         ports = [ "10001:1880" ];
         networks = ["nodered"];

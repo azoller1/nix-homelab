@@ -3,7 +3,7 @@
 {
     virtualisation.oci-containers.containers."actual-budgets" = {
 
-        image = "ghcr.io/actualbudget/actual-server:25.11.0";
+        image = "ghcr.io/actualbudget/actual-server:25.12.0";
         autoStart = true;
         ports = [ "10000:5006" ];
         networks = ["actual-budgets"];
