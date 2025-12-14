@@ -2,57 +2,6 @@
 
 {
 
-    systemd.services."docker-wud" = {
-
-        serviceConfig = {
-            Restart = lib.mkOverride 90 "always";
-        };
-        
-        after = ["docker-network-wud.service"];
-        requires = ["docker-network-wud.service"];
-        partOf = ["docker-wud-base.target"];
-        wantedBy = ["docker-wud-base.target"];
-    };
-
-    systemd.services."docker-socket-proxy-wud" = {
-
-        serviceConfig = {
-            Restart = lib.mkOverride 90 "always";
-        };
-        
-        after = ["docker-network-wud.service"];
-        requires = ["docker-network-wud.service"];
-        partOf = ["docker-wud-base.target"];
-        wantedBy = ["docker-wud-base.target"];
-    };
-
-    systemd.services."docker-network-wud" = {
-
-        path = [ pkgs.docker ];
-
-        serviceConfig = {
-            Type = "oneshot";
-            RemainAfterExit = true;
-            #ExecStop = "docker network rm -f wud";
-        };
-
-        script = ''
-            docker network inspect wud || docker network create wud --ipv6
-        '';
-
-        partOf = [ "docker-wud-base.target" ];
-        wantedBy = [ "docker-wud-base.target" ];
-    };
-
-    systemd.targets."docker-wud-base" = {
-
-        unitConfig = {
-            Description = "wud base Service";
-        };
-
-        wantedBy = [ "multi-user.target" ];
-    };
-
     virtualisation.oci-containers.containers."socket-proxy-wud" = {
       
         image = "lscr.io/linuxserver/socket-proxy:3.2.6";

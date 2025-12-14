@@ -3,7 +3,7 @@
 {
     virtualisation.oci-containers.containers."mealie" = {
 
-        image = "ghcr.io/mealie-recipes/mealie:v3.6.0";
+        image = "ghcr.io/mealie-recipes/mealie:v3.7.0";
         ports = [ "10011:9000" ];
         networks = ["mealie"];
         hostname = "mealie";

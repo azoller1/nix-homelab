@@ -1,48 +1,10 @@
 { config, lib, pkgs, ...}:
 
 {
-    systemd.services."docker-apprise" = {
-
-        serviceConfig = {
-            Restart = lib.mkOverride 90 "always";
-        };
-        
-        after = ["docker-network-apprise.service"];
-        requires = ["docker-network-apprise.service"];
-        partOf = ["docker-apprise-base.target"];
-        wantedBy = ["docker-apprise-base.target"];
-    };
-
-    systemd.services."docker-network-apprise" = {
-
-        path = [ pkgs.docker ];
-
-        serviceConfig = {
-            Type = "oneshot";
-            RemainAfterExit = true;
-            #ExecStop = "docker network rm -f apprise";
-        };
-
-        script = ''
-            docker network inspect apprise || docker network create apprise --ipv6
-        '';
-
-        partOf = [ "docker-apprise-base.target" ];
-        wantedBy = [ "docker-apprise-base.target" ];
-    };
-
-    systemd.targets."docker-apprise-base" = {
-
-        unitConfig = {
-            Description = "Apprise API Base Service";
-        };
-
-        wantedBy = [ "multi-user.target" ];
-    };
 
     virtualisation.oci-containers.containers."apprise" = {
 
-        image = "ghcr.io/caronc/apprise:1.2.1";
+        image = "ghcr.io/caronc/apprise:1.3.0";
         #autoStart = true;
         ports = [ "10000:8000" ];
         networks = ["apprise"];

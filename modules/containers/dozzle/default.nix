@@ -3,7 +3,7 @@
 {
     virtualisation.oci-containers.containers."dozzle" = {
 
-        image = "docker.io/amir20/dozzle:v8.14.9";
+        image = "docker.io/amir20/dozzle:v8.14.11";
         autoStart = true;
         networks = ["dozzle"];
         hostname = "dozzle";
