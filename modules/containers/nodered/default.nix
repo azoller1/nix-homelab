@@ -1,44 +1,6 @@
 { config, lib, pkgs, ...}:
 
 {
-    systemd.services."docker-nodered" = {
-
-        serviceConfig = {
-            Restart = lib.mkOverride 90 "always";
-        };
-        
-        after = ["docker-network-nodered.service"];
-        requires = ["docker-network-nodered.service"];
-        partOf = ["docker-nodered-base.target"];
-        wantedBy = ["docker-nodered-base.target"];
-    };
-
-    systemd.services."docker-network-nodered" = {
-
-        path = [ pkgs.docker ];
-
-        serviceConfig = {
-            Type = "oneshot";
-            RemainAfterExit = true;
-            #ExecStop = "docker network rm -f nodered";
-        };
-
-        script = ''
-            docker network inspect nodered || docker network create nodered --ipv6
-        '';
-
-        partOf = [ "docker-nodered-base.target" ];
-        wantedBy = [ "docker-nodered-base.target" ];
-    };
-
-    systemd.targets."docker-nodered-base" = {
-
-        unitConfig = {
-            Description = "nodered base Service";
-        };
-
-        wantedBy = [ "multi-user.target" ];
-    };
 
     virtualisation.oci-containers.containers."nodered" = {
 

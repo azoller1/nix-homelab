@@ -138,7 +138,7 @@
     };
 
     kop = {
-      image = "ghcr.io/jittering/traefik-kop:0.18.1";
+      image = "ghcr.io/jittering/traefik-kop:0.19.3";
       autoStart = true;
       networks = ["kop"];
       hostname = "kop";

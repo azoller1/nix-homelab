@@ -1,44 +1,6 @@
 { config, lib, pkgs, ...}:
 
 {
-    systemd.services."docker-baikal-dav" = {
-
-        serviceConfig = {
-            Restart = lib.mkOverride 90 "always";
-        };
-        
-        after = ["docker-network-baikal-dav.service"];
-        requires = ["docker-network-baikal-dav.service"];
-        partOf = ["docker-baikal-dav-base.target"];
-        wantedBy = ["docker-baikal-dav-base.target"];
-    };
-
-    systemd.services."docker-network-baikal-dav" = {
-
-        path = [ pkgs.docker ];
-
-        serviceConfig = {
-            Type = "oneshot";
-            RemainAfterExit = true;
-            #ExecStop = "docker network rm -f baikal-dav";
-        };
-
-        script = ''
-            docker network inspect baikal-dav || docker network create baikal-dav --ipv6
-        '';
-
-        partOf = [ "docker-baikal-dav-base.target" ];
-        wantedBy = [ "docker-baikal-dav-base.target" ];
-    };
-
-    systemd.targets."docker-baikal-dav-base" = {
-
-        unitConfig = {
-            Description = "baikal-dav base Service";
-        };
-
-        wantedBy = [ "multi-user.target" ];
-    };
 
     virtualisation.oci-containers.containers."baikal-dav" = {
 

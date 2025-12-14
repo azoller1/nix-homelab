@@ -1,44 +1,6 @@
 { config, lib, pkgs, ...}:
 
 {
-    systemd.services."docker-vw" = {
-
-        serviceConfig = {
-            Restart = lib.mkOverride 90 "always";
-        };
-        
-        after = ["docker-network-vw.service"];
-        requires = ["docker-network-vw.service"];
-        partOf = ["docker-vw-base.target"];
-        wantedBy = ["docker-vw-base.target"];
-    };
-
-    systemd.services."docker-network-vw" = {
-
-        path = [ pkgs.docker ];
-
-        serviceConfig = {
-            Type = "oneshot";
-            RemainAfterExit = true;
-            #ExecStop = "docker network rm -f vw";
-        };
-
-        script = ''
-            docker network inspect vw || docker network create vw --ipv6
-        '';
-
-        partOf = [ "docker-vw-base.target" ];
-        wantedBy = [ "docker-vw-base.target" ];
-    };
-
-    systemd.targets."docker-vw-base" = {
-
-        unitConfig = {
-            Description = "vaultwarden base Service";
-        };
-
-        wantedBy = [ "multi-user.target" ];
-    };
 
     virtualisation.oci-containers.containers."vw" = {
 

@@ -1,44 +1,6 @@
 { config, lib, pkgs, ...}:
 
 {
-    systemd.services."docker-lldap" = {
-
-        serviceConfig = {
-            Restart = lib.mkOverride 90 "always";
-        };
-        
-        after = ["docker-network-lldap.service"];
-        requires = ["docker-network-lldap.service"];
-        partOf = ["docker-lldap-base.target"];
-        wantedBy = ["docker-lldap-base.target"];
-    };
-
-    systemd.services."docker-network-lldap" = {
-
-        path = [ pkgs.docker ];
-
-        serviceConfig = {
-            Type = "oneshot";
-            RemainAfterExit = true;
-            #ExecStop = "docker network rm -f lldap";
-        };
-
-        script = ''
-            docker network inspect lldap || docker network create lldap --ipv6
-        '';
-
-        partOf = [ "docker-lldap-base.target" ];
-        wantedBy = [ "docker-lldap-base.target" ];
-    };
-
-    systemd.targets."docker-lldap-base" = {
-
-        unitConfig = {
-            Description = "lldap base Service";
-        };
-
-        wantedBy = [ "multi-user.target" ];
-    };
 
     virtualisation.oci-containers.containers."lldap" = {
 
