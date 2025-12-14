@@ -90,7 +90,7 @@
   virtualisation.oci-containers.containers = {
 
     searxng = {
-      image = "ghcr.io/searxng/searxng:2025.10.20-4295e758c";
+      image = "ghcr.io/searxng/searxng:2025.12.12-920b40253";
       autoStart = true;
       ports = [ "127.0.0.1:8080:8080" ];
       networks = ["searxng"];
@@ -113,7 +113,7 @@
     };
 
     uptime = {
-      image = "ghcr.io/louislam/uptime-kuma:2.0.1-slim-rootless";
+      image = "ghcr.io/louislam/uptime-kuma:2.0.2-slim-rootless";
       autoStart = true;
       ports = [ "127.0.0.1:3001:3001" ];
       networks = ["uptime"];
