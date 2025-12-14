@@ -219,7 +219,7 @@
 
     virtualisation.oci-containers.containers."beszel-agent" = {
 
-        image = "ghcr.io/henrygd/beszel/beszel-agent:0.16.1-alpine";
+        image = "ghcr.io/henrygd/beszel/beszel-agent:0.17.0-alpine";
         autoStart = true;
         ports = ["45876:45876"];
         networks = ["beszel"];
