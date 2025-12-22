@@ -10,7 +10,8 @@
     ../../modules/containers/dozzle-agent/default.nix
     #../../modules/containers/diun/default.nix
     ../../modules/containers/beszel-agent/default.nix
-    ../../modules/containers/jotty-notes/default.nix
+    #../../modules/containers/jotty-notes/default.nix
+    ../../modules/containers/outline-wiki/default.nix
     ../../modules/containers/baikal/default.nix
     ../../modules/containers/ys/default.nix
     ../../modules/containers/vw/default.nix
