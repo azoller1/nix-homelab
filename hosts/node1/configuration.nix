@@ -11,6 +11,7 @@
     #../../modules/containers/diun/default.nix
     ../../modules/containers/beszel-agent/default.nix
     #../../modules/containers/jotty-notes/default.nix
+    ../../modules/containers/tasktrove/default.nix
     ../../modules/containers/outline-wiki/default.nix
     ../../modules/containers/baikal/default.nix
     ../../modules/containers/ys/default.nix
@@ -21,7 +22,6 @@
     #../../modules/containers/adventurelog/default.nix
     #../../modules/containers/tandoor/default.nix
     ../../modules/containers/mealie/default.nix
-    #../../modules/containers/tasktrove/default.nix
     ../../modules/containers/yamtrack/default.nix
     #../../modules/containers/dawarich/default.nix
     ../../modules/containers/n8n/default.nix
