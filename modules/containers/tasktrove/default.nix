@@ -12,6 +12,10 @@
             "tasktrove:/app/data"
         ];
 
+        environmentFiles = [
+            "/home/azoller/containers/tasktrove/env"
+        ];
+
         labels = {
             "kop.bind.ip" = "192.168.2.5";
             "wud.watch" = "true";
