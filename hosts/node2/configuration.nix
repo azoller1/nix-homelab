@@ -15,6 +15,7 @@
     ../../modules/containers/koito/default.nix
     ../../modules/containers/multi-scrobb/default.nix
     ../../modules/containers/wud/default.nix
+    ../../modules/containers/sure-finances/default.nix
   ];
   facter.reportPath = ./facter.json;
 
