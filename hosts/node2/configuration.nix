@@ -14,8 +14,9 @@
     #../../modules/containers/diun/default.nix
     ../../modules/containers/koito/default.nix
     ../../modules/containers/multi-scrobb/default.nix
-    ../../modules/containers/wud/default.nix
+    #../../modules/containers/wud/default.nix
     ../../modules/containers/sure-finances/default.nix
+    #../../modules/containers/cup-agent/default.nix
   ];
   facter.reportPath = ./facter.json;
 

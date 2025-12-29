@@ -46,6 +46,7 @@
             "romm"
             "dozzle"
             "termix"
+            "cup"
         ];
 
         ports = [

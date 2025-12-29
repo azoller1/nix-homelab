@@ -26,8 +26,9 @@
     #../../modules/containers/dawarich/default.nix
     ../../modules/containers/n8n/default.nix
     #../../modules/containers/wger/default.nix
-    ../../modules/containers/wud/default.nix
+    #../../modules/containers/wud/default.nix
     #../../modules/containers/termix/default.nix
+    #../../modules/containers/cup-agent/default.nix
   ];
 
   facter.reportPath = ./facter.json;
