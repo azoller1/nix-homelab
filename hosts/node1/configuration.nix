@@ -115,7 +115,7 @@
   virtualisation.oci-containers.containers = {
 
     socket-proxy-kop = {
-      image = "lscr.io/linuxserver/socket-proxy:3.2.6";
+      image = "lscr.io/linuxserver/socket-proxy:3.2.10";
       autoStart = true;
       networks = ["kop"];
       hostname = "socket-proxy-kop";

@@ -1,7 +1,7 @@
 {
     virtualisation.oci-containers.containers."jellyfin" = {
 
-        image = "docker.io/jellyfin/jellyfin:10.10.7";
+        image = "docker.io/jellyfin/jellyfin:10.11.0";
         autoStart = true;
         hostname = "jellyfin";
 

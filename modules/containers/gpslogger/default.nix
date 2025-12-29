@@ -3,7 +3,7 @@
 {
     virtualisation.oci-containers.containers."geopulse-ui" = {
 
-        image = "ghcr.io/tess1o/geopulse-ui:1.10.0";
+        image = "ghcr.io/tess1o/geopulse-ui:1.10.1";
         ports = [ "10000:80" ];
         networks = ["geopulse"];
         hostname = "geopulse-ui";
@@ -34,7 +34,7 @@
 
     virtualisation.oci-containers.containers."geopulse" = {
 
-        image = "ghcr.io/tess1o/geopulse-backend:1.10.0-native";
+        image = "ghcr.io/tess1o/geopulse-backend:1.10.1-native";
         networks = ["geopulse"];
         hostname = "geopulse";
 

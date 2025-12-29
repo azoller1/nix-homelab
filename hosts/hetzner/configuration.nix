@@ -90,7 +90,7 @@
   virtualisation.oci-containers.containers = {
 
     searxng = {
-      image = "ghcr.io/searxng/searxng:2025.12.12-920b40253";
+      image = "ghcr.io/searxng/searxng:2025.12.29-c57db4567";
       autoStart = true;
       ports = [ "127.0.0.1:8080:8080" ];
       networks = ["searxng"];
