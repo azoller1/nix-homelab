@@ -111,6 +111,24 @@
 
     };
 
+    technitium-dns = {
+      image = "docker.io/technitium/dns-server:14.3.0";
+      ports = [ "127.0.0.1:5380:5380" "127.0.0.1:853:853" "127.0.0.1:8053:8053" ];
+      networks = ["tech-dns"];
+      hostname = "tech-dns";
+
+      environment = {
+        DNS_SERVER_DOMAIN = "dns-public.zollerlab.com";
+        DNS_SERVER_OPTIONAL_PROTOCOL_DNS_OVER_HTTP = "false";
+        DNS_SERVER_RECURSION = "AllowOnlyForPrivateNetworks";
+        DNS_SERVER_LOG_USING_LOCAL_TIME = "true";
+      };
+
+      volumes = [
+        "tech_config:/etc/dns"
+      ];
+    };
+
     uptime = {
       image = "ghcr.io/louislam/uptime-kuma:2.0.2-slim-rootless";
       ports = [ "127.0.0.1:3001:3001" ];
@@ -123,6 +141,9 @@
 
     };
   };
+
+  # Technitium
+  services.technitium-dns-server.enable = false;
 
   # SSH
   services.openssh = {
@@ -143,6 +164,12 @@
       }
       https://status.azollerstuff.xyz:443 {
         reverse_proxy 127.0.0.1:3001
+      }
+      https://dns-public-web.zollerlab.com:443 {
+        reverse_proxy 127.0.0.1:5380
+      }
+      https://dns-public.zollerlab.com:443 {
+        reverse_proxy 127.0.0.1:8053
       }
     '';
   };
