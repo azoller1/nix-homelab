@@ -28,6 +28,7 @@
   # Firewall
   networking.firewall.enable = true;
   networking.nftables.enable = true;
+  #networking.firewall.allowedUDPPorts = [853];
   networking.firewall.allowedTCPPorts = [
     22
     443
@@ -129,7 +130,7 @@
 
   # Adguard
   services.adguardhome = {
-    enable = true;
+    enable = false;
     host = "127.0.0.1";
   };
 
@@ -152,23 +153,6 @@
       }
       https://status.azollerstuff.xyz:443 {
         reverse_proxy 127.0.0.1:3001
-      }
-      https://adguard.zollerlab.com {
-        reverse_proxy 127.0.0.1:3000
-      }
-      https://dns-public.zollerlab.com:443 {
-        handle {
-          reverse_proxy 127.0.0.1:5380 {
-            header_up Host {upstream_hostport}
-            header_up X-Real-IP {remote_host}
-          }  
-        }
-        handle /dns-query* {
-          reverse_proxy 127.0.0.1:8053 {
-            header_up Host {upstream_hostport}
-            header_up X-Real-IP {remote_host}
-          }
-        }
       }
     '';
   };

@@ -19,7 +19,7 @@
         };
 
         environmentFiles = [
-            /home/azoller/nix-homelab/hosts/node1/.env.secret.vw
+            /home/azoller/containers/vw/.env
         ];
 
         labels = {

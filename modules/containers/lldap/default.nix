@@ -21,7 +21,7 @@
         };
 
         environmentFiles = [
-            /home/azoller/nix-homelab/hosts/main-server/.env.secret.lldap
+            /home/azoller/containers/lldap/.env
         ];
 
         labels = {

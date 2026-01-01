@@ -17,7 +17,7 @@
         ];
 
         environmentFiles = [
-            /home/azoller/nix-homelab/hosts/main-server/.env.secret.romm
+            /home/azoller/containers/romm/.env
         ];
 
         labels = {

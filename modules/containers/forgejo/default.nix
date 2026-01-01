@@ -14,7 +14,7 @@
 
         volumes = [
             "forgejo:/var/lib/gitea"
-            "/home/azoller/nix-homelab/hosts/main-server/.env.secret.forgejoconf:/var/lib/gitea/custom/conf/app.ini"
+            "/home/azoller/containers/forgejo/app.ini:/var/lib/gitea/custom/conf/app.ini"
             "/etc/timezone:/etc/timezone:ro"
             "/etc/localtime:/etc/localtime:ro"
         ];

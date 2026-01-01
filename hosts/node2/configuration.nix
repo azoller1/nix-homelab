@@ -9,8 +9,8 @@
     ../../users/azoller/default.nix
     ../../modules/containers/dozzle-agent/default.nix
     ../../modules/containers/beszel-agent/default.nix
-    ../../modules/containers/actual-budgets/default.nix
-    ../../modules/containers/nodered/default.nix
+    #../../modules/containers/actual-budgets/default.nix
+    #../../modules/containers/nodered/default.nix
     #../../modules/containers/diun/default.nix
     ../../modules/containers/koito/default.nix
     ../../modules/containers/multi-scrobb/default.nix

@@ -17,7 +17,7 @@
     ../../modules/containers/ys/default.nix
     ../../modules/containers/vw/default.nix
     #../../modules/containers/habittrove/default.nix
-    ../../modules/containers/apprise-api/default.nix
+    #../../modules/containers/apprise-api/default.nix
     ../../modules/containers/lubelogger/default.nix
     #../../modules/containers/adventurelog/default.nix
     #../../modules/containers/tandoor/default.nix

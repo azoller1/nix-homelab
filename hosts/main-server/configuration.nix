@@ -21,7 +21,7 @@
     ../../modules/containers/lldap/default.nix
     ../../modules/containers/paperless/default.nix
     #../../modules/containers/prometheus/default.nix
-    ../../modules/containers/signal-api/default.nix
+    #../../modules/containers/signal-api/default.nix
     ../../modules/containers/traefik/default.nix
     #../../modules/containers/viclogs/default.nix
     #../../modules/containers/vicmetrics/default.nix

@@ -35,7 +35,6 @@
             "beszel"
             "lldap"
             "paperless-traefik"
-            "signal-api"
             "prom"
             "grafana"
             "viclogs"
@@ -45,8 +44,6 @@
             "forgejo"
             "romm"
             "dozzle"
-            "termix"
-            "cup"
         ];
 
         ports = [
@@ -60,13 +57,13 @@
         dependsOn = ["socket-proxy-traefik"];
 
         volumes = [
-            "/home/azoller/nix-homelab/hosts/main-server/.env.secret.traefik_acme:/acme.json"
-            "/home/azoller/nix-homelab/hosts/main-server/.env.secret.traefik_config:/etc/traefik/traefik.yaml"
-            "/home/azoller/nix-homelab/hosts/main-server/.env.secret.traefik_dynamic:/etc/traefik/dynamic"
+            "/home/azoller/containers/traefik/acme.json:/acme.json"
+            "/home/azoller/containers/traefik/config.yaml:/etc/traefik/traefik.yaml"
+            "/home/azoller/containers/traefik/dynamic:/etc/traefik/dynamic"
         ];
 
         environmentFiles = [
-            /home/azoller/nix-homelab/hosts/main-server/.env.secret.traefik
+            /home/azoller/containers/traefik/.env
         ];
 
         labels = {

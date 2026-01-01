@@ -11,7 +11,7 @@
         hostname = "ys-client";
 
         environmentFiles = [
-            /home/azoller/nix-homelab/hosts/node1/.env.secret.ys
+            /home/azoller/containers/ys/.env
         ];
 
         labels = {
@@ -39,7 +39,7 @@
         hostname = "ys-server";
 
         environmentFiles = [
-            /home/azoller/nix-homelab/hosts/node1/.env.secret.ys
+            /home/azoller/containers/ys/.env
         ];
 
         labels = {

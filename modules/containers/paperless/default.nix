@@ -33,7 +33,7 @@
         };
 
         environmentFiles = [
-            /home/azoller/nix-homelab/hosts/main-server/.env.secret.paperless
+            /home/azoller/containers/papers/.env
         ];
 
         labels = {

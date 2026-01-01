@@ -49,7 +49,7 @@
 
         volumes = [
             "prom_data:/prometheus"
-            "/home/azoller/nix-homelab/hosts/main-server/.env.secret.promconf:/etc/prometheus/prometheus.yml"
+            "/home/azoller/containers/prom/prom.yaml:/etc/prometheus/prometheus.yml"
         ];
 
         cmd = [

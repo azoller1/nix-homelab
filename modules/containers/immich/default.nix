@@ -24,7 +24,7 @@
         ];
 
         environmentFiles = [
-            /home/azoller/nix-homelab/hosts/main-server/.env.secret.immich
+            /home/azoller/containers/immich/.env
         ];
 
         labels = {
@@ -54,7 +54,7 @@
         ];
 
         environmentFiles = [
-            /home/azoller/nix-homelab/hosts/main-server/.env.secret.immich
+            /home/azoller/containers/immich/.env
         ];
 
         labels = {
@@ -91,7 +91,7 @@
         };
 
         environmentFiles = [
-            /home/azoller/nix-homelab/hosts/main-server/.env.secret.immich
+            /home/azoller/containers/immich/.env
         ];
 
         labels = {
