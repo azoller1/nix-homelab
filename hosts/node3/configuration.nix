@@ -60,6 +60,8 @@
     age
     smartmontools
     sops
+    restic
+    libressl
   ];
 
   ### Programs Config

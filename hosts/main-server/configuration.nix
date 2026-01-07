@@ -97,6 +97,8 @@
     regsync
     regctl
     smartmontools
+    restic
+    libressl
   ];
 
   ### Programs/Services
@@ -174,6 +176,90 @@
       };
     };
   };
+
+  # Restic
+  services.restic.backups = {
+  
+    data_local = {
+
+      user = "root";
+      passwordFile = "/home/azoller/.restic-pass-local";
+      backupPrepareCommand = "/home/azoller/scripts/restic_prepare.sh";
+      backupCleanupCommand = "/home/azoller/scripts/restic_clean.sh";
+      checkOpts = ["--with-cache"];
+      repository = "/mnt/hdd/backups/";
+      initialize = true;
+
+      extraBackupArgs = [
+        "--tag local"
+        "--verbose"
+      ];
+
+      pruneOpts = [
+        "--keep-daily 12"
+        "--keep-weekly 7"
+        "--keep-monthly 4"
+        "--keep-yearly 12"
+        "--group-by tags"
+      ];
+
+      exclude = [
+        "/home/*/.cache"
+        "/home/azoller/zfsdata"
+      ];
+      
+      paths = [
+        "/home/azoller"
+      ];
+
+      timerConfig = {
+        OnCalendar = "04:30";
+        Persistent = true;
+        #RandomizedDelaySec = "30m";
+      };
+      
+    };
+    
+    data_s3 = {
+      
+      user = "root";
+      initialize = true;
+      repositoryFile = "/home/azoller/.restic-repo-s3";
+      passwordFile = "/home/azoller/.restic-pass-s3";
+      environmentFile = "/home/azoller/.restic-env";
+      backupPrepareCommand = "/home/azoller/scripts/restic_prepare.sh";
+      backupCleanupCommand = "/home/azoller/scripts/restic_clean.sh";
+      checkOpts = ["--with-cache"];
+      
+      paths = [
+        "/home/azoller"
+      ];
+
+      extraBackupArgs = [
+        "--tag s3"
+        "--verbose"
+      ];
+
+      pruneOpts = [
+        "--keep-daily 12"
+        "--keep-weekly 7"
+        "--keep-monthly 4"
+        "--keep-yearly 12"
+        "--group-by tags"
+      ];
+
+      exclude = [
+        "/home/*/.cache"
+        "/home/azoller/zfsdata"
+      ];
+
+      timerConfig = {
+        OnCalendar = "04:00";
+        Persistent = true;
+        #RandomizedDelaySec = "30m";
+      };
+    };
+  };
   
   # Docker Config
   virtualisation.oci-containers.backend = "docker";
@@ -186,7 +272,6 @@
   };
 
   ## Containers (Non-Imports)
-
 
     virtualisation.oci-containers.containers."socket-proxy-beszel" = {
       

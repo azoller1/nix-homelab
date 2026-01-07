@@ -54,6 +54,8 @@
     htop
     age
     sops
+    restic
+    libressl
   ];
 
   ### Programs/Services
