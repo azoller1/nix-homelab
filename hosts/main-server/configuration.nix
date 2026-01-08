@@ -60,6 +60,7 @@
       Gateway = "192.168.2.1";
       DNS = ["192.168.2.3"];
       IPv6AcceptRA = true;
+      Domains = "lan.internal";
     };
 
     linkConfig.RequiredForOnline = "routable";
@@ -185,7 +186,7 @@
       user = "root";
       passwordFile = "/home/azoller/.restic-pass-local";
       backupPrepareCommand = "/home/azoller/scripts/restic_prepare.sh";
-      backupCleanupCommand = "/home/azoller/scripts/restic_clean.sh";
+      #backupCleanupCommand = "/home/azoller/scripts/restic_clean.sh";
       checkOpts = ["--with-cache"];
       repository = "/mnt/hdd/backups/";
       initialize = true;
@@ -228,7 +229,7 @@
       passwordFile = "/home/azoller/.restic-pass-s3";
       environmentFile = "/home/azoller/.restic-env";
       backupPrepareCommand = "/home/azoller/scripts/restic_prepare.sh";
-      backupCleanupCommand = "/home/azoller/scripts/restic_clean.sh";
+      #backupCleanupCommand = "/home/azoller/scripts/restic_clean.sh";
       checkOpts = ["--with-cache"];
       
       paths = [
