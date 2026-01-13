@@ -21,6 +21,7 @@
     ../../modules/containers/lldap/default.nix
     ../../modules/containers/paperless/default.nix
     ../../modules/containers/traefik/default.nix
+    ../../modules/containers/seafile/default.nix
     #../../modules/containers/grafana/default.nix
     #../../modules/containers/prometheus/default.nix
     #../../modules/containers/signal-api/default.nix

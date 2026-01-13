@@ -45,6 +45,7 @@
             "romm"
             "dozzle"
             "backrest"
+            "seafile"
         ];
 
         ports = [
