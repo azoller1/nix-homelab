@@ -45,7 +45,7 @@
             "romm"
             "dozzle"
             "backrest"
-            "seafile"
+            "sftpgo"
         ];
 
         ports = [
