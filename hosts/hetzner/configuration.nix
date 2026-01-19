@@ -94,7 +94,7 @@
   virtualisation.oci-containers.containers = {
 
     searxng = {
-      image = "ghcr.io/searxng/searxng:2025.12.26-fa9729226";
+      image = "ghcr.io/searxng/searxng:2026.1.11-cf74e1d9e";
       ports = [ "127.0.0.1:8080:8080" ];
       networks = ["searxng"];
       hostname = "searxng";
@@ -149,6 +149,11 @@
   # Caddy
   services.caddy = {
     enable = true;
+    globalConfig =
+    ''
+    debug
+    grace_period 5s
+    '';
     extraConfig =
     ''
       https://search.azollerstuff.xyz:443 {

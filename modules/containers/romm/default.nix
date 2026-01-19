@@ -4,7 +4,7 @@
 
     virtualisation.oci-containers.containers."romm" = {
 
-        image = "ghcr.io/rommapp/romm:4.4.1";
+        image = "ghcr.io/rommapp/romm:4.5.0";
         #autoStart = true;
         networks = ["romm"];
         hostname = "romm";

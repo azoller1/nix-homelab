@@ -3,7 +3,7 @@
 {
     virtualisation.oci-containers.containers."sure" = {
 
-        image = "ghcr.io/we-promise/sure:0.6.6-alpha.7";
+        image = "ghcr.io/we-promise/sure:0.6.6-hotfix.1";
         ports = [ "10004:3000" ];
         networks = ["sure"];
         hostname = "sure";
@@ -34,7 +34,7 @@
 
     virtualisation.oci-containers.containers."sure-worker" = {
 
-        image = "ghcr.io/we-promise/sure:0.6.6-alpha.7";
+        image = "ghcr.io/we-promise/sure:0.6.6-hotfix.1";
         networks = ["sure"];
         hostname = "sure-worker";
 

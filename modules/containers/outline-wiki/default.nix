@@ -3,7 +3,7 @@
 {
     virtualisation.oci-containers.containers."outline" = {
 
-        image = "docker.io/outlinewiki/outline:1.1.0";
+        image = "docker.io/outlinewiki/outline:1.3.0";
         ports = [ "10006:3000" ];
         networks = [ "outline" ];
         hostname = "outline";
