@@ -12,7 +12,7 @@
         ];
 
         devices = [
-            "/dev/dri/card0:/dev/dri/card0"
+            "/dev/dri/card1:/dev/dri/card1"
             "/dev/dri/renderD128:/dev/dri/renderD128"
             "/dev/kfd:/dev/kfd"
         ];
