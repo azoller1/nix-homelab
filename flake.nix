@@ -1,5 +1,5 @@
 {
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05-small";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11-small";
   inputs.nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable-small";
   inputs.disko.url = "github:nix-community/disko/latest";
   inputs.disko.inputs.nixpkgs.follows = "nixpkgs";
