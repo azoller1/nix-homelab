@@ -46,6 +46,7 @@
             "dozzle"
             "backrest"
             "sftpgo"
+            "patchmon-traefik"
         ];
 
         ports = [
