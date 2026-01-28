@@ -3,7 +3,7 @@
 {
     virtualisation.oci-containers.containers."sure" = {
 
-        image = "ghcr.io/we-promise/sure:0.6.6-hotfix.1";
+        image = "ghcr.io/we-promise/sure:0.6.7-rc.1";
         ports = [ "10004:3000" ];
         networks = ["sure"];
         hostname = "sure";
@@ -18,9 +18,6 @@
 
         labels = {
             "kop.bind.ip" = "192.168.2.6";
-            "wud.watch" = "true";
-            "wud.tag.include" = "^[0-9]+.[0-9]+.[0-9]+-alpha$";
-            "wud.link.template" = "https://github.com/we-promise/sure/releases";
             "traefik.enable" = "true";
             "traefik.http.services.sure.loadbalancer.server.port" = "10004";
             "traefik.http.routers.sure.rule" = "Host(`finances.zollerlab.com`)";
@@ -34,7 +31,7 @@
 
     virtualisation.oci-containers.containers."sure-worker" = {
 
-        image = "ghcr.io/we-promise/sure:0.6.6-hotfix.1";
+        image = "ghcr.io/we-promise/sure:0.6.7-rc.1";
         networks = ["sure"];
         hostname = "sure-worker";
 
@@ -71,7 +68,7 @@
             "valkey-server"
             "--save 30 1"
             "--loglevel notice"
-            "--maxmemory 512mb"
+            "--maxmemory 256mb"
             "--protected-mode no"
         ];
 
