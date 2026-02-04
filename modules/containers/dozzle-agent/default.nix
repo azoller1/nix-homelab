@@ -3,7 +3,7 @@
 {
     virtualisation.oci-containers.containers."dozzle-agent" = {
 
-        image = "docker.io/amir20/dozzle:v9.0.1";
+        image = "docker.io/amir20/dozzle:v9.0.3";
         autoStart = true;
         ports = ["7007:7007"];
         networks = ["dozzle-agent"];
@@ -16,9 +16,6 @@
 
         labels = {
             "traefik.enable" = "false";
-            "wud.watch" = "true";
-            "wud.tag.include" = "^v[0-9]+.[0-9]+.[0-9]+$";
-            "wud.link.template" = "https://github.com/amir20/dozzle/releases";
         };
     };
 }

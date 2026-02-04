@@ -1,7 +1,7 @@
 {
     virtualisation.oci-containers.containers."jellyfin" = {
 
-        image = "docker.io/jellyfin/jellyfin:10.11.0";
+        image = "docker.io/jellyfin/jellyfin:10.11.6";
         autoStart = true;
         hostname = "jellyfin";
 
@@ -18,7 +18,7 @@
         ];
 
         environment = {
-            JELLYFIN_PublishedServerUrl = "https://jelly.azollerstuff.xyz";
+            JELLYFIN_PublishedServerUrl = "https://jelly.zollerlab.com";
         };
 
         extraOptions = [
@@ -26,16 +26,13 @@
         ];
 
         labels = {
-            "wud.watch" = "true";
-            "wud.tag.include" = "^[0-9]+.[0-9]+.[0-9]+$";
-            "wud.link.template" = "https://github.com/jellyfin/jellyfin/releases";
             "traefik.enable" = "true";
             "traefik.http.services.jellyfin.loadbalancer.server.url" = "http://192.168.2.2:8096";
-            "traefik.http.routers.jellyfin.rule" = "Host(`jelly.azollerstuff.xyz`)";
+            "traefik.http.routers.jellyfin.rule" = "Host(`jelly.zollerlab.com`)";
             "traefik.http.routers.jellyfin.entrypoints" = "https";
             "traefik.http.routers.jellyfin.tls" = "true";
             "traefik.http.routers.jellyfin.tls.certresolver" = "le";
-            "traefik.http.routers.jellyfin.tls.domains[0].main" = "*.azollerstuff.xyz";
+            "traefik.http.routers.jellyfin.tls.domains[0].main" = "*.zollerlab.com";
             "traefik.http.routers.jellyfin.middlewares" = "secheader@file";
         };
     };

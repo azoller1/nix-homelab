@@ -9,15 +9,15 @@
     ../../users/azoller/default.nix
     ../../modules/containers/dozzle-agent/default.nix
     ../../modules/containers/beszel-agent/default.nix
-    #../../modules/containers/actual-budgets/default.nix
-    #../../modules/containers/nodered/default.nix
-    #../../modules/containers/diun/default.nix
     ../../modules/containers/koito/default.nix
     ../../modules/containers/multi-scrobb/default.nix
     ../../modules/containers/gpslogger/default.nix
-    #../../modules/containers/wud/default.nix
     ../../modules/containers/sure-finances/default.nix
-
+    #../../modules/containers/actual-budgets/default.nix
+    #../../modules/containers/nodered/default.nix
+    #../../modules/containers/diun/default.nix
+    #../../modules/containers/wud/default.nix
+    
     #../../modules/containers/cup-agent/default.nix
   ];
   facter.reportPath = ./facter.json;
@@ -132,7 +132,7 @@
     };
 
     kop = {
-      image = "ghcr.io/jittering/traefik-kop:0.19.3";
+      image = "ghcr.io/jittering/traefik-kop:0.19.4";
       autoStart = true;
       networks = ["kop"];
       hostname = "kop";

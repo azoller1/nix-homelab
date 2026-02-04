@@ -3,7 +3,7 @@
 {
     virtualisation.oci-containers.containers."forgejo" = {
 
-        image = "codeberg.org/forgejo/forgejo:14.0.1-rootless";
+        image = "codeberg.org/forgejo/forgejo:14.0.2-rootless";
         networks = ["forgejo"];
         ports = ["2222:2222"];
         hostname = "forgejo";

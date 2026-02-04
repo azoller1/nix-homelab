@@ -25,16 +25,13 @@
         ];
 
         labels = {
-            "wud.watch" = "true";
-            "wud.tag.include" = "^v[0-9]+.[0-9]+.[0-9]+-alpine-rootless$";
-            "wud.link.template" = "https://github.com/lldap/lldap/releases";
             "traefik.enable" = "true";
             "traefik.http.services.lldap.loadbalancer.server.port" = "17170";
-            "traefik.http.routers.lldap.rule" = "Host(`lldap.azollerstuff.xyz`)";
+            "traefik.http.routers.lldap.rule" = "Host(`lldap.zollerlab.com`)";
             "traefik.http.routers.lldap.entrypoints" = "https";
             "traefik.http.routers.lldap.tls" = "true";
             "traefik.http.routers.lldap.tls.certresolver" = "le";
-            "traefik.http.routers.lldap.tls.domains[0].main" = "*.azollerstuff.xyz";
+            "traefik.http.routers.lldap.tls.domains[0].main" = "*.zollerlab.com";
             "traefik.http.routers.lldap.middlewares" = "secheader@file";
         };
     };

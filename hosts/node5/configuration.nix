@@ -113,13 +113,6 @@
       environment = {
         MARIADB_ALLOW_EMPTY_ROOT_PASSWORD = "1";
       };
-
-      labels = {
-          "wud.watch" = "true";
-          "wud.tag.include" = "^[0-9]+.[0-9]+.[0-9]+-ubi9$";
-          #"wud.link.template" = "https://github.com/FoxxMD/multi-scrobbler/releases/tag/$${major}.$${minor}.$${patch}";
-      };
-
     };
 
     postgres-17 = {
@@ -140,17 +133,11 @@
       environmentFiles = [
         /home/azoller/containers/pg17/env
       ];
-
-      labels = {
-          "wud.watch" = "true";
-          "wud.tag.include" = "^17+.[0-9]+-alpine$";
-          #"wud.link.template" = "https://github.com/FoxxMD/multi-scrobbler/releases/tag/$${major}.$${minor}.$${patch}";
-      };
     };
 
     postgis-18-advlog = {
       image = "docker.io/postgis/postgis:18-3.6-alpine";
-      autoStart = true;
+      autoStart = false;
       ports = [ "5433:5432" ];
       networks = ["postgis"];
       hostname = "postgis-18";
@@ -172,7 +159,7 @@
 
     postgis-18-dawarich = {
       image = "docker.io/postgis/postgis:18-3.6-alpine";
-      autoStart = true;
+      autoStart = false;
       ports = [ "5434:5432" ];
       networks = ["postgis-dawarich"];
       hostname = "postgis-18-dawarich";
@@ -206,12 +193,6 @@
       environmentFiles = [
         /home/azoller/containers/postgis18/geopulse-env
       ];
-
-      labels = {
-          "wud.watch" = "true";
-          "wud.tag.include" = "^18+-$";
-          #"wud.link.template" = "https://github.com/FoxxMD/multi-scrobbler/releases/tag/$${major}.$${minor}.$${patch}";
-      };
     };
 
     mongo6-ys = {
@@ -236,16 +217,10 @@
       cmd = [
         "--ipv6"
       ];
-
-      labels = {
-          "wud.watch" = "true";
-          "wud.tag.include" = "^[0-9]+.[0-9]+.[0-9]+-ubi9$";
-          #"wud.link.template" = "https://github.com/FoxxMD/multi-scrobbler/releases/tag/$${major}.$${minor}.$${patch}";
-      };
     };
 
     valkey-traefik = {
-      image = "ghcr.io/valkey-io/valkey:8.1.3-alpine";
+      image = "ghcr.io/valkey-io/valkey:8.1.5-alpine";
       autoStart = true;
       ports = [ "6379:6379" ];
       networks = ["valkey-traefik"];

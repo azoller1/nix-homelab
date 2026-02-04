@@ -3,7 +3,7 @@
 {
     virtualisation.oci-containers.containers."outline" = {
 
-        image = "docker.io/outlinewiki/outline:1.3.0";
+        image = "docker.io/outlinewiki/outline:1.4.0";
         ports = [ "10006:3000" ];
         networks = [ "outline" ];
         hostname = "outline";
@@ -22,23 +22,20 @@
 
         labels = {
             "kop.bind.ip" = "192.168.2.5";
-            "wud.watch" = "true";
-            "wud.tag.include" = "^[0-9]+.[0-9]+.[0-9]+$";
-            "wud.link.template" = "https://github.com/outline/outline/releases";
             "traefik.enable" = "true";
             "traefik.http.services.outline.loadbalancer.server.port" = "10006";
-            "traefik.http.routers.outline.rule" = "Host(`wiki.azollerstuff.xyz`)";
+            "traefik.http.routers.outline.rule" = "Host(`wiki.zollerlab.com`)";
             "traefik.http.routers.outline.entrypoints" = "https";
             "traefik.http.routers.outline.tls" = "true";
             "traefik.http.routers.outline.tls.certresolver" = "le";
-            "traefik.http.routers.outline.tls.domains[0].main" = "*.azollerstuff.xyz";
+            "traefik.http.routers.outline.tls.domains[0].main" = "*.zollerlab.com";
             "traefik.http.routers.outline.middlewares" = "secheader@file";
         };
     };
 
     virtualisation.oci-containers.containers."outline-valkey" = {
 
-        image = "docker.io/valkey/valkey:8-bookworm";
+        image = "docker.io/valkey/valkey:9-trixie";
         networks = ["outline"];
         hostname = "outline-valkey";
 

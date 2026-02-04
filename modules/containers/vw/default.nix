@@ -24,16 +24,13 @@
 
         labels = {
             "kop.bind.ip" = "192.168.2.5";
-            "wud.watch" = "true";
-            "wud.tag.include" = "^[0-9]+.[0-9]+.[0-9]+$";
-            "wud.link.template" = "https://github.com/dani-garcia/vaultwarden/releases";
             "traefik.enable" = "true";
             "traefik.http.services.vw.loadbalancer.server.port" = "10003";
-            "traefik.http.routers.vw.rule" = "Host(`vault.azollerstuff.xyz`)";
+            "traefik.http.routers.vw.rule" = "Host(`vault.zollerlab.com`)";
             "traefik.http.routers.vw.entrypoints" = "https";
             "traefik.http.routers.vw.tls" = "true";
             "traefik.http.routers.vw.tls.certresolver" = "le";
-            "traefik.http.routers.vw.tls.domains[0].main" = "*.azollerstuff.xyz";
+            "traefik.http.routers.vw.tls.domains[0].main" = "*.zollerlab.com";
             "traefik.http.routers.vw.middlewares" = "secheader@file";
         };
     };

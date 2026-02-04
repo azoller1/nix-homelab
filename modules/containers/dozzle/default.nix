@@ -3,7 +3,7 @@
 {
     virtualisation.oci-containers.containers."dozzle" = {
 
-        image = "docker.io/amir20/dozzle:v9.0.1";
+        image = "docker.io/amir20/dozzle:v9.0.3";
         autoStart = true;
         networks = ["dozzle"];
         hostname = "dozzle";
@@ -13,16 +13,13 @@
         };
 
         labels = {
-            "wud.watch" = "true";
-            "wud.tag.include" = "^v[0-9]+.[0-9]+.[0-9]+$";
-            "wud.link.template" = "https://github.com/amir20/dozzle/releases";
             "traefik.enable" = "true";
             "traefik.http.services.dozzle.loadbalancer.server.port" = "8080";
-            "traefik.http.routers.dozzle.rule" = "Host(`dozzle.azollerstuff.xyz`)";
+            "traefik.http.routers.dozzle.rule" = "Host(`dozzle.zollerlab.com`)";
             "traefik.http.routers.dozzle.entrypoints" = "https";
             "traefik.http.routers.dozzle.tls" = "true";
             "traefik.http.routers.dozzle.tls.certresolver" = "le";
-            "traefik.http.routers.dozzle.tls.domains[0].main" = "*.azollerstuff.xyz";
+            "traefik.http.routers.dozzle.tls.domains[0].main" = "*.zollerlab.com";
             "traefik.http.routers.dozzle.middlewares" = "secheader@file";
         };
     };

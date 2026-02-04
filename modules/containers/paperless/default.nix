@@ -3,13 +3,12 @@
 {
     virtualisation.oci-containers.containers."paperless" = {
 
-        image = "ghcr.io/paperless-ngx/paperless-ngx:2.20.2";
+        image = "ghcr.io/paperless-ngx/paperless-ngx:2.20.6";
         networks = [
             "paperless"
             "paperless-traefik"
         ];
 
-        #autoStart = true;
         hostname = "paperless";
 
         dependsOn = [
@@ -37,24 +36,21 @@
         ];
 
         labels = {
-            "wud.watch" = "true";
-            "wud.tag.include" = "^[0-9]+.[0-9]+.[0-9]+$";
-            "wud.link.template" = "https://github.com/paperless-ngx/paperless-ngx/releases";
             "traefik.enable" = "true";
             "traefik.docker.network" = "paperless-traefik";
             "traefik.http.services.paperless.loadbalancer.server.port" = "8000";
-            "traefik.http.routers.paperless.rule" = "Host(`papers.azollerstuff.xyz`)";
+            "traefik.http.routers.paperless.rule" = "Host(`papers.zollerlab.com`)";
             "traefik.http.routers.paperless.entrypoints" = "https";
             "traefik.http.routers.paperless.tls" = "true";
             "traefik.http.routers.paperless.tls.certresolver" = "le";
-            "traefik.http.routers.paperless.tls.domains[0].main" = "*.azollerstuff.xyz";
+            "traefik.http.routers.paperless.tls.domains[0].main" = "*.zollerlab.com";
             "traefik.http.routers.paperless.middlewares" = "secheader@file";
         };
     };
 
     virtualisation.oci-containers.containers."paper-valkey" = {
 
-        image = "docker.io/valkey/valkey:8-bookworm";
+        image = "docker.io/valkey/valkey:9-trixie";
         #autoStart = true;
         networks = ["paperless"];
         hostname = "paper-valkey";

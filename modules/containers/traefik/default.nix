@@ -46,7 +46,7 @@
             "dozzle"
             "backrest"
             "sftpgo"
-            "patchmon-traefik"
+            #"patchmon-traefik"
         ];
 
         ports = [
@@ -70,9 +70,6 @@
         ];
 
         labels = {
-            "wud.watch" = "true";
-            "wud.tag.include" = "^v[0-9]+.[0-9]+.[0-9]+$";
-            "wud.link.template" = "https://github.com/traefik/traefik/releases";
             "traefik.enable" = "false";
         };
     };

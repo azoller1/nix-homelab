@@ -4,7 +4,7 @@
 
     virtualisation.oci-containers.containers."yamtrack-valkey" = {
 
-        image = "docker.io/valkey/valkey:8-bookworm";
+        image = "docker.io/valkey/valkey:9-trixie";
         networks = ["yamtrack"];
         hostname = "yamtrack-valkey";
 
@@ -45,16 +45,13 @@
 
         labels = {
             "kop.bind.ip" = "192.168.2.5";
-            "wud.watch" = "true";
-            "wud.tag.include" = "^[0-9]+.[0-9]+.[0-9]+$";
-            #"wud.link.template" = "https://github.com/dani-garcia/vaultwarden/releases/tag/$${major}.$${minor}.$${patch}";
             "traefik.enable" = "true";
             "traefik.http.services.yamtrack.loadbalancer.server.port" = "10013";
-            "traefik.http.routers.yamtrack.rule" = "Host(`yamtrack.azollerstuff.xyz`)";
+            "traefik.http.routers.yamtrack.rule" = "Host(`yamtrack.zollerlab.com`)";
             "traefik.http.routers.yamtrack.entrypoints" = "https";
             "traefik.http.routers.yamtrack.tls" = "true";
             "traefik.http.routers.yamtrack.tls.certresolver" = "le";
-            "traefik.http.routers.yamtrack.tls.domains[0].main" = "*.azollerstuff.xyz";
+            "traefik.http.routers.yamtrack.tls.domains[0].main" = "*.zollerlab.com";
             "traefik.http.routers.yamtrack.middlewares" = "secheader@file";
         };
     };

@@ -3,7 +3,7 @@
 {
     virtualisation.oci-containers.containers."immich" = {
 
-        image = "ghcr.io/immich-app/immich-server:v2.4.1";
+        image = "ghcr.io/immich-app/immich-server:v2.5.3";
         networks = [
             "immich"
             "immich-traefik"
@@ -28,24 +28,21 @@
         ];
 
         labels = {
-            "wud.watch" = "true";
-            "wud.tag.include" = "^v[0-9]+.[0-9]+.[0-9]+$";
-            "wud.link.template" = "https://github.com/immich-app/immich/releases";
             "traefik.enable" = "true";
             "traefik.docker.network" = "immich-traefik";
             "traefik.http.services.immich-server.loadbalancer.server.port" = "2283";
-            "traefik.http.routers.immich-server.rule" = "Host(`photos.azollerstuff.xyz`)";
+            "traefik.http.routers.immich-server.rule" = "Host(`photos.zollerlab.com`)";
             "traefik.http.routers.immich-server.entrypoints" = "https";
             "traefik.http.routers.immich-server.tls" = "true";
             "traefik.http.routers.immich-server.tls.certresolver" = "le";
-            "traefik.http.routers.immich-server.tls.domains[0].main" = "*.azollerstuff.xyz";
+            "traefik.http.routers.immich-server.tls.domains[0].main" = "*.zollerlab.com";
             "traefik.http.routers.immich-server.middlewares" = "secheader@file";
         };
     };
 
     virtualisation.oci-containers.containers."immich-machine-learning" = {
 
-        image = "ghcr.io/immich-app/immich-machine-learning:v2.4.1";
+        image = "ghcr.io/immich-app/immich-machine-learning:v2.5.3";
         networks = ["immich"];
         hostname = "immich-machine-learning";
 
@@ -58,16 +55,13 @@
         ];
 
         labels = {
-            "wud.watch" = "true";
-            "wud.tag.include" = "^v[0-9]+.[0-9]+.[0-9]+$";
-            "wud.link.template" = "https://github.com/immich-app/immich/releases";
             "traefik.enable" = "false";
         };
     };
 
     virtualisation.oci-containers.containers."immich-redis" = {
 
-        image = "docker.io/valkey/valkey:8-bookworm";
+        image = "docker.io/valkey/valkey:9-trixie";
         networks = ["immich"];
         hostname = "immich-redis";
 

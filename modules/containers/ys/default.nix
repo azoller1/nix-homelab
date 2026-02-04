@@ -16,16 +16,13 @@
 
         labels = {
             "kop.bind.ip" = "192.168.2.5";
-            "wud.watch" = "true";
-            "wud.tag.include" = "^[0-9]+.[0-9]+.[0-9]+$";
-            #"wud.link.template" = "https://github.com/dani-garcia/vaultwarden/releases/tag/$${major}.$${minor}.$${patch}";
             "traefik.enable" = "true";
             "traefik.http.services.ys-client.loadbalancer.server.port" = "10005";
-            "traefik.http.routers.ys-client.rule" = "Host(`spotifystats.azollerstuff.xyz`)";
+            "traefik.http.routers.ys-client.rule" = "Host(`spotifystats.zollerlab.com`)";
             "traefik.http.routers.ys-client.entrypoints" = "https";
             "traefik.http.routers.ys-client.tls" = "true";
             "traefik.http.routers.ys-client.tls.certresolver" = "le";
-            "traefik.http.routers.ys-client.tls.domains[0].main" = "*.azollerstuff.xyz";
+            "traefik.http.routers.ys-client.tls.domains[0].main" = "*.zollerlab.com";
             "traefik.http.routers.ys-client.middlewares" = "secheader@file";
         };
     };
@@ -44,16 +41,13 @@
 
         labels = {
             "kop.bind.ip" = "192.168.2.5";
-            "wud.watch" = "true";
-            "wud.tag.include" = "^[0-9]+.[0-9]+.[0-9]+$";
-            #"wud.link.template" = "https://github.com/dani-garcia/vaultwarden/releases/tag/$${major}.$${minor}.$${patch}";
             "traefik.enable" = "true";
             "traefik.http.services.ys-server.loadbalancer.server.port" = "10004";
-            "traefik.http.routers.ys-server.rule" = "Host(`ssapi.azollerstuff.xyz`)";
+            "traefik.http.routers.ys-server.rule" = "Host(`ssapi.zollerlab.com`)";
             "traefik.http.routers.ys-server.entrypoints" = "https";
             "traefik.http.routers.ys-server.tls" = "true";
             "traefik.http.routers.ys-server.tls.certresolver" = "le";
-            "traefik.http.routers.ys-server.tls.domains[0].main" = "*.azollerstuff.xyz";
+            "traefik.http.routers.ys-server.tls.domains[0].main" = "*.zollerlab.com";
             "traefik.http.routers.ys-server.middlewares" = "secheader@file";
         };
     };
