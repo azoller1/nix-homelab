@@ -46,6 +46,7 @@
             "dozzle"
             "backrest"
             "sftpgo"
+            "ntfy"
             #"patchmon-traefik"
         ];
 
