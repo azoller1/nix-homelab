@@ -23,6 +23,7 @@
     ../../modules/containers/traefik/default.nix
     ../../modules/containers/sftpgo/default.nix
     ../../modules/containers/ntfy/default.nix
+    ../../modules/containers/tuwunel/default.nix
     #../../modules/containers/patchmon/default.nix
     #../../modules/containers/seafile/default.nix
     #../../modules/containers/grafana/default.nix

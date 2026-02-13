@@ -47,6 +47,7 @@
             "backrest"
             "sftpgo"
             "ntfy"
+            "matrix"
             #"patchmon-traefik"
         ];
 
