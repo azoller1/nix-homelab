@@ -47,7 +47,10 @@
             "backrest"
             "sftpgo"
             "ntfy"
-            "matrix"
+            "jellyfin"
+            "radarr"
+            "sonarr"
+            "nzbget"
             #"patchmon-traefik"
         ];
 

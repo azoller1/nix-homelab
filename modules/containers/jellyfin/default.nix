@@ -2,11 +2,14 @@
     virtualisation.oci-containers.containers."jellyfin" = {
 
         image = "docker.io/jellyfin/jellyfin:10.11.6";
-        autoStart = true;
+        ports = ["8096:8096/tcp" "7359:7359/udp"];
         hostname = "jellyfin";
+        networks = ["jellyfin"];
+        user = "1000:100";
+
 
         volumes = [
-            "/mnt/hdd/media/jelly:/media"
+            "/mnt/hdd/media/data/jelly:/media/jelly"
             "jellyfin_config:/config"
             "jellyfin_cache:/cache"
         ];
@@ -21,13 +24,13 @@
             JELLYFIN_PublishedServerUrl = "https://jelly.zollerlab.com";
         };
 
-        extraOptions = [
-            "--network=host"
-        ];
+        #extraOptions = [
+        #    "--network=host"
+        #];
 
         labels = {
             "traefik.enable" = "true";
-            "traefik.http.services.jellyfin.loadbalancer.server.url" = "http://192.168.2.2:8096";
+            "traefik.http.services.jellyfin.loadbalancer.server.port" = "8096";
             "traefik.http.routers.jellyfin.rule" = "Host(`jelly.zollerlab.com`)";
             "traefik.http.routers.jellyfin.entrypoints" = "https";
             "traefik.http.routers.jellyfin.tls" = "true";
