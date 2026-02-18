@@ -29,7 +29,7 @@
 
     virtualisation.oci-containers.containers."traefik" = {
 
-        image = "docker.io/traefik:v3.6.7";
+        image = "docker.io/traefik:v3.6.8";
         networks = [
             "traefik"
             "beszel"

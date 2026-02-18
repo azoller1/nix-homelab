@@ -3,7 +3,7 @@
 {
     virtualisation.oci-containers.containers."immich" = {
 
-        image = "ghcr.io/immich-app/immich-server:v2.5.3";
+        image = "ghcr.io/immich-app/immich-server:v2.5.6";
         networks = [
             "immich"
             "immich-traefik"
@@ -42,7 +42,7 @@
 
     virtualisation.oci-containers.containers."immich-machine-learning" = {
 
-        image = "ghcr.io/immich-app/immich-machine-learning:v2.5.3";
+        image = "ghcr.io/immich-app/immich-machine-learning:v2.5.6";
         networks = ["immich"];
         hostname = "immich-machine-learning";
 
