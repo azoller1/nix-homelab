@@ -231,7 +231,22 @@
       ];
 
       environment = {
-        VALKEY_EXTRA_FLAGS = "--save 60 1 --loglevel verbose";
+        VALKEY_EXTRA_FLAGS = "--save 30 1 --loglevel warning";
+      };
+    };
+
+    valkey-crowdsec = {
+      image = "ghcr.io/valkey-io/valkey:9-trixie";
+      ports = [ "6380:6380" ];
+      networks = ["valkey-crowdsec"];
+      hostname = "valkey-crowdsec";
+
+      volumes = [
+        "valkey_crowdsec:/data"
+      ];
+
+      environment = {
+        VALKEY_EXTRA_FLAGS = "--save 30 1 --loglevel warning";
       };
     };
   };
