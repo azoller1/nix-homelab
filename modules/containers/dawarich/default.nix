@@ -59,7 +59,8 @@
             "traefik.http.routers.dawarich.tls" = "true";
             "traefik.http.routers.dawarich.tls.certresolver" = "le";
             "traefik.http.routers.dawarich.tls.domains[0].main" = "*.zollerlab.com";
-            "traefik.http.routers.dawarich.middlewares" = "secheader@file";
+            "traefik.http.routers.dawarich.middlewares" = "secheader@file,default-geoblock@file";
+            #"traefik.http.middlewares.secured.chain.middlewares" = "secheader@file,default-geoblock@file";
         };
     };
 
