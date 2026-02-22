@@ -15,7 +15,7 @@
     ../../modules/containers/baikal/default.nix
     ../../modules/containers/ys/default.nix
     ../../modules/containers/vw/default.nix
-    ../../modules/containers/dawarich/default.nix
+    #../../modules/containers/dawarich/default.nix
     #../../modules/containers/tasktrove/default.nix
     #../../modules/containers/mealie/default.nix
     #../../modules/containers/diun/default.nix

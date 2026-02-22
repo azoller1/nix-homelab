@@ -3,7 +3,7 @@
 {
     virtualisation.oci-containers.containers."paperless" = {
 
-        image = "ghcr.io/paperless-ngx/paperless-ngx:2.20.7";
+        image = "ghcr.io/paperless-ngx/paperless-ngx:2.20.8";
         networks = [
             "paperless"
             "paperless-traefik"
@@ -72,7 +72,7 @@
 
     virtualisation.oci-containers.containers."paper-tika" = {
 
-        image = "docker.io/apache/tika:3.2.2.0";
+        image = "docker.io/apache/tika:3.2.3.0";
         #autoStart = true;
         networks = ["paperless"];
         hostname = "paper-tika";
@@ -84,7 +84,7 @@
 
     virtualisation.oci-containers.containers."paper-gotenberg" = {
 
-        image = "docker.io/gotenberg/gotenberg:8.20.1";
+        image = "docker.io/gotenberg/gotenberg:8.26";
         #autoStart = true;
         networks = ["paperless"];
         hostname = "paper-gotenberg";
