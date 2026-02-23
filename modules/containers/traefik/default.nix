@@ -66,6 +66,7 @@
 
         volumes = [
             "/home/azoller/containers/traefik/acme.json:/acme.json"
+            "/home/azoller/containers/traefik/geoblock/ip-cache.db:/ip-cache.db"
             "/home/azoller/containers/traefik/config.yaml:/etc/traefik/traefik.yaml:ro"
             "/home/azoller/containers/traefik/dynamic:/etc/traefik/dynamic/:ro"
         ];
