@@ -143,6 +143,20 @@
     };
   };
 
+  # ollama
+  services.ollama = {
+    enable = true;
+    host = "[::]";
+    loadModels = [
+      "nomic-embed-text:v1.5"
+      "qwen3-coder:30b"
+      "phi4-reasoning:14b"
+      "llama3.1:8b"
+      "gemma3:4b"
+      "qwen3-vl:8b"
+    ];
+  };
+
   # Garage S3
   services.garage = {
     enable = true;
@@ -174,12 +188,12 @@
       s3_api = {
         s3_region = "garage";
         api_bind_addr = "[::]:3900";
-        root_domain = ".s3.garage.azollerstuff.xyz";
+        root_domain = ".s3.garage.zollerlab.com";
       };
 
       s3_web = {
         bind_addr = "[::]:3902";
-        root_domain = ".web.garage.azollerstuff.xyz";
+        root_domain = ".web.garage.zollerlab.com";
         index = "index.html";
       };
 
@@ -313,7 +327,7 @@
 
     virtualisation.oci-containers.containers."beszel-agent" = {
 
-        image = "ghcr.io/henrygd/beszel/beszel-agent:0.18.3-alpine";
+        image = "ghcr.io/henrygd/beszel/beszel-agent:0.18.4-alpine";
         autoStart = true;
         ports = ["45876:45876"];
         networks = ["beszel"];
