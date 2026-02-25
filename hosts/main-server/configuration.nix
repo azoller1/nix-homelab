@@ -301,7 +301,7 @@
 
     virtualisation.oci-containers.containers."socket-proxy-beszel" = {
       
-        image = "lscr.io/linuxserver/socket-proxy:3.2.10";
+        image = "lscr.io/linuxserver/socket-proxy:3.2.13";
         autoStart = true;
         networks = ["beszel"];
         hostname = "socket-proxy-beszel";
