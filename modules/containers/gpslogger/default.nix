@@ -1,7 +1,7 @@
 {
     virtualisation.oci-containers.containers."geopulse-ui" = {
 
-        image = "ghcr.io/tess1o/geopulse-ui:1.17.0";
+        image = "ghcr.io/tess1o/geopulse-ui:1.18.1";
         ports = [ "10005:80" ];
         networks = ["geopulse"];
         hostname = "geopulse-ui";
@@ -23,14 +23,14 @@
             "traefik.http.routers.geopulse.tls" = "true";
             "traefik.http.routers.geopulse.tls.certresolver" = "le";
             "traefik.http.routers.geopulse.tls.domains[0].main" = "*.zollerlab.com";
-            "traefik.http.routers.geopulse.middlewares" = "secheader@file,default-geoblock@file";
+            "traefik.http.routers.geopulse.middlewares" = "secheader@file,default-geoblock@file,my-robots-txt@file";
             #"traefik.http.middlewares.secured.chain.middlewares" = "secheader@file,default-geoblock@file";
         };
     };
 
     virtualisation.oci-containers.containers."geopulse" = {
 
-        image = "ghcr.io/tess1o/geopulse-backend:1.17.0-native";
+        image = "ghcr.io/tess1o/geopulse-backend:1.18.1-native";
         networks = ["geopulse"];
         hostname = "geopulse";
 

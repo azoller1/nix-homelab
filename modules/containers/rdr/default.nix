@@ -29,6 +29,7 @@
             "traefik.http.routers.radarr.tls.certresolver" = "le";
             "traefik.http.routers.radarr.tls.domains[0].main" = "*.zollerlab.com";
             "traefik.http.routers.radarr.middlewares" = "secheader@file";
+            "traefik.http.routers.radarr.observability.accesslogs" = "false";
         };
     };
 }
