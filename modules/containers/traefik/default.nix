@@ -51,6 +51,7 @@
             "radarr"
             "sonarr"
             "nzbget"
+            "openweb"
             #"patchmon-traefik"
         ];
 
