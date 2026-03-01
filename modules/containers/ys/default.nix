@@ -4,7 +4,7 @@
 
     virtualisation.oci-containers.containers."ys-client" = {
 
-        image = "ghcr.io/yooooomi/your_spotify_client:1.17.0";
+        image = "ghcr.io/yooooomi/your_spotify_client:1.18.0";
         #autoStart = true;
         ports = [ "10005:3000" ];
         networks = ["ys"];
@@ -29,7 +29,7 @@
 
     virtualisation.oci-containers.containers."ys-server" = {
 
-        image = "ghcr.io/yooooomi/your_spotify_server:1.17.0";
+        image = "ghcr.io/yooooomi/your_spotify_server:1.18.0";
         #autoStart = true;
         ports = [ "10004:8080" ];
         networks = ["ys"];

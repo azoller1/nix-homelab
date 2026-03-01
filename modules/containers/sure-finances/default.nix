@@ -3,7 +3,7 @@
 {
     virtualisation.oci-containers.containers."sure" = {
 
-        image = "git.zollerlab.com/azoller/sure:0.6.7";
+        image = "ghcr.io/we-promise/sure:0.6.8";
         ports = [ "10004:3000" ];
         networks = ["sure"];
         hostname = "sure";
@@ -31,7 +31,7 @@
 
     virtualisation.oci-containers.containers."sure-worker" = {
 
-        image = "git.zollerlab.com/azoller/sure:0.6.7";
+        image = "ghcr.io/we-promise/sure:0.6.8";
         networks = ["sure"];
         hostname = "sure-worker";
 
@@ -56,7 +56,7 @@
 
     virtualisation.oci-containers.containers."sure-valkey" = {
 
-        image = "docker.io/valkey/valkey:8-bookworm";
+        image = "docker.io/valkey/valkey:9-trixie";
         networks = ["sure"];
         hostname = "sure-valkey";
 

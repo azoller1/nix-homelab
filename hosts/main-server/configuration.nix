@@ -150,8 +150,6 @@
     host = "[::]";
     loadModels = [
       "nomic-embed-text:v1.5"
-      "qwen3-coder:30b"
-      "phi4-reasoning:14b"
       "llama3.1:8b"
       "gemma3:4b"
       "qwen3-vl:8b"
