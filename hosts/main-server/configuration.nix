@@ -153,6 +153,7 @@
       "llama3.1:8b"
       "gemma3:4b"
       "qwen3-vl:8b"
+      "phi4-mini:latest"
     ];
   };
 
