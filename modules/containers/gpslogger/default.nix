@@ -23,7 +23,7 @@
             "traefik.http.routers.geopulse.tls" = "true";
             "traefik.http.routers.geopulse.tls.certresolver" = "le";
             "traefik.http.routers.geopulse.tls.domains[0].main" = "*.zollerlab.com";
-            "traefik.http.routers.geopulse.middlewares" = "secheader@file,default-geoblock@file,my-robots-txt@file";
+            "traefik.http.routers.geopulse.middlewares" = "secheader@file,my-robots-txt@file";
             #"traefik.http.middlewares.secured.chain.middlewares" = "secheader@file,default-geoblock@file";
         };
     };
