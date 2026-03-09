@@ -50,8 +50,23 @@
   networking.hostName = "node1";
   # networking.wireless.enable = true;
   networking.networkmanager.enable = true;
-  time.timeZone = "America/Chicago";
+  networking.useDHCP = false;
+  # networking.useNetworkd = true;
+  systemd.network.enable = false;
 
+  # LAN
+  systemd.network.networks."10-lan" = {
+    matchConfig.Name = ["enp0s31f6"];
+    networkConfig = {
+      DHCP = "no";
+      IPv6AcceptRA = true;
+      Domains = "lan.internal";
+    };
+
+    linkConfig.RequiredForOnline = "routable";
+  };
+
+  time.timeZone = "America/Chicago";
   # Firewall
   networking.firewall.enable = false;
   networking.nftables.enable = true;

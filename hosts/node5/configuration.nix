@@ -32,6 +32,22 @@
   networking.hostName = "node5";
   # networking.wireless.enable = true;
   networking.networkmanager.enable = true;
+  networking.useDHCP = false;
+  # networking.useNetworkd = true;
+  systemd.network.enable = false;
+
+  # LAN
+  systemd.network.networks."10-lan" = {
+    matchConfig.Name = ["enp0s31f6"];
+    networkConfig = {
+      DHCP = "no";
+      IPv6AcceptRA = true;
+      Domains = "lan.internal";
+    };
+
+    linkConfig.RequiredForOnline = "routable";
+  };
+
   time.timeZone = "America/Chicago";
   # Dont use built-in firewall
   networking.firewall.enable = false;
