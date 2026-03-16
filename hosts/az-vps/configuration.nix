@@ -18,22 +18,28 @@
   ];
 
   # Bootloader, need grub for hetzner
-  boot.loader.grub.enable = true;
+  # boot.loader.grub.enable = true;
 
   # Networking  
-  networking.hostName = "az-us-hetzner";
+  networking.hostName = "az-vps-racknerd";
   # networking.wireless.enable = true;
-  networking.networkmanager.enable = true;
-  time.timeZone = "America/Chicago";
+  networking.networkmanager = {
+    enable = true;
+    settings = {
+      main = {
+        dns = "none";
+        rc-manager = "unmanaged";
+      };
+    };
+  };
+
+  time.timeZone = "America/New_York";
 
   # Firewall
   networking.firewall.enable = true;
   networking.nftables.enable = true;
-  #networking.firewall.allowedUDPPorts = [853];
-  networking.firewall.allowedTCPPorts = [
-    22
-    443
-  ];
+  networking.firewall.allowedUDPPorts = [443];
+  networking.firewall.allowedTCPPorts = [22 443];
 
   # Console
   i18n.defaultLocale = "en_US.UTF-8";
@@ -57,6 +63,7 @@
     sops
     restic
     libressl
+    rathole
   ];
 
   ### Programs/Services
@@ -79,44 +86,44 @@
       };
     };
   };
+
+  # DNS
+  services.unbound = {
+    enable = true;
+  };
+
+  # Crowdsec
+  services.crowdsec.enable = false;
+  services.crowdsec.settings.general = {
+    api = {
+      server = {
+        listen_uri = "127.0.0.1:8081";
+      };
+    };
+  };
+
+  services.crowdsec-firewall-bouncer.enable = false;
+  services.crowdsec-firewall-bouncer.settings = {
+    api_url = "http://127.0.0.1:8081/";
+  };
   
-  # Docker Config
+  # Container Config
   virtualisation.oci-containers.backend = "docker";
+
   virtualisation.docker = {
     enable = true;
     storageDriver = "overlay2";
     daemon.settings = {
       ipv6 = false;
+      #firewall-backend = "nftables";
     };
   };
 
   ## Containers
   virtualisation.oci-containers.containers = {
 
-    searxng = {
-      image = "ghcr.io/searxng/searxng:2026.1.11-cf74e1d9e";
-      ports = [ "127.0.0.1:8080:8080" ];
-      networks = ["searxng"];
-      hostname = "searxng";
-
-      environment = {
-        SEARXNG_BASE_URL = "https://search.azollerstuff.xyz";
-      };
-
-      extraOptions = [
-        "--memory=256m"
-        "--security-opt=no-new-privileges"
-      ];
-
-      volumes = [
-        "searxng-data:/var/cache/searxng"
-        "searxng-config:/etc/searxng"
-      ];
-
-    };
-
     uptime = {
-      image = "ghcr.io/louislam/uptime-kuma:2.0.2-slim-rootless";
+      image = "ghcr.io/louislam/uptime-kuma:2.2.1-slim-rootless";
       ports = [ "127.0.0.1:3001:3001" ];
       networks = ["uptime"];
       hostname = "uptime";
@@ -126,6 +133,35 @@
       ];
 
     };
+
+    # this is local with podman compose up
+    # freqtrade = {
+    #   image = "docker.io/freqtradeorg/freqtrade:stable";
+    #   ports = [ "127.0.0.1:8080:8080" ];
+    #   networks = ["freqtrade"];
+    #   hostname = "freqtrade";
+
+    #   volumes = [
+    #     "freqtrade_data:/freqtrade/user_data"
+    #   ];
+
+    #   extraOptions = [
+    #     "--security-opt=no-new-privileges"
+    #   ];
+
+    #   #preRunExtraOptions = [
+    #   #  "--runtime=crun"
+    #   #];
+
+    #   #entrypoint = "freqtrade trade";
+
+    #   cmd = [
+    #     "trade --logfile /freqtrade/user_data/logs/freqtrade.log"
+    #     "--db-url sqlite:////freqtrade/user_data/tradesv3.sqlite"
+    #     "--config /freqtrade/user_data/config.json"
+    #     "--strategy SampleStrategy"
+    #   ];
+    # };
   };
 
   # Technitium
@@ -156,10 +192,10 @@
     '';
     extraConfig =
     ''
-      https://search.azollerstuff.xyz:443 {
+      https://freqtrade.zollerlab.com:443 {
         reverse_proxy 127.0.0.1:8080
       }
-      https://status.azollerstuff.xyz:443 {
+      https://status.zollerlab.com:443 {
         reverse_proxy 127.0.0.1:3001
       }
     '';
@@ -167,7 +203,7 @@
 
   # System Config
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  system.stateVersion = "25.05";
+  system.stateVersion = "25.11";
   nix.optimise.automatic = true;
   nix.gc = {
     automatic = true;

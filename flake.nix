@@ -29,12 +29,12 @@
       # nixos-anywhere (disko,facter)
       nixosConfigurations = {
 
-        az-us-hetzner = nixpkgs.lib.nixosSystem {
+        az-vps = nixpkgs-unstable.lib.nixosSystem {
           system = "x86_64-linux";
 
           modules = [
             disko.nixosModules.disko
-            ./hosts/hetzner/configuration.nix
+            ./hosts/az-vps/configuration.nix
           ];
         };
 
@@ -109,12 +109,12 @@
       # deploy-rs
       deploy.nodes = {
       
-      az-us-hetzner = {
-        hostname = "hetz-us.azollerstuff.xyz";
+      az-vps = {
+        hostname = "az-vps.lan.internal";
         profiles.system = {
           sshUser = "root";
           user = "root";
-          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.az-us-hetzner;
+          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.az-vps;
         };
       };
 

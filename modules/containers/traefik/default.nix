@@ -3,7 +3,7 @@
 {
     virtualisation.oci-containers.containers."socket-proxy-traefik" = {
         
-        image = "lscr.io/linuxserver/socket-proxy:3.2.13";
+        image = "lscr.io/linuxserver/socket-proxy:3.2.13-r0-ls71";
         autoStart = true;
         networks = ["traefik"];
         hostname = "socket-proxy-traefik";
@@ -29,7 +29,7 @@
 
     virtualisation.oci-containers.containers."traefik" = {
 
-        image = "docker.io/traefik:v3.6.9";
+        image = "docker.io/traefik:v3.6.10";
         networks = [
             "traefik"
             "beszel"

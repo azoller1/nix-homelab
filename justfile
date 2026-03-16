@@ -16,7 +16,7 @@ deploy-node4:
     nix run github:serokell/deploy-rs ./#node4
 deploy-node5:
     nix run github:serokell/deploy-rs ./#node5
-deploy-hetz:
-    nix run github:serokell/deploy-rs ./#az-us-hetzner
+deploy-vps-racknerd:
+    nix run github:serokell/deploy-rs ./#az-vps
 deploy-all:
     nix run github:serokell/deploy-rs ./
