@@ -151,49 +151,43 @@
       ];
     };
 
-    postgis-18-advlog = {
-      image = "docker.io/postgis/postgis:18-3.6-alpine";
-      autoStart = false;
-      ports = [ "5433:5432" ];
-      networks = ["postgis"];
-      hostname = "postgis-18";
+    # postgis-18-advlog = {
+    #   image = "docker.io/postgis/postgis:18-3.6-alpine";
+    #   autoStart = false;
+    #   ports = [ "5433:5432" ];
+    #   networks = ["postgis"];
+    #   hostname = "postgis-18";
 
-      volumes = [
-        "postgis_data:/var/lib/postgresql"
-      ];
+    #   volumes = [
+    #     "postgis_data:/var/lib/postgresql"
+    #   ];
 
-      environmentFiles = [
-        /home/azoller/containers/postgis18/env
-      ];
+    #   environmentFiles = [
+    #     /home/azoller/containers/postgis18/env
+    #   ];
+    # };
 
-      labels = {
-          "wud.watch" = "true";
-          "wud.tag.include" = "^18+-$";
-          #"wud.link.template" = "https://github.com/FoxxMD/multi-scrobbler/releases/tag/$${major}.$${minor}.$${patch}";
-      };
-    };
+    # postgis-18-dawarich = {
+    #   image = "docker.io/postgis/postgis:18-3.6-alpine";
+    #   autoStart = false;
+    #   ports = [ "5434:5432" ];
+    #   networks = ["postgis-dawarich"];
+    #   hostname = "postgis-18-dawarich";
 
-    postgis-18-dawarich = {
-      image = "docker.io/postgis/postgis:18-3.6-alpine";
-      autoStart = false;
-      ports = [ "5434:5432" ];
-      networks = ["postgis-dawarich"];
-      hostname = "postgis-18-dawarich";
+    #   volumes = [
+    #     "postgis_dawa_data:/var/lib/postgresql"
+    #   ];
 
-      volumes = [
-        "postgis_dawa_data:/var/lib/postgresql"
-      ];
+    #   environmentFiles = [
+    #     /home/azoller/containers/postgis18/dawa-env
+    #   ];
 
-      environmentFiles = [
-        /home/azoller/containers/postgis18/dawa-env
-      ];
-
-      labels = {
-          "wud.watch" = "true";
-          "wud.tag.include" = "^18+-$";
-          #"wud.link.template" = "https://github.com/FoxxMD/multi-scrobbler/releases/tag/$${major}.$${minor}.$${patch}";
-      };
-    };
+    #   labels = {
+    #       "wud.watch" = "true";
+    #       "wud.tag.include" = "^18+-$";
+    #       #"wud.link.template" = "https://github.com/FoxxMD/multi-scrobbler/releases/tag/$${major}.$${minor}.$${patch}";
+    #   };
+    # };
 
     postgis-18-geopulse = {
       image = "docker.io/postgis/postgis:18-3.6-alpine";
