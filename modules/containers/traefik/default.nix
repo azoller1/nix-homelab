@@ -35,10 +35,10 @@
             "beszel"
             "lldap"
             "paperless-traefik"
-            "prom"
-            "grafana"
-            "viclogs"
-            "vicmetrics"
+            #"prom"
+            #"grafana"
+            #"viclogs"
+            #"vicmetrics"
             "pocket-id"
             "immich-traefik"
             "forgejo"
@@ -52,6 +52,7 @@
             "sonarr"
             "nzbget"
             "openweb"
+            "navidrome"
             #"patchmon-traefik"
         ];
 

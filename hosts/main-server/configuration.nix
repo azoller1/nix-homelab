@@ -28,6 +28,7 @@
     ../../modules/containers/nzbg/default.nix
     ../../modules/containers/recycle/default.nix
     ../../modules/containers/openweb/default.nix
+    ../../modules/containers/navidrome/default.nix
     #../../modules/containers/cooklang/default.nix
     #../../modules/containers/tuwunel/default.nix
     #../../modules/containers/patchmon/default.nix
