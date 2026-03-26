@@ -113,6 +113,7 @@
     yt-dlp
     kitty
     beets
+    deno
   ];
 
   ### Programs/Services
