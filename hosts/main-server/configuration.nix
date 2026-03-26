@@ -110,6 +110,9 @@
     smartmontools
     restic
     libressl
+    yt-dlp
+    kitty
+    beets
   ];
 
   ### Programs/Services

@@ -18,9 +18,9 @@
             ND_LISTENBRAINZ_BASEURL = "https://scrobbler.zollerlab.com/1/";
         };
 
-        extraOptions = [
-            "--security-opt=no-new-privileges"
-        ];
+        #extraOptions = [
+        #    "--security-opt=no-new-privileges"
+        #];
 
         labels = {
             "traefik.enable" = "true";

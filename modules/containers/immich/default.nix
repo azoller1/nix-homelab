@@ -1,5 +1,3 @@
-{ config, lib, pkgs, ...}:
-
 {
     virtualisation.oci-containers.containers."immich" = {
 
