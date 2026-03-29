@@ -3,7 +3,7 @@
 {
     virtualisation.oci-containers.containers."pocket-id" = {
 
-        image = "ghcr.io/pocket-id/pocket-id:v2.4.0";
+        image = "ghcr.io/pocket-id/pocket-id:v2.5.0";
         networks = ["pocket-id"];
         hostname = "pocket-id";
 

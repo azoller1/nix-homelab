@@ -1,7 +1,7 @@
 {
     virtualisation.oci-containers.containers."sonarr" = {
 
-        image = "ghcr.io/linuxserver/sonarr:4.0.16";
+        image = "ghcr.io/linuxserver/sonarr:4.0.17";
         hostname = "sonarr";
         networks = ["sonarr"];
         #user = "1000:100";

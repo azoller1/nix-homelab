@@ -2,7 +2,7 @@
 
 {
     virtualisation.oci-containers.containers."socket-proxy-beszel" = {
-      
+
         image = "lscr.io/linuxserver/socket-proxy:3.2.14";
         autoStart = true;
         networks = ["beszel"];
@@ -29,7 +29,7 @@
 
     virtualisation.oci-containers.containers."beszel-agent" = {
 
-        image = "ghcr.io/henrygd/beszel/beszel-agent:0.18.4-alpine";
+        image = "ghcr.io/henrygd/beszel/beszel-agent:0.18.6-alpine";
         autoStart = true;
         ports = ["45876:45876"];
         networks = ["beszel"];

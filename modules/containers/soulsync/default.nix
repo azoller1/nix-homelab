@@ -4,7 +4,7 @@
         image = "docker.io/boulderbadgedad/soulsync:2.1@sha256:c1cb8a59210b371cb5d6bde1570342bfdded7c443212f95ad712f4d885870ec9";
         hostname = "soulsync";
         networks = ["soulsync"];
-        ports = ["8882:8008"];
+        #ports = ["8882:8008"];
         #user = "1000:100";
 
 
@@ -17,6 +17,10 @@
             #"ss_downloads:/app/downloads"
             #"ss_staging:/app/Staging"
         ];
+
+        #environmentFiles = [
+        #    /home/azoller/containers/ssync/env
+        #];
 
         environment = {
           PUID = "1000";

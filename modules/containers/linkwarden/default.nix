@@ -1,7 +1,7 @@
 {
     virtualisation.oci-containers.containers."linkwarden" = {
 
-        image = "ghcr.io/linkwarden/linkwarden:v2.13.5";
+        image = "ghcr.io/linkwarden/linkwarden:v2.14.0";
         ports = [ "10023:3000" ];
         networks = ["linkwarden"];
         hostname = "linkwarden";
