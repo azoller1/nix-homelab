@@ -2,7 +2,7 @@
 
 {
     virtualisation.oci-containers.containers."socket-proxy-traefik" = {
-        
+
         image = "lscr.io/linuxserver/socket-proxy:3.2.14";
         autoStart = true;
         networks = ["traefik"];
@@ -53,6 +53,7 @@
             "nzbget"
             "openweb"
             "navidrome"
+            "soulsync"
             #"patchmon-traefik"
         ];
 

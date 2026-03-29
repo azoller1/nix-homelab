@@ -14,6 +14,10 @@
             /home/azoller/containers/geopulse/.env
         ];
 
+        extraOptions = [
+            "--security-opt=no-new-privileges"
+        ];
+
         labels = {
             "kop.bind.ip" = "192.168.2.6";
             "traefik.enable" = "true";
@@ -44,6 +48,7 @@
 
         extraOptions = [
             "--memory=512m"
+            "--security-opt=no-new-privileges"
         ];
     };
 }

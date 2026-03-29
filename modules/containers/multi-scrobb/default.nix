@@ -1,5 +1,3 @@
-{ config, lib, pkgs, ...}:
-
 {
     virtualisation.oci-containers.containers."scrobbler" = {
 
@@ -14,6 +12,10 @@
 
         environmentFiles = [
             /home/azoller/containers/scrobbler/env
+        ];
+
+        extraOptions = [
+            "--security-opt=no-new-privileges"
         ];
 
         environment = {

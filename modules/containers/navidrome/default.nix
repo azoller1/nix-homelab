@@ -10,6 +10,7 @@
         volumes = [
             "navidrome_data:/data"
             "/mnt/hdd/media/music:/music:ro"
+            "/mnt/hdd/media/music-soulsync:/music-flac:ro"
         ];
 
         environment = {
@@ -18,9 +19,9 @@
             ND_LISTENBRAINZ_BASEURL = "https://scrobbler.zollerlab.com/1/";
         };
 
-        #extraOptions = [
-        #    "--security-opt=no-new-privileges"
-        #];
+        extraOptions = [
+            "--security-opt=no-new-privileges"
+        ];
 
         labels = {
             "traefik.enable" = "true";

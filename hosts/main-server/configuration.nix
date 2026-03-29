@@ -29,6 +29,7 @@
     ../../modules/containers/recycle/default.nix
     ../../modules/containers/openweb/default.nix
     ../../modules/containers/navidrome/default.nix
+    ../../modules/containers/soulsync/default.nix
     #../../modules/containers/cooklang/default.nix
     #../../modules/containers/tuwunel/default.nix
     #../../modules/containers/patchmon/default.nix
@@ -57,7 +58,7 @@
   #boot.supportedFilesystems = [ "zfs" ];
   #boot.zfs.forceImportRoot = false;
 
-  # Networking  
+  # Networking
   networking.hostName = "main-server";
   # networking.wireless.enable = true;
   networking.networkmanager.enable = true;
@@ -91,7 +92,7 @@
     useXkbConfig = true;
   };
 
-  # Packages 
+  # Packages
   environment.systemPackages = with pkgs; [
     wget
     micro
@@ -207,7 +208,7 @@
 
   # Restic
   services.restic.backups = {
-  
+
     data_local = {
 
       user = "root";
@@ -235,7 +236,7 @@
         "/home/*/.cache"
         "/home/azoller/zfsdata"
       ];
-      
+
       paths = [
         "/home/azoller"
       ];
@@ -245,11 +246,11 @@
         Persistent = true;
         #RandomizedDelaySec = "30m";
       };
-      
+
     };
-    
+
     data_s3 = {
-      
+
       user = "root";
       initialize = true;
       repositoryFile = "/home/azoller/.restic-repo-s3";
@@ -258,7 +259,7 @@
       backupPrepareCommand = "/home/azoller/scripts/restic_prepare.sh";
       #backupCleanupCommand = "/home/azoller/scripts/restic_clean.sh";
       checkOpts = ["--with-cache"];
-      
+
       paths = [
         "/home/azoller"
       ];
@@ -288,7 +289,7 @@
       };
     };
   };
-  
+
   # Docker Config
   virtualisation.oci-containers.backend = "docker";
   virtualisation.docker = {
@@ -302,7 +303,7 @@
   ## Containers (Non-Imports)
 
     virtualisation.oci-containers.containers."socket-proxy-beszel" = {
-      
+
         image = "lscr.io/linuxserver/socket-proxy:3.2.14";
         autoStart = true;
         networks = ["beszel"];
