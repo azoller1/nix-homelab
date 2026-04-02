@@ -2,7 +2,7 @@
     virtualisation.oci-containers.containers."mealie" = {
 
         image = "ghcr.io/mealie-recipes/mealie:v3.14.0";
-        ports = [ "10011:9000" ];
+        ports = [ "20005:9000" ];
         networks = ["mealie"];
         hostname = "mealie";
 
@@ -22,16 +22,16 @@
             "--memory=1024m"
         ];
 
-        labels = {
-            "kop.bind.ip" = "192.168.2.5";
-            "traefik.enable" = "true";
-            "traefik.http.services.mealie.loadbalancer.server.port" = "10011";
-            "traefik.http.routers.mealie.rule" = "Host(`recipes.zollerlab.com`)";
-            "traefik.http.routers.mealie.entrypoints" = "https";
-            "traefik.http.routers.mealie.tls" = "true";
-            "traefik.http.routers.mealie.tls.certresolver" = "le";
-            "traefik.http.routers.mealie.tls.domains[0].main" = "*.zollerlab.com";
-            "traefik.http.routers.mealie.middlewares" = "secheader@file";
-        };
+        # labels = {
+        #     "kop.bind.ip" = "192.168.2.5";
+        #     "traefik.enable" = "true";
+        #     "traefik.http.services.mealie.loadbalancer.server.port" = "10011";
+        #     "traefik.http.routers.mealie.rule" = "Host(`recipes.zollerlab.com`)";
+        #     "traefik.http.routers.mealie.entrypoints" = "https";
+        #     "traefik.http.routers.mealie.tls" = "true";
+        #     "traefik.http.routers.mealie.tls.certresolver" = "le";
+        #     "traefik.http.routers.mealie.tls.domains[0].main" = "*.zollerlab.com";
+        #     "traefik.http.routers.mealie.middlewares" = "secheader@file";
+        # };
     };
 }

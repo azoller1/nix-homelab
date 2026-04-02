@@ -6,6 +6,7 @@
             "immich"
             "immich-traefik"
         ];
+        ports = ["127.0.0.1:20004:2283"];
 
         hostname = "immich-server";
 
@@ -25,17 +26,17 @@
             /home/azoller/containers/immich/.env
         ];
 
-        labels = {
-            "traefik.enable" = "true";
-            "traefik.docker.network" = "immich-traefik";
-            "traefik.http.services.immich-server.loadbalancer.server.port" = "2283";
-            "traefik.http.routers.immich-server.rule" = "Host(`photos.zollerlab.com`)";
-            "traefik.http.routers.immich-server.entrypoints" = "https";
-            "traefik.http.routers.immich-server.tls" = "true";
-            "traefik.http.routers.immich-server.tls.certresolver" = "le";
-            "traefik.http.routers.immich-server.tls.domains[0].main" = "*.zollerlab.com";
-            "traefik.http.routers.immich-server.middlewares" = "secheader@file";
-        };
+        # labels = {
+        #     "traefik.enable" = "true";
+        #     "traefik.docker.network" = "immich-traefik";
+        #     "traefik.http.services.immich-server.loadbalancer.server.port" = "2283";
+        #     "traefik.http.routers.immich-server.rule" = "Host(`photos.zollerlab.com`)";
+        #     "traefik.http.routers.immich-server.entrypoints" = "https";
+        #     "traefik.http.routers.immich-server.tls" = "true";
+        #     "traefik.http.routers.immich-server.tls.certresolver" = "le";
+        #     "traefik.http.routers.immich-server.tls.domains[0].main" = "*.zollerlab.com";
+        #     "traefik.http.routers.immich-server.middlewares" = "secheader@file";
+        # };
     };
 
     virtualisation.oci-containers.containers."immich-machine-learning" = {
@@ -52,9 +53,9 @@
             /home/azoller/containers/immich/.env
         ];
 
-        labels = {
-            "traefik.enable" = "false";
-        };
+        # labels = {
+        #     "traefik.enable" = "false";
+        # };
     };
 
     virtualisation.oci-containers.containers."immich-redis" = {
@@ -63,9 +64,9 @@
         networks = ["immich"];
         hostname = "immich-redis";
 
-        labels = {
-            "traefik.enable" = "false";
-        };
+        # labels = {
+        #     "traefik.enable" = "false";
+        # };
     };
 
     virtualisation.oci-containers.containers."immich-db" = {
@@ -86,8 +87,8 @@
             /home/azoller/containers/immich/.env
         ];
 
-        labels = {
-            "traefik.enable" = "false";
-        };
+        # labels = {
+        #     "traefik.enable" = "false";
+        # };
     };
 }

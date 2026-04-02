@@ -1,10 +1,7 @@
-{ config, lib, pkgs, ...}:
-
 {
     virtualisation.oci-containers.containers."socket-proxy-beszel" = {
 
         image = "lscr.io/linuxserver/socket-proxy:3.2.14";
-        autoStart = true;
         networks = ["beszel"];
         hostname = "socket-proxy-beszel";
 
@@ -30,7 +27,6 @@
     virtualisation.oci-containers.containers."beszel-agent" = {
 
         image = "ghcr.io/henrygd/beszel/beszel-agent:0.18.6-alpine";
-        autoStart = true;
         ports = ["45876:45876"];
         networks = ["beszel"];
         hostname = "beszel-agent";
@@ -55,8 +51,8 @@
             "beszel-agent_data:/var/lib/beszel-agent"
         ];
 
-        labels = {
-            "traefik.enable" = "false";
-        };
+        # labels = {
+        #     "traefik.enable" = "false";
+        # };
     };
 }

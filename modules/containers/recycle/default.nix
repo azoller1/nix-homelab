@@ -15,8 +15,8 @@
             TZ = "America/Chicago";
         };
 
-        labels = {
-            "traefik.enable" = "false";
-        };
+        # labels = {
+        #     "traefik.enable" = "false";
+        # };
     };
 }

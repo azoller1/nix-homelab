@@ -20,7 +20,6 @@
     ../../modules/containers/jellyfin/default.nix
     ../../modules/containers/lldap/default.nix
     ../../modules/containers/paperless/default.nix
-    ../../modules/containers/traefik/default.nix
     ../../modules/containers/sftpgo/default.nix
     ../../modules/containers/ntfy/default.nix
     ../../modules/containers/snr/default.nix
@@ -29,6 +28,7 @@
     ../../modules/containers/recycle/default.nix
     ../../modules/containers/openweb/default.nix
     ../../modules/containers/navidrome/default.nix
+    #../../modules/containers/traefik/default.nix
     #../../modules/containers/scanopy/default.nix
     #../../modules/containers/soulsync/default.nix
     #../../modules/containers/cooklang/default.nix
@@ -293,6 +293,25 @@
     };
   };
 
+  # traefik
+  services.traefik = {
+    enable = true;
+    # environmentFiles = ["/home/azoller/traefik/.env"];
+    dynamicConfigFile = "/etc/traefik/dynamic.yaml";
+    staticConfigFile = "/etc/traefik/config.yaml";
+  };
+
+  environment.etc."traefik/dynamic.yaml" = {
+      user = config.systemd.services.traefik.serviceConfig.User;
+      group = config.systemd.services.traefik.serviceConfig.Group;
+      mode = "400";
+      source = "/etc/traefik/dynamic.yaml";
+  };
+
+  systemd.services.traefik.environment = {
+      CF_DNS_API_TOKEN_FILE = "/etc/traefik/env";
+  };
+
   # Docker Config
   virtualisation.oci-containers.backend = "docker";
   virtualisation.docker = {
@@ -363,9 +382,9 @@
             "beszel-agent_data:/var/lib/beszel-agent"
         ];
 
-        labels = {
-            "traefik.enable" = "false";
-        };
+        # labels = {
+        #     "traefik.enable" = "false";
+        # };
       };
 
   # System Config

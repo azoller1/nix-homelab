@@ -4,6 +4,7 @@
         image = "ghcr.io/navidrome/navidrome:0.60.3";
         hostname = "navidrome";
         networks = ["navidrome"];
+        ports = ["127.0.0.1:20005:4533"];
         user = "1000:100";
 
 
@@ -23,16 +24,16 @@
             "--security-opt=no-new-privileges"
         ];
 
-        labels = {
-            "traefik.enable" = "true";
-            "traefik.http.services.navidrome.loadbalancer.server.port" = "4533";
-            "traefik.http.routers.navidrome.rule" = "Host(`music.zollerlab.com`)";
-            "traefik.http.routers.navidrome.entrypoints" = "https";
-            "traefik.http.routers.navidrome.tls" = "true";
-            "traefik.http.routers.navidrome.tls.certresolver" = "le";
-            "traefik.http.routers.navidrome.tls.domains[0].main" = "*.zollerlab.com";
-            "traefik.http.routers.navidrome.middlewares" = "secheader@file";
-            "traefik.http.routers.navidrome.observability.accesslogs" = "false";
-        };
+        # labels = {
+        #     "traefik.enable" = "true";
+        #     "traefik.http.services.navidrome.loadbalancer.server.port" = "4533";
+        #     "traefik.http.routers.navidrome.rule" = "Host(`music.zollerlab.com`)";
+        #     "traefik.http.routers.navidrome.entrypoints" = "https";
+        #     "traefik.http.routers.navidrome.tls" = "true";
+        #     "traefik.http.routers.navidrome.tls.certresolver" = "le";
+        #     "traefik.http.routers.navidrome.tls.domains[0].main" = "*.zollerlab.com";
+        #     "traefik.http.routers.navidrome.middlewares" = "secheader@file";
+        #     "traefik.http.routers.navidrome.observability.accesslogs" = "false";
+        # };
     };
 }

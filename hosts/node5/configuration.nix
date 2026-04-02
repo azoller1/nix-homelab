@@ -28,7 +28,7 @@
   #boot.supportedFilesystems = [ "zfs" ];
   #boot.zfs.forceImportRoot = false;
 
-  # Networking  
+  # Networking
   networking.hostName = "node5";
   # networking.wireless.enable = true;
   networking.networkmanager.enable = true;
@@ -62,7 +62,7 @@
     useXkbConfig = true;
   };
 
-  # Packages 
+  # Packages
   environment.systemPackages = with pkgs; [
     wget
     micro
@@ -101,7 +101,7 @@
       };
     };
   };
-  
+
   # Docker Config
   virtualisation.oci-containers.backend = "docker";
   virtualisation.docker = {
@@ -206,45 +206,45 @@
       ];
     };
 
-    mongo6-ys = {
-      image = "quay.io/mongodb/mongodb-community-server:6.0.25-ubi9";
-      autoStart = true;
-      ports = [ "27017:27017" ];
-      networks = ["mongo6-ys"];
-      hostname = "mongo6-ys";
+    # mongo6-ys = {
+    #   image = "quay.io/mongodb/mongodb-community-server:6.0.25-ubi9";
+    #   autoStart = true;
+    #   ports = [ "27017:27017" ];
+    #   networks = ["mongo6-ys"];
+    #   hostname = "mongo6-ys";
 
-      volumes = [
-        "mongo-ys-data:/data/db"
-      ];
+    #   volumes = [
+    #     "mongo-ys-data:/data/db"
+    #   ];
 
-      environment = {
-        MONGO_INITDB_ROOT_USERNAME = "ys";
-      };
+    #   environment = {
+    #     MONGO_INITDB_ROOT_USERNAME = "ys";
+    #   };
 
-      environmentFiles = [
-        /home/azoller/containers/mongo-ys/env
-      ];
+    #   environmentFiles = [
+    #     /home/azoller/containers/mongo-ys/env
+    #   ];
 
-      cmd = [
-        "--ipv6"
-      ];
-    };
+    #   cmd = [
+    #     "--ipv6"
+    #   ];
+    # };
 
-    valkey-traefik = {
-      image = "ghcr.io/valkey-io/valkey:8.1.5-alpine";
-      autoStart = true;
-      ports = [ "6379:6379" ];
-      networks = ["valkey-traefik"];
-      hostname = "valkey-traefik";
+    # valkey-traefik = {
+    #   image = "ghcr.io/valkey-io/valkey:8.1.5-alpine";
+    #   autoStart = true;
+    #   ports = [ "6379:6379" ];
+    #   networks = ["valkey-traefik"];
+    #   hostname = "valkey-traefik";
 
-      volumes = [
-        "valkey:/data"
-      ];
+    #   volumes = [
+    #     "valkey:/data"
+    #   ];
 
-      environment = {
-        VALKEY_EXTRA_FLAGS = "--save 30 1 --loglevel warning";
-      };
-    };
+    #   environment = {
+    #     VALKEY_EXTRA_FLAGS = "--save 30 1 --loglevel warning";
+    #   };
+    # };
 
     valkey-crowdsec = {
       image = "ghcr.io/valkey-io/valkey:9-trixie";

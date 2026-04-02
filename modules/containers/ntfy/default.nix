@@ -1,10 +1,9 @@
-{ config, lib, pkgs, ...}:
-
 {
     virtualisation.oci-containers.containers."ntfy" = {
 
         image = "git.zollerlab.com/azoller/ntfy:2.17.0";
         networks = ["ntfy"];
+        ports = ["127.0.0.1:20006:8080"];
         hostname = "ntfy";
 
         volumes = [
@@ -25,15 +24,15 @@
             "serve"
         ];
 
-        labels = {
-            "traefik.enable" = "true";
-            "traefik.http.services.ntfy.loadbalancer.server.port" = "8080";
-            "traefik.http.routers.ntfy.rule" = "Host(`ntfy.zollerlab.com`)";
-            "traefik.http.routers.ntfy.entrypoints" = "https";
-            "traefik.http.routers.ntfy.tls" = "true";
-            "traefik.http.routers.ntfy.tls.certresolver" = "le";
-            "traefik.http.routers.ntfy.tls.domains[0].main" = "*.zollerlab.com";
-            "traefik.http.routers.ntfy.middlewares" = "secheader@file";
-        };
+        # labels = {
+        #     "traefik.enable" = "true";
+        #     "traefik.http.services.ntfy.loadbalancer.server.port" = "8080";
+        #     "traefik.http.routers.ntfy.rule" = "Host(`ntfy.zollerlab.com`)";
+        #     "traefik.http.routers.ntfy.entrypoints" = "https";
+        #     "traefik.http.routers.ntfy.tls" = "true";
+        #     "traefik.http.routers.ntfy.tls.certresolver" = "le";
+        #     "traefik.http.routers.ntfy.tls.domains[0].main" = "*.zollerlab.com";
+        #     "traefik.http.routers.ntfy.middlewares" = "secheader@file";
+        # };
     };
 }

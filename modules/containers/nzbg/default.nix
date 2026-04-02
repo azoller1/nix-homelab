@@ -4,6 +4,7 @@
         image = "ghcr.io/nzbgetcom/nzbget:v26.0";
         hostname = "nzbget";
         networks = ["nzbget"];
+        ports = ["127.0.0.1:20007:6789"];
         #user = "1000:100";
 
 
@@ -19,16 +20,16 @@
             TZ = "America/Chicago";
         };
 
-        labels = {
-            "traefik.enable" = "true";
-            "traefik.http.services.nzbget.loadbalancer.server.port" = "6789";
-            "traefik.http.routers.nzbget.rule" = "Host(`nzbg.zollerlab.com`)";
-            "traefik.http.routers.nzbget.entrypoints" = "https";
-            "traefik.http.routers.nzbget.tls" = "true";
-            "traefik.http.routers.nzbget.tls.certresolver" = "le";
-            "traefik.http.routers.nzbget.tls.domains[0].main" = "*.zollerlab.com";
-            "traefik.http.routers.nzbget.middlewares" = "secheader@file";
-            "traefik.http.routers.nzbget.observability.accesslogs" = "false";
-        };
+        # labels = {
+        #     "traefik.enable" = "true";
+        #     "traefik.http.services.nzbget.loadbalancer.server.port" = "6789";
+        #     "traefik.http.routers.nzbget.rule" = "Host(`nzbg.zollerlab.com`)";
+        #     "traefik.http.routers.nzbget.entrypoints" = "https";
+        #     "traefik.http.routers.nzbget.tls" = "true";
+        #     "traefik.http.routers.nzbget.tls.certresolver" = "le";
+        #     "traefik.http.routers.nzbget.tls.domains[0].main" = "*.zollerlab.com";
+        #     "traefik.http.routers.nzbget.middlewares" = "secheader@file";
+        #     "traefik.http.routers.nzbget.observability.accesslogs" = "false";
+        # };
     };
 }

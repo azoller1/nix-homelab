@@ -1,10 +1,8 @@
-{ config, lib, pkgs, ...}:
-
 {
     virtualisation.oci-containers.containers."sure" = {
 
         image = "ghcr.io/we-promise/sure:0.6.8";
-        ports = [ "10004:3000" ];
+        ports = [ "20003:3000" ];
         networks = ["sure"];
         hostname = "sure";
 
@@ -16,17 +14,17 @@
             "/home/azoller/containers/sure-finances/env"
         ];
 
-        labels = {
-            "kop.bind.ip" = "192.168.2.6";
-            "traefik.enable" = "true";
-            "traefik.http.services.sure.loadbalancer.server.port" = "10004";
-            "traefik.http.routers.sure.rule" = "Host(`finances.zollerlab.com`)";
-            "traefik.http.routers.sure.entrypoints" = "https";
-            "traefik.http.routers.sure.tls" = "true";
-            "traefik.http.routers.sure.tls.certresolver" = "le";
-            "traefik.http.routers.sure.tls.domains[0].main" = "*.zollerlab.com";
-            "traefik.http.routers.sure.middlewares" = "secheader@file";
-        };
+        # labels = {
+        #     "kop.bind.ip" = "192.168.2.6";
+        #     "traefik.enable" = "true";
+        #     "traefik.http.services.sure.loadbalancer.server.port" = "10004";
+        #     "traefik.http.routers.sure.rule" = "Host(`finances.zollerlab.com`)";
+        #     "traefik.http.routers.sure.entrypoints" = "https";
+        #     "traefik.http.routers.sure.tls" = "true";
+        #     "traefik.http.routers.sure.tls.certresolver" = "le";
+        #     "traefik.http.routers.sure.tls.domains[0].main" = "*.zollerlab.com";
+        #     "traefik.http.routers.sure.middlewares" = "secheader@file";
+        # };
     };
 
     virtualisation.oci-containers.containers."sure-worker" = {
@@ -49,9 +47,9 @@
             "/home/azoller/containers/sure-finances/env"
         ];
 
-        labels = {
-            "traefik.enable" = "false";
-        };
+        # labels = {
+        #     "traefik.enable" = "false";
+        # };
     };
 
     virtualisation.oci-containers.containers."sure-valkey" = {
@@ -72,8 +70,8 @@
             "--protected-mode no"
         ];
 
-        labels = {
-            "traefik.enable" = "false";
-        };
+        # labels = {
+        #     "traefik.enable" = "false";
+        # };
     };
 }

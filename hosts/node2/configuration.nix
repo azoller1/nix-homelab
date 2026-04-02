@@ -17,7 +17,7 @@
     #../../modules/containers/nodered/default.nix
     #../../modules/containers/diun/default.nix
     #../../modules/containers/wud/default.nix
-    
+
     #../../modules/containers/cup-agent/default.nix
   ];
   facter.reportPath = ./facter.json;
@@ -35,7 +35,7 @@
   #boot.supportedFilesystems = [ "zfs" ];
   #boot.zfs.forceImportRoot = false;
 
-  # Networking  
+  # Networking
   networking.hostName = "node2";
   # networking.wireless.enable = true;
   networking.networkmanager.enable = true;
@@ -69,7 +69,7 @@
     useXkbConfig = true;
   };
 
-  # Packages 
+  # Packages
   environment.systemPackages = with pkgs; [
     wget
     micro
@@ -108,7 +108,7 @@
       };
     };
   };
-  
+
   # Docker Config
   virtualisation.oci-containers.backend = "docker";
   virtualisation.docker = {
@@ -121,46 +121,46 @@
 
   ## Containers
 
-  virtualisation.oci-containers.containers = {
+  # virtualisation.oci-containers.containers = {
 
-    socket-proxy-kop = {
-      image = "lscr.io/linuxserver/socket-proxy:3.2.14";
-      autoStart = true;
-      networks = ["kop"];
-      hostname = "socket-proxy-kop";
+  #   socket-proxy-kop = {
+  #     image = "lscr.io/linuxserver/socket-proxy:3.2.14";
+  #     autoStart = true;
+  #     networks = ["kop"];
+  #     hostname = "socket-proxy-kop";
 
-      volumes = [
-        "/var/run/docker.sock:/var/run/docker.sock:ro"
-      ];
+  #     volumes = [
+  #       "/var/run/docker.sock:/var/run/docker.sock:ro"
+  #     ];
 
-      environment = {
-        CONTAINERS = "1";
-        LOG_LEVEL = "info";
-        TZ = "America/Chicago";
-      };
+  #     environment = {
+  #       CONTAINERS = "1";
+  #       LOG_LEVEL = "info";
+  #       TZ = "America/Chicago";
+  #     };
 
-      extraOptions = [
-        "--tmpfs=/run"
-        "--read-only"
-        "--memory=64m"
-        "--cap-drop=ALL"
-        "--security-opt=no-new-privileges"
-      ];
-    };
+  #     extraOptions = [
+  #       "--tmpfs=/run"
+  #       "--read-only"
+  #       "--memory=64m"
+  #       "--cap-drop=ALL"
+  #       "--security-opt=no-new-privileges"
+  #     ];
+  #   };
 
-    kop = {
-      image = "ghcr.io/jittering/traefik-kop:0.19.4";
-      autoStart = true;
-      networks = ["kop"];
-      hostname = "kop";
+  #   kop = {
+  #     image = "ghcr.io/jittering/traefik-kop:0.19.4";
+  #     autoStart = true;
+  #     networks = ["kop"];
+  #     hostname = "kop";
 
-      environment = {
-        REDIS_ADDR = "node5.lan.internal:6379";
-        KOP_HOSTNAME = "node2.lan.internal";
-        DOCKER_HOST = "tcp://socket-proxy-kop:2375";
-      };
-    };
-  };
+  #     environment = {
+  #       REDIS_ADDR = "node5.lan.internal:6379";
+  #       KOP_HOSTNAME = "node2.lan.internal";
+  #       DOCKER_HOST = "tcp://socket-proxy-kop:2375";
+  #     };
+  #   };
+  # };
 
   ## Services
 

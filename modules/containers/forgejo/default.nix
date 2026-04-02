@@ -1,11 +1,9 @@
-{ config, lib, pkgs, ...}:
-
 {
     virtualisation.oci-containers.containers."forgejo" = {
 
         image = "codeberg.org/forgejo/forgejo:14.0.3-rootless";
         networks = ["forgejo"];
-        ports = ["2222:2222"];
+        ports = ["2222:2222" "127.0.0.1:20003:3000"];
         hostname = "forgejo";
 
         environment = {
@@ -20,16 +18,16 @@
             "/etc/localtime:/etc/localtime:ro"
         ];
 
-        labels = {
-            "traefik.enable" = "true";
-            "traefik.http.routers.forgejo.service" = "forgejo";
-            "traefik.http.services.forgejo.loadbalancer.server.port" = "3000";
-            "traefik.http.routers.forgejo.rule" = "Host(`git.zollerlab.com`)";
-            "traefik.http.routers.forgejo.entrypoints" = "https";
-            "traefik.http.routers.forgejo.tls" = "true";
-            "traefik.http.routers.forgejo.tls.certresolver" = "le";
-            "traefik.http.routers.forgejo.tls.domains[0].main" = "*.zollerlab.com";
-            "traefik.http.routers.forgejo.middlewares" = "secheader@file";
-        };
+        # labels = {
+        #     "traefik.enable" = "true";
+        #     "traefik.http.routers.forgejo.service" = "forgejo";
+        #     "traefik.http.services.forgejo.loadbalancer.server.port" = "3000";
+        #     "traefik.http.routers.forgejo.rule" = "Host(`git.zollerlab.com`)";
+        #     "traefik.http.routers.forgejo.entrypoints" = "https";
+        #     "traefik.http.routers.forgejo.tls" = "true";
+        #     "traefik.http.routers.forgejo.tls.certresolver" = "le";
+        #     "traefik.http.routers.forgejo.tls.domains[0].main" = "*.zollerlab.com";
+        #     "traefik.http.routers.forgejo.middlewares" = "secheader@file";
+        # };
     };
 }

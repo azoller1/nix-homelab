@@ -1,5 +1,3 @@
-{ config, lib, pkgs, ...}:
-
 {
     virtualisation.oci-containers.containers."paperless" = {
 
@@ -8,6 +6,7 @@
             "paperless"
             "paperless-traefik"
         ];
+        ports = ["127.0.0.1:20009:8000"];
 
         hostname = "paperless";
 
@@ -35,23 +34,22 @@
             /home/azoller/containers/papers/.env
         ];
 
-        labels = {
-            "traefik.enable" = "true";
-            "traefik.docker.network" = "paperless-traefik";
-            "traefik.http.services.paperless.loadbalancer.server.port" = "8000";
-            "traefik.http.routers.paperless.rule" = "Host(`papers.zollerlab.com`)";
-            "traefik.http.routers.paperless.entrypoints" = "https";
-            "traefik.http.routers.paperless.tls" = "true";
-            "traefik.http.routers.paperless.tls.certresolver" = "le";
-            "traefik.http.routers.paperless.tls.domains[0].main" = "*.zollerlab.com";
-            "traefik.http.routers.paperless.middlewares" = "secheader@file";
-        };
+        # labels = {
+        #     "traefik.enable" = "true";
+        #     "traefik.docker.network" = "paperless-traefik";
+        #     "traefik.http.services.paperless.loadbalancer.server.port" = "8000";
+        #     "traefik.http.routers.paperless.rule" = "Host(`papers.zollerlab.com`)";
+        #     "traefik.http.routers.paperless.entrypoints" = "https";
+        #     "traefik.http.routers.paperless.tls" = "true";
+        #     "traefik.http.routers.paperless.tls.certresolver" = "le";
+        #     "traefik.http.routers.paperless.tls.domains[0].main" = "*.zollerlab.com";
+        #     "traefik.http.routers.paperless.middlewares" = "secheader@file";
+        # };
     };
 
     virtualisation.oci-containers.containers."paper-valkey" = {
 
         image = "docker.io/valkey/valkey:9-trixie";
-        #autoStart = true;
         networks = ["paperless"];
         hostname = "paper-valkey";
 
@@ -65,27 +63,25 @@
             "--loglevel warning"
         ];
 
-        labels = {
-            "traefik.enable" = "false";
-        };
+        # labels = {
+        #     "traefik.enable" = "false";
+        # };
     };
 
     virtualisation.oci-containers.containers."paper-tika" = {
 
         image = "docker.io/apache/tika:3.2.3.0";
-        #autoStart = true;
         networks = ["paperless"];
         hostname = "paper-tika";
 
-        labels = {
-            "traefik.enable" = "false";
-        };
+        # labels = {
+        #     "traefik.enable" = "false";
+        # };
     };
 
     virtualisation.oci-containers.containers."paper-gotenberg" = {
 
         image = "docker.io/gotenberg/gotenberg:8.26";
-        #autoStart = true;
         networks = ["paperless"];
         hostname = "paper-gotenberg";
 
@@ -95,8 +91,8 @@
             "--chromium-allow-list=file:///tmp/.*"
         ];
 
-        labels = {
-            "traefik.enable" = "false";
-        };
+        # labels = {
+        #     "traefik.enable" = "false";
+        # };
     };
 }

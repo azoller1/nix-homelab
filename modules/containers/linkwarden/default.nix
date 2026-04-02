@@ -2,7 +2,7 @@
     virtualisation.oci-containers.containers."linkwarden" = {
 
         image = "ghcr.io/linkwarden/linkwarden:v2.14.0";
-        ports = [ "10023:3000" ];
+        ports = [ "20006:3000" ];
         networks = ["linkwarden"];
         hostname = "linkwarden";
 
@@ -18,17 +18,17 @@
             "meili-linkwarden"
         ];
 
-        labels = {
-            "kop.bind.ip" = "192.168.2.5";
-            "traefik.enable" = "true";
-            "traefik.http.services.linkwarden.loadbalancer.server.port" = "10023";
-            "traefik.http.routers.linkwarden.rule" = "Host(`links.zollerlab.com`)";
-            "traefik.http.routers.linkwarden.entrypoints" = "https";
-            "traefik.http.routers.linkwarden.tls" = "true";
-            "traefik.http.routers.linkwarden.tls.certresolver" = "le";
-            "traefik.http.routers.linkwarden.tls.domains[0].main" = "*.zollerlab.com";
-            "traefik.http.routers.linkwarden.middlewares" = "secheader@file";
-        };
+        # labels = {
+        #     "kop.bind.ip" = "192.168.2.5";
+        #     "traefik.enable" = "true";
+        #     "traefik.http.services.linkwarden.loadbalancer.server.port" = "10023";
+        #     "traefik.http.routers.linkwarden.rule" = "Host(`links.zollerlab.com`)";
+        #     "traefik.http.routers.linkwarden.entrypoints" = "https";
+        #     "traefik.http.routers.linkwarden.tls" = "true";
+        #     "traefik.http.routers.linkwarden.tls.certresolver" = "le";
+        #     "traefik.http.routers.linkwarden.tls.domains[0].main" = "*.zollerlab.com";
+        #     "traefik.http.routers.linkwarden.middlewares" = "secheader@file";
+        # };
     };
 
     virtualisation.oci-containers.containers."meili-linkwarden" = {
@@ -41,8 +41,8 @@
             "meili_linkwarden_data:/meili_data"
         ];
 
-        labels = {
-            "traefik.enable" = "false";
-        };
+        # labels = {
+        #     "traefik.enable" = "false";
+        # };
     };
 }
