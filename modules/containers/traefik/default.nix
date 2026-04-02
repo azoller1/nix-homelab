@@ -53,7 +53,7 @@
             "nzbget"
             "openweb"
             "navidrome"
-            "soulsync"
+            #"scanopy"
             #"patchmon-traefik"
         ];
 
