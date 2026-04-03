@@ -1,7 +1,7 @@
 {
     virtualisation.oci-containers.containers."sure" = {
 
-        image = "ghcr.io/we-promise/sure:0.6.8";
+        image = "ghcr.io/we-promise/sure:0.6.9";
         ports = [ "20003:3000" ];
         networks = ["sure"];
         hostname = "sure";
