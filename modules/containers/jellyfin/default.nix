@@ -1,7 +1,7 @@
 {
     virtualisation.oci-containers.containers."jellyfin" = {
 
-        image = "docker.io/jellyfin/jellyfin:10.11.7";
+        image = "docker.io/jellyfin/jellyfin:10.11.8";
         ports = ["8096:8096/tcp" "7359:7359/udp"];
         hostname = "jellyfin";
         networks = ["jellyfin"];

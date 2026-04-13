@@ -1,7 +1,7 @@
 {
     virtualisation.oci-containers.containers."beszel" = {
 
-        image = "ghcr.io/henrygd/beszel/beszel:0.18.6";
+        image = "ghcr.io/henrygd/beszel/beszel:0.18.7";
         ports = ["127.0.0.1:20000:8090"];
         networks = ["beszel"];
         hostname = "beszel";

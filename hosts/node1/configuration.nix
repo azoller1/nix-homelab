@@ -8,7 +8,6 @@
     ./disk-config.nix
     ../../users/azoller/default.nix
     ../../modules/containers/dozzle-agent/default.nix
-    ../../modules/containers/beszel-agent/default.nix
     ../../modules/containers/lubelogger/default.nix
     ../../modules/containers/yamtrack/default.nix
     ../../modules/containers/outline-wiki/default.nix
@@ -16,6 +15,7 @@
     ../../modules/containers/vw/default.nix
     ../../modules/containers/mealie/default.nix
     ../../modules/containers/linkwarden/default.nix
+    #../../modules/containers/beszel-agent/default.nix
     #../../modules/containers/ys/default.nix
     #../../modules/containers/dawarich/default.nix
     #../../modules/containers/tasktrove/default.nix

@@ -13,7 +13,6 @@
     ../../modules/containers/backrest/default.nix
     ../../modules/containers/dozzle-agent/default.nix
     ../../modules/containers/dozzle/default.nix
-    ../../modules/containers/beszel/default.nix
     ../../modules/containers/forgejo/default.nix
     ../../modules/containers/pocket-id/default.nix
     ../../modules/containers/immich/default.nix
@@ -28,6 +27,7 @@
     ../../modules/containers/recycle/default.nix
     ../../modules/containers/openweb/default.nix
     ../../modules/containers/navidrome/default.nix
+    #../../modules/containers/beszel/default.nix
     #../../modules/containers/traefik/default.nix
     #../../modules/containers/scanopy/default.nix
     #../../modules/containers/soulsync/default.nix
@@ -324,68 +324,68 @@
 
   ## Containers (Non-Imports)
 
-    virtualisation.oci-containers.containers."socket-proxy-beszel" = {
+    # virtualisation.oci-containers.containers."socket-proxy-beszel" = {
 
-        image = "lscr.io/linuxserver/socket-proxy:3.2.14";
-        autoStart = true;
-        networks = ["beszel"];
-        hostname = "socket-proxy-beszel";
+    #     image = "lscr.io/linuxserver/socket-proxy:3.2.14";
+    #     autoStart = true;
+    #     networks = ["beszel"];
+    #     hostname = "socket-proxy-beszel";
 
-        volumes = [
-            "/var/run/docker.sock:/var/run/docker.sock:ro"
-        ];
+    #     volumes = [
+    #         "/var/run/docker.sock:/var/run/docker.sock:ro"
+    #     ];
 
-        environment = {
-            CONTAINERS = "1";
-            LOG_LEVEL = "info";
-            TZ = "America/Chicago";
-        };
+    #     environment = {
+    #         CONTAINERS = "1";
+    #         LOG_LEVEL = "info";
+    #         TZ = "America/Chicago";
+    #     };
 
-        extraOptions = [
-            "--tmpfs=/run"
-            "--read-only"
-            "--memory=64m"
-            "--cap-drop=ALL"
-            "--security-opt=no-new-privileges"
-        ];
-    };
+    #     extraOptions = [
+    #         "--tmpfs=/run"
+    #         "--read-only"
+    #         "--memory=64m"
+    #         "--cap-drop=ALL"
+    #         "--security-opt=no-new-privileges"
+    #     ];
+    # };
 
-    virtualisation.oci-containers.containers."beszel-agent" = {
+    # virtualisation.oci-containers.containers."beszel-agent" = {
 
-        image = "ghcr.io/henrygd/beszel/beszel-agent:0.18.6-alpine";
-        autoStart = true;
-        ports = ["45876:45876"];
-        networks = ["beszel"];
-        hostname = "beszel-agent";
+    #     image = "ghcr.io/henrygd/beszel/beszel-agent:0.18.6-alpine";
+    #     autoStart = true;
+    #     ports = ["45876:45876"];
+    #     networks = ["beszel"];
+    #     hostname = "beszel-agent";
 
-        environment = {
-            LISTEN = "45876";
-            HUB_URL = "https://stats.zollerlab.com";
-            DOCKER_HOST = "tcp://socket-proxy-beszel:2375";
-            KEY = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPHjnUWIIjbWBWrZhZUiItXjHh1A5wo+8ABvWunvCfTb";
-        };
+    #     environment = {
+    #         LISTEN = "45876";
+    #         HUB_URL = "https://stats.zollerlab.com";
+    #         DOCKER_HOST = "tcp://socket-proxy-beszel:2375";
+    #         KEY = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPHjnUWIIjbWBWrZhZUiItXjHh1A5wo+8ABvWunvCfTb";
+    #     };
 
-        capabilities = {
-            SYS_RAWIO = true;
-            SYS_ADMIN = true;
-        };
+    #     capabilities = {
+    #         SYS_RAWIO = true;
+    #         SYS_ADMIN = true;
+    #     };
 
-        devices = [
-            "/dev/sda:/dev/sda"
-            "/dev/sdb:/dev/sdb"
-            "/dev/sdc:/dev/sdc"
-            "/dev/sdd:/dev/sdd"
-            "/dev/nvme0:/dev/nvme0"
-        ];
+    #     devices = [
+    #         "/dev/sda:/dev/sda"
+    #         "/dev/sdb:/dev/sdb"
+    #         "/dev/sdc:/dev/sdc"
+    #         "/dev/sdd:/dev/sdd"
+    #         "/dev/nvme0:/dev/nvme0"
+    #     ];
 
-        volumes = [
-            "beszel-agent_data:/var/lib/beszel-agent"
-        ];
+    #     volumes = [
+    #         "beszel-agent_data:/var/lib/beszel-agent"
+    #     ];
 
-        # labels = {
-        #     "traefik.enable" = "false";
-        # };
-      };
+    #     # labels = {
+    #     #     "traefik.enable" = "false";
+    #     # };
+    #   };
 
   # System Config
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

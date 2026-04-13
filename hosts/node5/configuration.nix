@@ -8,10 +8,10 @@
     ./disk-config.nix
     ../../users/azoller/default.nix
     ../../modules/containers/dozzle-agent/default.nix
-    ../../modules/containers/beszel-agent/default.nix
     #../../modules/containers/diun/default.nix
     #../../modules/containers/wud/default.nix
     #../../modules/containers/cup-agent/default.nix
+    #../../modules/containers/beszel-agent/default.nix
   ];
   facter.reportPath = ./facter.json;
 
@@ -248,7 +248,7 @@
 
     valkey-crowdsec = {
       image = "ghcr.io/valkey-io/valkey:9-trixie";
-      ports = [ "6380:6380" ];
+      ports = [ "6380:6379" ];
       networks = ["valkey-crowdsec"];
       hostname = "valkey-crowdsec";
 
