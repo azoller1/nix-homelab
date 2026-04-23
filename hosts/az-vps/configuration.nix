@@ -20,7 +20,7 @@
   # Bootloader, need grub for hetzner
   # boot.loader.grub.enable = true;
 
-  # Networking  
+  # Networking
   networking.hostName = "az-vps-racknerd";
   # networking.wireless.enable = true;
   networking.networkmanager = {
@@ -48,7 +48,7 @@
     useXkbConfig = true;
   };
 
-  # Packages 
+  # Packages
   environment.systemPackages = with pkgs; [
     nftables
     wget
@@ -64,6 +64,7 @@
     restic
     libressl
     rathole
+    ghostty
   ];
 
   ### Programs/Services
@@ -106,7 +107,7 @@
   services.crowdsec-firewall-bouncer.settings = {
     api_url = "http://127.0.0.1:8081/";
   };
-  
+
   # Container Config
   virtualisation.oci-containers.backend = "docker";
 

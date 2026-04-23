@@ -9,7 +9,7 @@ deploy-main-server:
 deploy-node1:
     nix run github:serokell/deploy-rs ./#node1
 deploy-node2:
-    nix run github:serokell/deploy-rs ./#node2
+    nix run github:serokell/deploy-rs -- ./#node2 -s
 deploy-node3:
     nix run github:serokell/deploy-rs ./#node3
 deploy-node4:
