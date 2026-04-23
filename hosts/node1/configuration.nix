@@ -97,7 +97,6 @@
     smartmontools
     restic
     libressl
-    kitty
   ];
 
   ### Programs Config

@@ -64,7 +64,7 @@
     restic
     libressl
     rathole
-    ghostty
+    screen
   ];
 
   ### Programs/Services

@@ -113,11 +113,11 @@
     restic
     libressl
     yt-dlp
-    kitty
     beets
     wrtag
     deno
     streamrip
+    screen
   ];
 
   ### Programs/Services

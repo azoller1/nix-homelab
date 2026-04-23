@@ -78,7 +78,6 @@
     smartmontools
     restic
     libressl
-    kitty
   ];
 
   ### Programs Config
@@ -117,7 +116,7 @@
   virtualisation.oci-containers.containers = {
 
     mariadb-11 = {
-      image = "ghcr.io/mariadb/mariadb:11.8.5-ubi9";
+      image = "ghcr.io/mariadb/mariadb:11.8.6-ubi9";
       autoStart = true;
       ports = [ "3306:3306" ];
       networks = ["mariadb"];
@@ -133,7 +132,7 @@
     };
 
     postgres-17 = {
-      image = "docker.io/postgres:17.7-alpine";
+      image = "docker.io/postgres:17.9-alpine";
       autoStart = true;
       ports = [ "5432:5432" ];
       networks = ["postgres"];
@@ -191,7 +190,7 @@
     # };
 
     postgis-18-geopulse = {
-      image = "docker.io/postgis/postgis:18-3.6-alpine";
+      image = "docker.io/postgis/postgis:18-3.6-alpine@sha256:dd5cbfb841cb3572ddabeb949c6b7649edf320a8dc960d7e049ec535c2631a54";
       autoStart = true;
       ports = [ "5435:5432" ];
       networks = ["postgis-geopulse"];
