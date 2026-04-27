@@ -27,6 +27,7 @@
     ../../modules/containers/recycle/default.nix
     ../../modules/containers/openweb/default.nix
     ../../modules/containers/navidrome/default.nix
+    ../../modules/containers/traccar/default.nix
     #../../modules/containers/beszel/default.nix
     #../../modules/containers/traefik/default.nix
     #../../modules/containers/scanopy/default.nix
