@@ -29,7 +29,7 @@
 
     virtualisation.oci-containers.containers."sure-worker" = {
 
-        image = "ghcr.io/we-promise/sure:0.6.8";
+        image = "ghcr.io/we-promise/sure:0.6.9";
         networks = ["sure"];
         hostname = "sure-worker";
 
