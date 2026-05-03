@@ -14,16 +14,12 @@
             "--save 30 1"
             "--loglevel warning"
         ];
-
-        labels = {
-            "traefik.enable" = "false";
-        };
     };
 
     virtualisation.oci-containers.containers."dawarich" = {
 
-        image = "docker.io/freikin/dawarich:1.2.0";
-        ports = [ "10014:3000" ];
+        image = "docker.io/freikin/dawarich:1.7.4";
+        ports = [ "20008:3000" ];
         networks = ["dawarich"];
         hostname = "dawarich_app";
 
@@ -49,24 +45,11 @@
         environmentFiles = [
             "/home/azoller/containers/dawarich/env"
         ];
-
-        labels = {
-            "kop.bind.ip" = "192.168.2.5";
-            "traefik.enable" = "true";
-            "traefik.http.services.dawarich.loadbalancer.server.port" = "10014";
-            "traefik.http.routers.dawarich.rule" = "Host(`maps.zollerlab.com`)";
-            "traefik.http.routers.dawarich.entrypoints" = "https";
-            "traefik.http.routers.dawarich.tls" = "true";
-            "traefik.http.routers.dawarich.tls.certresolver" = "le";
-            "traefik.http.routers.dawarich.tls.domains[0].main" = "*.zollerlab.com";
-            "traefik.http.routers.dawarich.middlewares" = "secheader@file,default-geoblock@file";
-            #"traefik.http.middlewares.secured.chain.middlewares" = "secheader@file,default-geoblock@file";
-        };
     };
 
     virtualisation.oci-containers.containers."dawarich-side" = {
 
-        image = "docker.io/freikin/dawarich:1.2.0";
+        image = "docker.io/freikin/dawarich:1.7.4";
         networks = ["dawarich"];
         hostname = "dawarich_sidekiq";
 
@@ -81,7 +64,7 @@
         #    "--interactive"
         #];
 
-        cmd = ["bundle" "exec" "sidekiq"];
+        cmd = ["sidekiq"];
 
         dependsOn = [
             "dawarich-valkey"
@@ -94,8 +77,5 @@
             "/home/azoller/containers/dawarich/side-env"
         ];
 
-        labels = {
-            "traefik.enable" = "false";
-        };
     };
 }

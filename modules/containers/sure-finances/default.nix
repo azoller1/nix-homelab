@@ -1,7 +1,7 @@
 {
     virtualisation.oci-containers.containers."sure" = {
 
-        image = "ghcr.io/we-promise/sure:0.6.9";
+        image = "ghcr.io/we-promise/sure:0.7.0";
         ports = [ "20003:3000" ];
         networks = ["sure"];
         hostname = "sure";
@@ -12,6 +12,10 @@
 
         environmentFiles = [
             "/home/azoller/containers/sure-finances/env"
+        ];
+
+        extraOptions = [
+            "--security-opt=no-new-privileges"
         ];
 
         # labels = {
@@ -29,7 +33,7 @@
 
     virtualisation.oci-containers.containers."sure-worker" = {
 
-        image = "ghcr.io/we-promise/sure:0.6.9";
+        image = "ghcr.io/we-promise/sure:0.7.0";
         networks = ["sure"];
         hostname = "sure-worker";
 
@@ -45,6 +49,10 @@
 
         environmentFiles = [
             "/home/azoller/containers/sure-finances/env"
+        ];
+
+        extraOptions = [
+            "--security-opt=no-new-privileges"
         ];
 
         # labels = {
@@ -68,6 +76,10 @@
             "--loglevel notice"
             "--maxmemory 256mb"
             "--protected-mode no"
+        ];
+
+        extraOptions = [
+            "--security-opt=no-new-privileges"
         ];
 
         # labels = {

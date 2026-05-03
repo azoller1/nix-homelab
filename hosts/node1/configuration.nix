@@ -16,9 +16,9 @@
     ../../modules/containers/mealie/default.nix
     ../../modules/containers/linkwarden/default.nix
     ../../modules/containers/crowdsec-webui/default.nix
+    ../../modules/containers/dawarich/default.nix
     #../../modules/containers/beszel-agent/default.nix
     #../../modules/containers/ys/default.nix
-    #../../modules/containers/dawarich/default.nix
     #../../modules/containers/tasktrove/default.nix
     #../../modules/containers/mealie/default.nix
     #../../modules/containers/diun/default.nix

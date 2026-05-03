@@ -167,27 +167,21 @@
     #   ];
     # };
 
-    # postgis-18-dawarich = {
-    #   image = "docker.io/postgis/postgis:18-3.6-alpine";
-    #   autoStart = false;
-    #   ports = [ "5434:5432" ];
-    #   networks = ["postgis-dawarich"];
-    #   hostname = "postgis-18-dawarich";
+    postgis-18-dawarich = {
+      image = "docker.io/postgis/postgis:17-3.5-alpine";
+      autoStart = true;
+      ports = [ "5434:5432" ];
+      networks = ["postgis-dawarich"];
+      hostname = "postgis-17-dawarich";
 
-    #   volumes = [
-    #     "postgis_dawa_data:/var/lib/postgresql"
-    #   ];
+      volumes = [
+        "postgis_dawa_data:/var/lib/postgresql"
+      ];
 
-    #   environmentFiles = [
-    #     /home/azoller/containers/postgis18/dawa-env
-    #   ];
-
-    #   labels = {
-    #       "wud.watch" = "true";
-    #       "wud.tag.include" = "^18+-$";
-    #       #"wud.link.template" = "https://github.com/FoxxMD/multi-scrobbler/releases/tag/$${major}.$${minor}.$${patch}";
-    #   };
-    # };
+      environmentFiles = [
+        /home/azoller/containers/postgis18/dawa-env
+      ];
+    };
 
     postgis-18-geopulse = {
       image = "docker.io/postgis/postgis:18-3.6-alpine@sha256:dd5cbfb841cb3572ddabeb949c6b7649edf320a8dc960d7e049ec535c2631a54";

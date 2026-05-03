@@ -2,7 +2,7 @@
 
     virtualisation.oci-containers.containers."vw" = {
 
-        image = "ghcr.io/dani-garcia/vaultwarden:1.35.7";
+        image = "ghcr.io/dani-garcia/vaultwarden:1.36.0";
         ports = [ "20004:80" ];
         networks = ["vw"];
         hostname = "vw";
