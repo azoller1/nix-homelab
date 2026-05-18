@@ -1,7 +1,7 @@
 {
     virtualisation.oci-containers.containers."nzbget" = {
 
-        image = "ghcr.io/nzbgetcom/nzbget:v26.0";
+        image = "ghcr.io/nzbgetcom/nzbget:v26.1";
         hostname = "nzbget";
         networks = ["nzbget"];
         ports = ["127.0.0.1:20007:6789"];

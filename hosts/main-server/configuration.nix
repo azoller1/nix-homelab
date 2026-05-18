@@ -17,7 +17,6 @@
     ../../modules/containers/pocket-id/default.nix
     ../../modules/containers/immich/default.nix
     ../../modules/containers/jellyfin/default.nix
-    ../../modules/containers/lldap/default.nix
     ../../modules/containers/paperless/default.nix
     ../../modules/containers/sftpgo/default.nix
     ../../modules/containers/ntfy/default.nix
@@ -25,9 +24,10 @@
     ../../modules/containers/rdr/default.nix
     ../../modules/containers/nzbg/default.nix
     ../../modules/containers/recycle/default.nix
-    ../../modules/containers/openweb/default.nix
     ../../modules/containers/navidrome/default.nix
-    ../../modules/containers/traccar/default.nix
+    #../../modules/containers/traccar/default.nix
+    #../../modules/containers/lldap/default.nix
+    #../../modules/containers/openweb/default.nix
     #../../modules/containers/beszel/default.nix
     #../../modules/containers/traefik/default.nix
     #../../modules/containers/scanopy/default.nix

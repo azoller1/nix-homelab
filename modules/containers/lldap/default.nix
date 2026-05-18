@@ -4,7 +4,7 @@
 
     virtualisation.oci-containers.containers."lldap" = {
 
-        image = "ghcr.io/lldap/lldap:v0.6.2-alpine-rootless";
+        image = "ghcr.io/lldap/lldap:v0.6.3-alpine-rootless";
         networks = ["lldap"];
         #autoStart = true;
         ports = ["3890:3890"];

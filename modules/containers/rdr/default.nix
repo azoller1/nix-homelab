@@ -1,7 +1,7 @@
 {
     virtualisation.oci-containers.containers."radarr" = {
 
-        image = "ghcr.io/linuxserver/radarr:amd64-latest@sha256:5f5fcfdd7651b71a78394973242efac2cb441193d58bc364b8c4a21620364828";
+        image = "ghcr.io/linuxserver/radarr:6.1.1@sha256:079e48870584baf2a3e7e43e7ba6d3c834555931851a59c82c51cc792d285caf";
         hostname = "radarr";
         networks = ["radarr"];
         ports = ["127.0.0.1:20011:7878"];

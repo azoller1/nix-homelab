@@ -2,7 +2,7 @@
 
     virtualisation.oci-containers.containers."koito" = {
 
-        image = "docker.io/gabehf/koito:v0.1.8";
+        image = "docker.io/gabehf/koito:v0.2.1";
         ports = [ "20000:4110" ];
         networks = ["koito"];
         hostname = "koito";
