@@ -23,7 +23,7 @@
 
     virtualisation.oci-containers.containers."yamtrack" = {
 
-        image = "ghcr.io/fuzzygrim/yamtrack:0.25.2";
+        image = "ghcr.io/fuzzygrim/yamtrack:0.25.3";
         ports = [ "20001:8000" ];
         networks = ["yamtrack"];
         hostname = "yamtrack";

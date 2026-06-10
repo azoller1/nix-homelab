@@ -1,7 +1,7 @@
 {
     virtualisation.oci-containers.containers."sftpgo" = {
 
-        image = "ghcr.io/drakkan/sftpgo:v2.7.1-distroless-slim";
+        image = "ghcr.io/drakkan/sftpgo:v2.7.3-distroless-slim";
         ports = ["2022:2022" "127.0.0.1:20014:8080" "127.0.0.1:20015:8181"];
         networks = ["sftpgo"];
         hostname = "sftpgo";

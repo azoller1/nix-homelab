@@ -183,21 +183,21 @@
       ];
     };
 
-    postgis-18-geopulse = {
-      image = "docker.io/postgis/postgis:18-3.6-alpine@sha256:dd5cbfb841cb3572ddabeb949c6b7649edf320a8dc960d7e049ec535c2631a54";
-      autoStart = true;
-      ports = [ "5435:5432" ];
-      networks = ["postgis-geopulse"];
-      hostname = "postgis-18-geopulse";
+    # postgis-18-geopulse = {
+    #   image = "docker.io/postgis/postgis:18-3.6-alpine@sha256:dd5cbfb841cb3572ddabeb949c6b7649edf320a8dc960d7e049ec535c2631a54";
+    #   autoStart = true;
+    #   ports = [ "5435:5432" ];
+    #   networks = ["postgis-geopulse"];
+    #   hostname = "postgis-18-geopulse";
 
-      volumes = [
-        "postgis_geopulse_data:/var/lib/postgresql"
-      ];
+    #   volumes = [
+    #     "postgis_geopulse_data:/var/lib/postgresql"
+    #   ];
 
-      environmentFiles = [
-        /home/azoller/containers/postgis18/geopulse-env
-      ];
-    };
+    #   environmentFiles = [
+    #     /home/azoller/containers/postgis18/geopulse-env
+    #   ];
+    # };
 
     # mongo6-ys = {
     #   image = "quay.io/mongodb/mongodb-community-server:6.0.25-ubi9";

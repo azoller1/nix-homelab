@@ -1,7 +1,7 @@
 {
     virtualisation.oci-containers.containers."lubelogger" = {
 
-        image = "ghcr.io/hargata/lubelogger:v1.6.5";
+        image = "ghcr.io/hargata/lubelogger:v1.6.7";
         ports = [ "20000:8080" ];
         networks = ["lubelogger"];
         hostname = "lubelogger";
