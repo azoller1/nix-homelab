@@ -18,7 +18,7 @@
 
     virtualisation.oci-containers.containers."dawarich" = {
 
-        image = "docker.io/freikin/dawarich:1.8.0";
+        image = "docker.io/freikin/dawarich:1.9.0";
         ports = [ "20008:3000" ];
         networks = ["dawarich"];
         hostname = "dawarich_app";
@@ -49,7 +49,7 @@
 
     virtualisation.oci-containers.containers."dawarich-side" = {
 
-        image = "docker.io/freikin/dawarich:1.8.0";
+        image = "docker.io/freikin/dawarich:1.9.0";
         networks = ["dawarich"];
         hostname = "dawarich_sidekiq";
 

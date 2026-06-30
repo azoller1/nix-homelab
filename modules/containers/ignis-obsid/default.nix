@@ -2,7 +2,7 @@
 
     virtualisation.oci-containers.containers."ignis" = {
 
-        image = "git.zollerlab.com/azoller/ignis-obsidian:0.8.5";
+        image = "git.zollerlab.com/azoller/ignis-obsidian:0.8.7";
         ports = [ "20009:8080" ];
         networks = ["ignis"];
         hostname = "ignis";

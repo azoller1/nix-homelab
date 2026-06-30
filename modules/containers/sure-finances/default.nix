@@ -1,7 +1,7 @@
 {
     virtualisation.oci-containers.containers."sure" = {
 
-        image = "ghcr.io/we-promise/sure:0.7.1@sha256:67089f799ac99ca65266d7d218d2207aa19fef1fda562fc2797ef04ee858b71a";
+        image = "ghcr.io/we-promise/sure:0.7.1-hotfix.1@sha256:64fa5951bcd426863759f5f06cf0316522bc5ecb3552bb6894f4101ca8708f6f";
         ports = [ "20003:3000" ];
         networks = ["sure"];
         hostname = "sure";
@@ -33,7 +33,7 @@
 
     virtualisation.oci-containers.containers."sure-worker" = {
 
-        image = "ghcr.io/we-promise/sure:0.7.0-hotfix.3@sha256:55c4da94f60a6a0e1da107dd6d61bdef06661bebaed26c1cd2a5c4d3d10af4ef";
+        image = "ghcr.io/we-promise/sure:0.7.1-hotfix.1@sha256:64fa5951bcd426863759f5f06cf0316522bc5ecb3552bb6894f4101ca8708f6f";
         networks = ["sure"];
         hostname = "sure-worker";
 
