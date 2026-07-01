@@ -18,6 +18,7 @@
     ../../modules/containers/crowdsec-webui/default.nix
     ../../modules/containers/dawarich/default.nix
     ../../modules/containers/ignis-obsid/default.nix
+    ../../modules/containers/grimmory/default.nix
     #../../modules/containers/beszel-agent/default.nix
     #../../modules/containers/ys/default.nix
     #../../modules/containers/tasktrove/default.nix
