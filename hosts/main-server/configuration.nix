@@ -25,6 +25,7 @@
     ../../modules/containers/nzbg/default.nix
     ../../modules/containers/recycle/default.nix
     ../../modules/containers/navidrome/default.nix
+    ../../modules/containers/tidarr/default.nix
     #../../modules/containers/zitadel/default.nix
     #../../modules/containers/traccar/default.nix
     #../../modules/containers/lldap/default.nix
