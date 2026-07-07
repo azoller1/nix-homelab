@@ -18,7 +18,6 @@
     ../../modules/containers/immich/default.nix
     ../../modules/containers/jellyfin/default.nix
     ../../modules/containers/paperless/default.nix
-    ../../modules/containers/sftpgo/default.nix
     ../../modules/containers/ntfy/default.nix
     ../../modules/containers/snr/default.nix
     ../../modules/containers/rdr/default.nix
@@ -26,6 +25,9 @@
     ../../modules/containers/recycle/default.nix
     ../../modules/containers/navidrome/default.nix
     ../../modules/containers/tidarr/default.nix
+    ../../modules/containers/office/default.nix
+    ../../modules/containers/filebrowser/default.nix
+    # ../../modules/containers/sftpgo/default.nix
     #../../modules/containers/zitadel/default.nix
     #../../modules/containers/traccar/default.nix
     #../../modules/containers/lldap/default.nix

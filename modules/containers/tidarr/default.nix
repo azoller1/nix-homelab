@@ -3,7 +3,7 @@
 
         image = "git.zollerlab.com/azoller/tidarr:latest@sha256:b824ce88fd5e2d20fda147feb3b8004451c1aff72256cd1aebb961fdca68f454";
         networks = ["tidarr"];
-        ports = ["20017:8484"];
+        ports = ["127.0.0.1:20017:8484"];
         hostname = "tidarr";
 
         volumes = [
