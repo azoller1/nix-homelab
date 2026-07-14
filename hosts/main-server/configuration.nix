@@ -324,6 +324,7 @@
     storageDriver = "overlay2";
     daemon.settings = {
       ipv6 = true;
+      fixed-cidr-v6 = "fdf2:30f9:1192:1::/64";
     };
   };
 
