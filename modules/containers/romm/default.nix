@@ -2,7 +2,7 @@
 
     virtualisation.oci-containers.containers."romm" = {
 
-        image = "ghcr.io/rommapp/romm:4.6.1";
+        image = "ghcr.io/rommapp/romm:5.0.0";
         ports = ["127.0.0.1:20013:8080"];
         networks = ["romm"];
         hostname = "romm";

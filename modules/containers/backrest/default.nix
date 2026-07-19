@@ -1,7 +1,7 @@
 {
     virtualisation.oci-containers.containers."backrest" = {
 
-        image = "docker.io/garethgeorge/backrest:v1.13.0-scratch";
+        image = "docker.io/garethgeorge/backrest:v1.14.1-scratch";
         networks = ["backrest"];
         ports = ["127.0.0.1:20001:9898"];
         hostname = "backrest";

@@ -1,7 +1,7 @@
 {
     virtualisation.oci-containers.containers."scrobbler" = {
 
-        image = "ghcr.io/foxxmd/multi-scrobbler:0.14.1";
+        image = "ghcr.io/foxxmd/multi-scrobbler:0.14.2";
         ports = [ "20001:9078" ];
         networks = ["scrobbler"];
         hostname = "scrobbler";

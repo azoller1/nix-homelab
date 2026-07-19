@@ -1,7 +1,7 @@
 {
     virtualisation.oci-containers.containers."dozzle-agent" = {
 
-        image = "docker.io/amir20/dozzle:v10.6.6";
+        image = "docker.io/amir20/dozzle:v10.6.10";
         ports = ["7007:7007"];
         networks = ["dozzle-agent"];
         hostname = "dozzle-agent";

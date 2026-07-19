@@ -1,7 +1,7 @@
 {
     virtualisation.oci-containers.containers."navidrome" = {
 
-        image = "ghcr.io/navidrome/navidrome:0.62.0";
+        image = "ghcr.io/navidrome/navidrome:0.63.2";
         hostname = "navidrome";
         networks = ["navidrome"];
         ports = ["127.0.0.1:20005:4533"];

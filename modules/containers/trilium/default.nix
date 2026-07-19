@@ -1,7 +1,7 @@
 {
     virtualisation.oci-containers.containers."trilium" = {
 
-        image = "ghcr.io/triliumnext/trilium:v0.103.0@sha256:8e6bc939a6d5dbeed42d1b5b155bc790b1c28ca3ac414382d04d626903c62081";
+        image = "ghcr.io/triliumnext/trilium:v0.104.0@sha256:8e053aa58a90c1690106a324a4692690ba0491c21ae40485b4051e2911df9489";
         networks = ["trillium"];
         ports = ["20011:8080"];
         hostname = "trilium";
