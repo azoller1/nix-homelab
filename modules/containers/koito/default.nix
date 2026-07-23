@@ -3,7 +3,7 @@
     virtualisation.oci-containers.containers."koito" = {
 
         image = "docker.io/gabehf/koito:v0.3.2";
-        ports = [ "20000:4110" ];
+        ports = [ "20013:4110" ];
         networks = ["koito"];
         hostname = "koito";
 
@@ -11,9 +11,9 @@
             "koito_data:/etc/koito"
         ];
 
-        environmentFiles = [
-            /home/azoller/containers/koito/env
-        ];
+        # environmentFiles = [
+        #     /home/azoller/containers/koito/env
+        # ];
 
         # labels = {
         #     "kop.bind.ip" = "192.168.2.6";

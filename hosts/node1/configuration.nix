@@ -20,6 +20,10 @@
     ../../modules/containers/ignis-obsid/default.nix
     ../../modules/containers/grimmory/default.nix
     ../../modules/containers/trilium/default.nix
+    # node2
+    ../../modules/containers/koito/default.nix
+    ../../modules/containers/multi-scrobb/default.nix
+    ../../modules/containers/sure-finances/default.nix
     #../../modules/containers/beszel-agent/default.nix
     #../../modules/containers/ys/default.nix
     #../../modules/containers/tasktrove/default.nix

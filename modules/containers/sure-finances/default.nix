@@ -2,7 +2,7 @@
     virtualisation.oci-containers.containers."sure" = {
 
         image = "ghcr.io/we-promise/sure:0.7.2@sha256:96155b20c0b71f8e2ab960ab5aba8fba9df64c6a40ec581eca20af2b20ab089c";
-        ports = [ "20003:3000" ];
+        ports = [ "20012:3000" ];
         networks = ["sure"];
         hostname = "sure";
 
@@ -11,7 +11,7 @@
         ];
 
         environmentFiles = [
-            "/home/azoller/containers/sure-finances/env"
+            "/home/azoller/containers/sure/env"
         ];
 
         extraOptions = [
@@ -48,7 +48,7 @@
         ];
 
         environmentFiles = [
-            "/home/azoller/containers/sure-finances/env"
+            "/home/azoller/containers/sure/env"
         ];
 
         extraOptions = [
