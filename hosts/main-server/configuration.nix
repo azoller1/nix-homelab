@@ -27,6 +27,7 @@
     ../../modules/containers/tidarr/default.nix
     ../../modules/containers/office/default.nix
     ../../modules/containers/filebrowser/default.nix
+    #../../modules/containers/scanopy/default.nix
     # ../../modules/containers/sftpgo/default.nix
     #../../modules/containers/zitadel/default.nix
     #../../modules/containers/traccar/default.nix
@@ -34,7 +35,6 @@
     #../../modules/containers/openweb/default.nix
     #../../modules/containers/beszel/default.nix
     #../../modules/containers/traefik/default.nix
-    #../../modules/containers/scanopy/default.nix
     #../../modules/containers/soulsync/default.nix
     #../../modules/containers/cooklang/default.nix
     #../../modules/containers/tuwunel/default.nix
